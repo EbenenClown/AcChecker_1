@@ -1,0 +1,2 @@
+rootProject.name='AnimalCrossing_Checker'
+include ':app'
