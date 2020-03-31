@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">AnimalCrossing_Checker</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_1">Fish</string>
+    <string name="tab_text_2">Insects</string>
 </resources>

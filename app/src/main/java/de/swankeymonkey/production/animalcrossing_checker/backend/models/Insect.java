@@ -1,4 +1,16 @@
-package de.swankeymonkey.production.animalcrossing_checker.backend.database;
+package de.swankeymonkey.production.animalcrossing_checker.backend.models;
 
-public class Insect {
+import androidx.room.Entity;
+
+@Entity
+public class Insect extends Animal {
+    private int location;
+
+    public int getLocation() {
+        return location;
+    }
+
+    public void setLocation(int location) {
+        this.location = location;
+    }
 }

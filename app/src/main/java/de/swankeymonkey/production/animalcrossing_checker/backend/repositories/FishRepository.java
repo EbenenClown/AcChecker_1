@@ -1,4 +1,4 @@
-package de.swankeymonkey.production.animalcrossing_checker.backend.database;
+package de.swankeymonkey.production.animalcrossing_checker.backend.repositories;
 
 import android.content.Context;
 
@@ -8,6 +8,8 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
+import de.swankeymonkey.production.animalcrossing_checker.backend.database.AppDatabase;
+import de.swankeymonkey.production.animalcrossing_checker.backend.database.GenericDbTask;
 import de.swankeymonkey.production.animalcrossing_checker.backend.models.Fish;
 
 public class FishRepository {
@@ -30,15 +32,15 @@ public class FishRepository {
     }
 
 
-    private LiveData<List<Fish>> getAllFish() {
+    public LiveData<List<Fish>> getAllFish() {
         return mDb.fishDAO().getAllFish();
     }
 
-    private LiveData<List<Fish>> getMissingFish() {
+    public LiveData<List<Fish>> getMissingFish() {
         return mDb.fishDAO().getMissingFish();
     }
 
-    private LiveData<Fish> getFishById(int id) {
+    public LiveData<Fish> getFishById(int id) {
         return mDb.fishDAO().getFishWithId(id);
     }
 
