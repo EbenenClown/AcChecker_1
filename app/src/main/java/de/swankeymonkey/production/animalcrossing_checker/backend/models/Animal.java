@@ -3,15 +3,14 @@ package de.swankeymonkey.production.animalcrossing_checker.backend.models;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import org.joda.time.DateTime;
+import java.util.ArrayList;
 
 @Entity
 public abstract class Animal {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String name;
-    private DateTime date;
-    private int time;
+    private ArrayList<String> months;
     private int price;
     private boolean isCatched;
 
@@ -31,20 +30,12 @@ public abstract class Animal {
         this.name = name;
     }
 
-    public DateTime getDate() {
-        return date;
+    public ArrayList<String> getMonths() {
+        return months;
     }
 
-    public void setDate(DateTime date) {
-        this.date = date;
-    }
-
-    public int getTime() {
-        return time;
-    }
-
-    public void setTime(int time) {
-        this.time = time;
+    public void setMonths(ArrayList<String> months) {
+        this.months = months;
     }
 
     public int getPrice() {

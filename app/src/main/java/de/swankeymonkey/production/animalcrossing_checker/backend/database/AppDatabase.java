@@ -6,12 +6,14 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
 import de.swankeymonkey.production.animalcrossing_checker.backend.models.Fish;
 import de.swankeymonkey.production.animalcrossing_checker.backend.models.Insect;
 
 import static de.swankeymonkey.production.animalcrossing_checker.utils.Constants.*;
 
+@TypeConverters(Transformation.class)
 @Database(entities = {Fish.class, Insect.class}, version = DB_VERSION, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE;
@@ -20,7 +22,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public static AppDatabase getInstance(@NonNull Context context) {
         if(INSTANCE == null) {
-            INSTANCE = Room.databaseBuilder(context, AppDatabase.class, DB_NAME).build();
+            INSTANCE = Room.databaseBuilder(context, AppDatabase.class, DB_NAME).fallbackToDestructiveMigration().build();
         }
         return INSTANCE;
     }

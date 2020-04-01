@@ -31,6 +31,10 @@ public class FishRepository {
         new DeleterTask(mDb, callback).execute(fish);
     }
 
+    public void nukeTable() {
+        new TableNukerTask(mDb).execute(new Fish());
+    }
+
 
     public LiveData<List<Fish>> getAllFish() {
         return mDb.fishDAO().getAllFish();
@@ -50,7 +54,7 @@ public class FishRepository {
         }
 
         @Override
-        protected Fish doInBackGround(Fish data) {
+        protected Fish doInBackGroundCustom(Fish data) {
             db.fishDAO().saveNewFish(data);
             return data;
         }
@@ -62,7 +66,7 @@ public class FishRepository {
         }
 
         @Override
-        protected Fish doInBackGround(Fish data) {
+        protected Fish doInBackGroundCustom(Fish data) {
             db.fishDAO().updateFish(data);
             return data;
         }
@@ -74,9 +78,21 @@ public class FishRepository {
         }
 
         @Override
-        protected Fish doInBackGround(Fish data) {
+        protected Fish doInBackGroundCustom(Fish data) {
             db.fishDAO().deleteFish(data);
             return data;
+        }
+    }
+
+    private static class TableNukerTask extends GenericDbTask<Fish, Void> {
+        TableNukerTask(AppDatabase appDatabase) {
+            super(appDatabase, null);
+        }
+
+        @Override
+        protected Void doInBackGroundCustom(Fish data) {
+            db.fishDAO().nukeTable();
+            return null;
         }
     }
 }

@@ -2,4 +2,32 @@
     <string name="app_name">AnimalCrossing_Checker</string>
     <string name="tab_text_1">Fish</string>
     <string name="tab_text_2">Insects</string>
+
+    <!--Months-->
+    <string name="Jan">January</string>
+    <string name="Feb">February</string>
+    <string name="Mar">March</string>
+    <string name="Apr">April</string>
+    <string name="May">May</string>
+    <string name="Jun">June</string>
+    <string name="Jul">July</string>
+    <string name="Aug">August</string>
+    <string name="Sep">September</string>
+    <string name="Oct">October</string>
+    <string name="Nov">November</string>
+    <string name="Dec">December</string>
+    <string name="Unknown">Unknown</string>
+
+    <!--FishTimes-->
+    <string name="t4am_9pm">4am - 9pm</string>
+    <string name="t9am_4pm">9am - 4pm</string>
+    <string name="t9am_4pm_9pm_4am">9am - 16pm &amp; 9pm - 4am</string>
+    <string name="t4pm_9am">4pm - 9am</string>
+    <string name="t6pm_4am">6pm - 4am</string>
+    <string name="t9pm_4am">9pm - 4am</string>
+
+    <!--InsectTimes-->
+
+
+    <string name="All_Day">All Day</string>
 </resources>

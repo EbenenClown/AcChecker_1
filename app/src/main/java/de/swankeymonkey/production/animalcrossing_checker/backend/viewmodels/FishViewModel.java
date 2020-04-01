@@ -43,7 +43,12 @@ public class FishViewModel extends AndroidViewModel {
     public void updateFish(Fish fish, GenericDbTask.DbCallback<Fish> callback) {
         mRepository.updateFish(fish, callback);
     }
+
     public void deleteFish(Fish fish, GenericDbTask.DbCallback<Fish> callback) {
         mRepository.deleteFish(fish, callback);
+    }
+
+    public void nukeTable() {
+        mRepository.nukeTable();
     }
 }

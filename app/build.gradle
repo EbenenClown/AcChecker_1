@@ -46,5 +46,8 @@ dependencies {
     //JODA TIME
     implementation 'joda-time:joda-time:2.10.5'
 
+    //GSON
+    implementation 'com.google.code.gson:gson:2.8.6'
+
 
 }

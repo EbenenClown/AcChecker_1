@@ -5,6 +5,7 @@ import androidx.room.Entity;
 @Entity
 public class Insect extends Animal {
     private int location;
+    private int time;
 
     public int getLocation() {
         return location;
@@ -12,5 +13,13 @@ public class Insect extends Animal {
 
     public void setLocation(int location) {
         this.location = location;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
     }
 }

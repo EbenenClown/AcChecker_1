@@ -50,7 +50,7 @@ public class InsectRepository {
         }
 
         @Override
-        protected Insect doInBackGround(Insect data) {
+        protected Insect doInBackGroundCustom(Insect data) {
             db.insectDAO().saveNewInsect(data);
             return data;
         }
@@ -62,7 +62,7 @@ public class InsectRepository {
         }
 
         @Override
-        protected Insect doInBackGround(Insect data) {
+        protected Insect doInBackGroundCustom(Insect data) {
             db.insectDAO().updateInsect(data);
             return data;
         }
@@ -74,7 +74,7 @@ public class InsectRepository {
         }
 
         @Override
-        protected Insect doInBackGround(Insect data) {
+        protected Insect doInBackGroundCustom(Insect data) {
             db.insectDAO().deleteInsect(data);
             return data;
         }

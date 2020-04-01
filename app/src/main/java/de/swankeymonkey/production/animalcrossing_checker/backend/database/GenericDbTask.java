@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 public abstract class GenericDbTask<T, Z> extends AsyncTask<T, Void, Z> {
     protected AppDatabase db;
     protected DbCallback<Z> callback;
-    protected abstract Z doInBackGround(T data);
+    protected abstract Z doInBackGroundCustom(T data);
 
     public GenericDbTask(@NonNull AppDatabase db,@Nullable DbCallback<Z> callback) {
         this.db = db;
@@ -17,14 +17,16 @@ public abstract class GenericDbTask<T, Z> extends AsyncTask<T, Void, Z> {
 
     @Override
     protected Z doInBackground(T... ts) {
-        T t = ts[0];
-        return doInBackGround(t);
+            T t = ts[0];
+            return doInBackGroundCustom(t);
     }
 
     @Override
     protected void onPostExecute(Z z) {
         super.onPostExecute(z);
-        callback.onFinsh(z);
+        if(z != null) {
+            callback.onFinsh(z);
+        }
     }
 
     public interface DbCallback<Z> {
