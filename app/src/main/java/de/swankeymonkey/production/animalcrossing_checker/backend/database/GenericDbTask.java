@@ -24,7 +24,7 @@ public abstract class GenericDbTask<T, Z> extends AsyncTask<T, Void, Z> {
     @Override
     protected void onPostExecute(Z z) {
         super.onPostExecute(z);
-        if(z != null) {
+        if(z != null && callback != null) {
             callback.onFinsh(z);
         }
     }

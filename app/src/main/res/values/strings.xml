@@ -27,7 +27,21 @@
     <string name="t9pm_4am">9pm - 4am</string>
 
     <!--InsectTimes-->
-
+    <string name="t4am_8am_4pm_7pm">4am - 8am &amp; 4pm - 7pm</string>
+    <string name="t4am_8am_5pm_7pm">4am - 8am &amp; 5pm - 7pm</string>
+    <string name="t4am_5pm">4am - 5pm</string>
+    <string name="t4am_7pm">4am - 7pm</string>
+    <string name="t7am_4pm">7am - 4pm</string>
+    <string name="t8am_4pm">8am - 4pm</string>
+    <string name="t8am_5pm">8am - 5pm</string>
+    <string name="t8am_7pm">8am - 7pm</string>
+    <string name="t4pm_11pm">4pm - 11pm</string>
+    <string name="t5pm_4am">5pm - 4am</string>
+    <string name="t5pm_8am">5pm - 8am</string>
+    <string name="t7pm_4am">7pm - 4am</string>
+    <string name="t7pm_8am">7pm - 8am</string>
+    <string name="t11pm_8am">11pm - 8am</string>
+    <string name="t11pm_4pm">11pm - 4pm</string>
 
     <string name="All_Day">All Day</string>
 
@@ -37,5 +51,20 @@
     <string name="River_Mouth">River(Mouth)</string>
     <string name="Sea">Sea</string>
     <string name="Pier">Pier</string>
+
+    <!--InsectLocations-->
+    <string name="Flying">Flying</string>
+    <string name="Trees">On trees</string>
+    <string name="Ground">On ground</string>
+    <string name="Flowers">On flowers</string>
+    <string name="Trees_Shaking">Shaking trees</string>
+    <string name="UnderGround">Underground</string>
+    <string name="Water">On water</string>
+    <string name="Tree_Stumps">On tree stumps</string>
+    <string name="Rotten_Food">On rotten food</string>
+    <string name="Beach">On beach</string>
+    <string name="Trash">On trash</string>
+    <string name="Rocks">On rocks</string>
+    <string name="Rocks_Hitting">Hitting rocks</string>
 
 </resources>

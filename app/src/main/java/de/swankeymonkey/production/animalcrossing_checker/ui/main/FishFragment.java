@@ -1,11 +1,9 @@
 package de.swankeymonkey.production.animalcrossing_checker.ui.main;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -14,8 +12,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -23,12 +19,8 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import de.swankeymonkey.production.animalcrossing_checker.R;
 import de.swankeymonkey.production.animalcrossing_checker.adapters.FishRecyclerViewAdapter;
-import de.swankeymonkey.production.animalcrossing_checker.backend.database.GenericDbTask;
-import de.swankeymonkey.production.animalcrossing_checker.backend.enums.FishLocation;
-import de.swankeymonkey.production.animalcrossing_checker.backend.enums.FishTime;
 import de.swankeymonkey.production.animalcrossing_checker.backend.models.Fish;
 import de.swankeymonkey.production.animalcrossing_checker.backend.viewmodels.FishViewModel;
-import de.swankeymonkey.production.animalcrossing_checker.backend.viewmodels.InsectViewModel;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -47,7 +39,7 @@ public class FishFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_fish, container, false);
         mViews = new ViewHolder(view);
         mViews.mRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdapter = new FishRecyclerViewAdapter(getContext());
