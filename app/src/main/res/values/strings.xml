@@ -2,6 +2,7 @@
     <string name="app_name">AnimalCrossing_Checker</string>
     <string name="tab_text_1">Fish</string>
     <string name="tab_text_2">Insects</string>
+    <string name="Unknown">Unknown</string>
 
     <!--Months-->
     <string name="Jan">January</string>
@@ -16,7 +17,6 @@
     <string name="Oct">October</string>
     <string name="Nov">November</string>
     <string name="Dec">December</string>
-    <string name="Unknown">Unknown</string>
 
     <!--FishTimes-->
     <string name="t4am_9pm">4am - 9pm</string>
@@ -30,4 +30,12 @@
 
 
     <string name="All_Day">All Day</string>
+
+    <!--FishLocations-->
+    <string name="River">River</string>
+    <string name="River_Clifftop">River(Clifftop)</string>
+    <string name="River_Mouth">River(Mouth)</string>
+    <string name="Sea">Sea</string>
+    <string name="Pier">Pier</string>
+
 </resources>

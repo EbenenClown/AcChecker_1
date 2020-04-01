@@ -1,5 +1,9 @@
 package de.swankeymonkey.production.animalcrossing_checker.backend.enums;
 
+import android.content.Context;
+
+import de.swankeymonkey.production.animalcrossing_checker.R;
+
 public enum FishLocation {
     RIVER(0),
     RIVER_CLIFFTOP(1),
@@ -32,6 +36,23 @@ public enum FishLocation {
                 return PIER;
             default:
                 return UNKOWN;
+        }
+    }
+
+    public static String getString(FishLocation location, Context context) {
+        switch(location) {
+            case RIVER:
+                return context.getString(R.string.River);
+            case RIVER_CLIFFTOP:
+                return context.getString(R.string.River_Clifftop);
+            case RIVER_MOUTH:
+                return context.getString(R.string.River_Mouth);
+            case SEA:
+                return context.getString(R.string.Sea);
+            case PIER:
+                return context.getString(R.string.Pier);
+            default:
+                return context.getString(R.string.Unknown);
         }
     }
 

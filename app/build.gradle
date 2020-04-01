@@ -40,7 +40,7 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
     //BUTTERKNIFE
-    annotationProcessor 'com.jakewharton:butterknife:10.2.1'
+    implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 
     //JODA TIME
