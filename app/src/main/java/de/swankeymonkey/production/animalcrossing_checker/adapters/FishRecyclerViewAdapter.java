@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -54,16 +55,9 @@ public class FishRecyclerViewAdapter extends RecyclerView.Adapter<FishRecyclerVi
     public class FishViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tvName)
         TextView mName;
-        @BindView(R.id.tvLocation)
-        TextView mLocation;
-        @BindView(R.id.tvPrice)
-        TextView mPrice;
-        @BindView(R.id.tvMonths)
-        TextView mMonths;
-        @BindView(R.id.tvTime)
-        TextView mTime;
-        @BindView(R.id.tvIsCatched)
-        TextView mIsCatched;
+        @BindView(R.id.ivLocation)
+        ImageView mLocation;
+
 
         public FishViewHolder(View itemView) {
             super(itemView);
@@ -72,11 +66,30 @@ public class FishRecyclerViewAdapter extends RecyclerView.Adapter<FishRecyclerVi
 
         public void bind(Fish fish) {
             mName.setText(fish.getName());
-            mLocation.setText(FishLocation.getString(fish.getLocation(), mContext));
-            mPrice.setText(String.valueOf(fish.getPrice()));
-            mMonths.setText(fish.getMonths().toString());
-            mTime.setText(FishTime.getTimeString(fish.getTime(), mContext));
-            mIsCatched.setText(fish.isCatched() ? "catched" : "not catched");
+            setLocationPicture(fish.getLocation());
+        }
+
+        private void setLocationPicture(FishLocation location) {
+            switch (location) {
+                case RIVER:
+                    mLocation.setImageResource(R.drawable.f_location_river);
+                    break;
+                case RIVER_MOUTH:
+                    mLocation.setImageResource(R.drawable.f_location_river_mouth);
+                    break;
+                case RIVER_CLIFFTOP:
+                    mLocation.setImageResource(R.drawable.f_location_waterfall);
+                    break;
+                case SEA:
+                    mLocation.setImageResource(R.drawable.f_location_sea);
+                    break;
+                case PIER:
+                    mLocation.setImageResource(R.drawable.f_location_pier);
+                    break;
+                case POND:
+                    mLocation.setImageResource(R.drawable.f_location_pond);
+                    break;
+            }
         }
     }
 }

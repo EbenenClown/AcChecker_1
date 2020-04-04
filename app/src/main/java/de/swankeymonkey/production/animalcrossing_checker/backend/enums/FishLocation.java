@@ -10,7 +10,7 @@ public enum FishLocation {
     RIVER_MOUTH(2),
     SEA(3),
     PIER(4),
-    UNKOWN(5);
+    POND(5);
 
     private int id;
 
@@ -35,7 +35,7 @@ public enum FishLocation {
             case 4:
                 return PIER;
             default:
-                return UNKOWN;
+                return POND;
         }
     }
 
