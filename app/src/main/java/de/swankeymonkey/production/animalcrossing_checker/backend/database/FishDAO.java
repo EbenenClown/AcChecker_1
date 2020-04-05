@@ -29,8 +29,11 @@ public interface FishDAO {
     @Query("SELECT * FROM Fish WHERE :id = id")
     public LiveData<Fish> getFishWithId(int id);
 
-    @Query("SELECT * FROM Fish WHERE isCatched = 1")
+    @Query("SELECT * FROM Fish WHERE isCatched = 0")
     public LiveData<List<Fish>> getMissingFish();
+
+    @Query("SELECT * FROM Fish WHERE isCatched = 1")
+    public LiveData<List<Fish>> getCatchedFish();
 
     @Query("DELETE FROM FISH")
     public void nukeTable();

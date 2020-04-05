@@ -32,6 +32,11 @@ public class FishViewModel extends AndroidViewModel {
         return mFishList;
     }
 
+    public LiveData<List<Fish>> getCatchedFish() {
+        mFishList = mRepository.getCatchedFish();
+        return mFishList;
+    }
+
     public LiveData<Fish> getFishById(int id) {
         return mRepository.getFishById(id);
     }

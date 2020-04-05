@@ -44,6 +44,10 @@ public class FishRepository {
         return mDb.fishDAO().getMissingFish();
     }
 
+    public LiveData<List<Fish>> getCatchedFish() {
+        return mDb.fishDAO().getCatchedFish();
+    }
+
     public LiveData<Fish> getFishById(int id) {
         return mDb.fishDAO().getFishWithId(id);
     }

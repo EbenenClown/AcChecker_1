@@ -1,8 +1,5 @@
 package de.swankeymonkey.production.animalcrossing_checker.ui.main;
 
-import android.content.Context;
-import android.content.MutableContextWrapper;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,13 +19,10 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import de.swankeymonkey.production.animalcrossing_checker.R;
 import de.swankeymonkey.production.animalcrossing_checker.adapters.FishRecyclerViewAdapter;
-import de.swankeymonkey.production.animalcrossing_checker.backend.database.DatabaseCreateHelper;
-import de.swankeymonkey.production.animalcrossing_checker.backend.enums.FishLocation;
 import de.swankeymonkey.production.animalcrossing_checker.backend.models.Fish;
-import de.swankeymonkey.production.animalcrossing_checker.backend.repositories.FishRepository;
 import de.swankeymonkey.production.animalcrossing_checker.backend.viewmodels.FishViewModel;
 
-public class FishFragment extends Fragment {
+public class FishAllFragment extends Fragment {
     private FishViewModel mFishViewModel;
     private ViewHolder mViews;
     private FishRecyclerViewAdapter mAdapter;
@@ -41,7 +35,7 @@ public class FishFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_fish, container, false);
+        View view = inflater.inflate(R.layout.fragment_recyclerview, container, false);
         mViews = new ViewHolder(view);
         mViews.mRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdapter = new FishRecyclerViewAdapter(getContext(), new FishRecyclerViewAdapter.CheckboxClicker() {
@@ -67,8 +61,8 @@ public class FishFragment extends Fragment {
         return view;
     }
 
-    public static FishFragment newInstance() {
-        FishFragment fragment = new FishFragment();
+    public static FishAllFragment newInstance() {
+        FishAllFragment fragment = new FishAllFragment();
         return fragment;
     }
 
