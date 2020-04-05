@@ -28,11 +28,7 @@ import de.swankeymonkey.production.animalcrossing_checker.backend.models.Fish;
 import de.swankeymonkey.production.animalcrossing_checker.backend.repositories.FishRepository;
 import de.swankeymonkey.production.animalcrossing_checker.backend.viewmodels.FishViewModel;
 
-/**
- * A placeholder fragment containing a simple view.
- */
 public class FishFragment extends Fragment {
-    private static final String ARG_SECTION_NUMBER = "section_number";
     private FishViewModel mFishViewModel;
     private ViewHolder mViews;
     private FishRecyclerViewAdapter mAdapter;
@@ -48,19 +44,25 @@ public class FishFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_fish, container, false);
         mViews = new ViewHolder(view);
         mViews.mRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
-        mAdapter = new FishRecyclerViewAdapter(getContext());
+        mAdapter = new FishRecyclerViewAdapter(getContext(), new FishRecyclerViewAdapter.CheckboxClicker() {
+            @Override
+            public void onClicked(Fish fish) {
+                if(fish.isCatched()) {
+                    fish.setCatched(false);
+                } else {
+                    fish.setCatched(true);
+                }
+                mFishViewModel.updateFish(fish, null);
+            }
+        });
         mViews.mRecyclerview.setAdapter(mAdapter);
 
-        mFishViewModel.nukeTable();
         mFishViewModel.getAllFish().observe(getActivity(), new Observer<List<Fish>>() {
             @Override
             public void onChanged(List<Fish> fish) {
                 mAdapter.setData(fish);
             }
         });
-
-        new DatabasePopulaterTask(getContext()).execute();
-
 
         return view;
     }
@@ -70,30 +72,7 @@ public class FishFragment extends Fragment {
         return fragment;
     }
 
-    public static class DatabasePopulaterTask extends AsyncTask<Void, Void, List<Fish>> {
-        private Context mContext;
 
-        public DatabasePopulaterTask(Context context) {
-            mContext = context;
-        }
-
-        @Override
-        protected List<Fish> doInBackground(Void... voids) {
-            DatabaseCreateHelper dbHelper = new DatabaseCreateHelper(mContext);
-            List<Fish> allFish = dbHelper.populateNorthernFishList();
-            FishRepository repository = new FishRepository(mContext);
-            for(Fish fish : allFish) {
-                repository.saveNewFish(fish, null);
-            }
-            return allFish;
-        }
-
-        @Override
-        protected void onPostExecute(List<Fish> fish) {
-            super.onPostExecute(fish);
-
-        }
-    }
 
     public class ViewHolder {
         @BindView(R.id.recyclerview_main)

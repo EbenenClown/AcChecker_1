@@ -17,7 +17,9 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import de.swankeymonkey.production.animalcrossing_checker.controllers.DbPopulateController;
 import de.swankeymonkey.production.animalcrossing_checker.ui.main.SectionsPagerAdapter;
+import de.swankeymonkey.production.animalcrossing_checker.utils.AppSharedPreferences;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,5 +32,10 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
+
+        if(!AppSharedPreferences.isFishDbPopulated(this)) {
+            DbPopulateController.populateDb(this);
+            AppSharedPreferences.setFishDbPopulated(this, true);
+        }
     }
 }
