@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="4dp"
+    android:layout_marginTop="4dp"
+    android:background="@drawable/custom_listitem_background"
+    android:layout_marginRight="4dp"
+    android:elevation="4dp">
+
+    <ImageView
+        android:id="@+id/ivImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:adjustViewBounds="true"
+        android:cropToPadding="true"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@id/details"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/sawshark" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/fink_heavy"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivImage"
+        app:layout_constraintStart_toEndOf="@+id/ivImage"
+        app:layout_constraintTop_toTopOf="@+id/ivImage"
+        tools:text="TextView" />
+
+    <CheckBox
+        android:id="@+id/cbCatched"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivImage" />
+
+    <ImageView
+        android:id="@+id/ivLocation"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivImage"
+        app:layout_constraintEnd_toStartOf="@+id/cbCatched"
+        app:layout_constraintTop_toTopOf="@+id/ivImage" />
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/details"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/expander">
+        
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/fink_heavy"
+            tools:text="800 Sterni"
+            android:textSize="18sp"
+            android:textColor="@android:color/holo_blue_dark"
+            app:layout_constraintBottom_toTopOf="@id/lyJanJun"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="@font/fink_heavy"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvPrice"
+            tools:text="4pm - 8am" />
+
+        <LinearLayout
+            android:id="@+id/lyJanJun"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="4dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/lyJulDec"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            >
+
+            <Button
+                android:id="@+id/bJan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:focusable="false"
+                android:clickable="false"
+                android:background="@drawable/month_custom_button"
+                android:fontFamily="@font/fink_heavy"
+                android:text="Jan." />
+
+            <Button
+                android:id="@+id/bFeb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:focusable="false"
+                android:clickable="false"
+                android:background="@drawable/month_custom_button"
+                android:fontFamily="@font/fink_heavy"
+                android:text="Feb." />
+
+            <Button
+                android:id="@+id/bMarch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:focusable="false"
+                android:clickable="false"
+                android:background="@drawable/month_custom_button"
+                android:fontFamily="@font/fink_heavy"
+                android:text="Mar." />
+
+            <Button
+                android:id="@+id/bApr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:focusable="false"
+                android:clickable="false"
+                android:background="@drawable/month_custom_button"
+                android:fontFamily="@font/fink_heavy"
+                android:text="Apr." />
+
+            <Button
+                android:id="@+id/bMay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:focusable="false"
+                android:clickable="false"
+                android:background="@drawable/month_custom_button"
+                android:fontFamily="@font/fink_heavy"
+                android:text="May" />
+
+            <Button
+                android:id="@+id/bJune"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:focusable="false"
+                android:clickable="false"
+                android:background="@drawable/month_custom_button"
+                android:fontFamily="@font/fink_heavy"
+                android:text="Jun." />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lyJulDec"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            android:enabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
+
+            <Button
+                android:id="@+id/bJul"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:focusable="false"
+                android:clickable="false"
+                android:background="@drawable/month_custom_button"
+                android:fontFamily="@font/fink_heavy"
+                android:text="Jul." />
+
+            <Button
+                android:id="@+id/bAug"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:focusable="false"
+                android:clickable="false"
+                android:background="@drawable/month_custom_button"
+                android:fontFamily="@font/fink_heavy"
+                android:text="Aug." />
+
+            <Button
+                android:id="@+id/bSep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:focusable="false"
+                android:clickable="false"
+                android:background="@drawable/month_custom_button"
+                android:fontFamily="@font/fink_heavy"
+                android:text="Sep." />
+
+            <Button
+                android:id="@+id/bOct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:focusable="false"
+                android:clickable="false"
+                android:background="@drawable/month_custom_button"
+                android:fontFamily="@font/fink_heavy"
+                android:text="Oct." />
+
+            <Button
+                android:id="@+id/bNov"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:focusable="false"
+                android:clickable="false"
+                android:background="@drawable/month_custom_button"
+                android:fontFamily="@font/fink_heavy"
+                android:text="Nov." />
+
+            <Button
+                android:id="@+id/bDec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:focusable="false"
+                android:clickable="false"
+                android:background="@drawable/month_custom_button"
+                android:fontFamily="@font/fink_heavy"
+                android:text="Dec." />
+
+        </LinearLayout>
+        
+        
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    
+
+    <ImageView
+        android:id="@+id/expander"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_more_horiz_black_24dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

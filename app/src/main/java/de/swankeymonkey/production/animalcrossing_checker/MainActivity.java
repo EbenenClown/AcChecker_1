@@ -9,11 +9,17 @@ import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import de.swankeymonkey.production.animalcrossing_checker.controllers.DbPopulateController;
 import de.swankeymonkey.production.animalcrossing_checker.ui.main.SectionsPagerAdapter;
+import de.swankeymonkey.production.animalcrossing_checker.utils.AppSharedPreferences;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,14 +32,10 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-        FloatingActionButton fab = findViewById(R.id.fab);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        if(!AppSharedPreferences.isFishDbPopulated(this)) {
+            DbPopulateController.populateDb(this);
+            AppSharedPreferences.setFishDbPopulated(this, true);
+        }
     }
 }

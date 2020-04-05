@@ -1,5 +1,159 @@
 <resources>
     <string name="app_name">AnimalCrossing_Checker</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_1">Fish</string>
+    <string name="tab_text_2">Insects</string>
+    <string name="Unknown">Unknown</string>
+
+    <!--FishNames-->
+    <string name="Bitterling">Bitterling</string>
+    <string name="Pale_Chub">Pale Chub</string>
+    <string name="Crucian_Carp">Crucian Carp</string>
+    <string name="Dace">Dace</string>
+    <string name="Carp">Carp</string>
+    <string name="Koi">Koi</string>
+    <string name="Goldfish">Goldfish</string>
+    <string name="Pop_eyed_Goldfish">Pop-eyed Goldfish</string>
+    <string name="Ranchu_Goldfish">Ranchu Goldfish</string>
+    <string name="Kilifish">Killifish</string>
+    <string name="Crawfish">Crawfish</string>
+    <string name="Soft_shelled_turtle">Soft-shelled Turtle</string>
+    <string name="snapping_turtle">Snapping Turtle</string>
+    <string name="tadpole">Tadpole</string>
+    <string name="frog">Frog</string>
+    <string name="freshwater_goby">Freshwater Goby</string>
+    <string name="Loach">Loach</string>
+    <string name="catfish">Catfish</string>
+    <string name="giant_snakehead">Giant Snakehead</string>
+    <string name="bluegill">Bluegill</string>
+    <string name="yellow_perch">Yellow Perch</string>
+    <string name="black_bass">Black Bass</string>
+    <string name="Tilapia">Tilapia</string>
+    <string name="Pike">Pike</string>
+    <string name="pond_smelt">Pond Smelt</string>
+    <string name="sweetfish">Sweetfish</string>
+    <string name="cherry_salmon">Cherry Salmon</string>
+    <string name="Char">Char</string>
+    <string name="golden_trout">Golden Trout</string>
+    <string name="Stringfish">Stringfish</string>
+    <string name="salmon">Salmon</string>
+    <string name="king_salmon">King Salmon</string>
+    <string name="mitten_crab">Mitten Crab</string>
+    <string name="guppy">Guppy</string>
+    <string name="nibble_fish">Nibble Fish</string>
+    <string name="angelfish">Angelfish</string>
+    <string name="betta">Betta</string>
+    <string name="neon_tetra">Neon Tetra</string>
+    <string name="rainbowfish">Rainbowfish</string>
+    <string name="piranha">Piranha</string>
+    <string name="arowana">Arowana</string>
+    <string name="dorado">Dorado</string>
+    <string name="gar">Gar</string>
+    <string name="arapaima">Arapaima</string>
+    <string name="saddled_bichir">Saddled Bichir</string>
+    <string name="sturgeon">Sturgeon</string>
+    <string name="sea_butterfly">Sea Butterfly</string>
+    <string name="sea_horse">Sea Horse</string>
+    <string name="clown_fish">Clown Fish</string>
+    <string name="surgeonfish">Surgeon Fish</string>
+    <string name="butterfly_fish">Butterfly Fish</string>
+    <string name="napoleonfish">Napoleonfish</string>
+    <string name="zebra_turkeyfish">Zebra Turkeyfish</string>
+    <string name="blowfish">Blowfish</string>
+    <string name="puffer_fish">Puffer Fish</string>
+    <string name="anchovy">Anchovy</string>
+    <string name="horse_mackerel">Horse Mackerel</string>
+    <string name="Barred_knifejaw">Barred Knifejaw</string>
+    <string name="sea_bass">Sea Bass</string>
+    <string name="red_snapper">Red Snapper</string>
+    <string name="dab">Dab</string>
+    <string name="olive_flounder">Olive Flounder</string>
+    <string name="squid">Squid</string>
+    <string name="moray_eel">Moray Eel</string>
+    <string name="ribbon_eel">Ribbon Eel</string>
+    <string name="tuna">Tuna</string>
+    <string name="blue_marlin">Blue Marlin</string>
+    <string name="giant_trevally">Giant Trevally</string>
+    <string name="mahi_mahi">Mahi-mahi</string>
+    <string name="ocean_sunfish">Ocean Sunfish</string>
+    <string name="ray">Ray</string>
+    <string name="saw_shark">Saw Shark</string>
+    <string name="Hammerhead_shark">Hammerhead Shark</string>
+    <string name="Greate_white_shark">Great White Shark</string>
+    <string name="whale_shark">Whale Shark</string>
+    <string name="suckerfish">Suckerfish</string>
+    <string name="football_fish">Football Fish</string>
+    <string name="oarfish">Oarfish</string>
+    <string name="Barreleye">Barreley</string>
+    <string name="coelacanth">Coelacanth</string>
+
+
+
+
+
+
+
+
+    <!--Months-->
+    <string name="Jan">January</string>
+    <string name="Feb">February</string>
+    <string name="Mar">March</string>
+    <string name="Apr">April</string>
+    <string name="May">May</string>
+    <string name="Jun">June</string>
+    <string name="Jul">July</string>
+    <string name="Aug">August</string>
+    <string name="Sep">September</string>
+    <string name="Oct">October</string>
+    <string name="Nov">November</string>
+    <string name="Dec">December</string>
+
+    <!--FishTimes-->
+    <string name="t4am_9pm">4am - 9pm</string>
+    <string name="t9am_4pm">9am - 4pm</string>
+    <string name="t9am_4pm_9pm_4am">9am - 16pm &amp; 9pm - 4am</string>
+    <string name="t4pm_9am">4pm - 9am</string>
+    <string name="t6pm_4am">6pm - 4am</string>
+    <string name="t9pm_4am">9pm - 4am</string>
+
+    <!--InsectTimes-->
+    <string name="t4am_8am_4pm_7pm">4am - 8am &amp; 4pm - 7pm</string>
+    <string name="t4am_8am_5pm_7pm">4am - 8am &amp; 5pm - 7pm</string>
+    <string name="t4am_5pm">4am - 5pm</string>
+    <string name="t4am_7pm">4am - 7pm</string>
+    <string name="t7am_4pm">7am - 4pm</string>
+    <string name="t8am_4pm">8am - 4pm</string>
+    <string name="t8am_5pm">8am - 5pm</string>
+    <string name="t8am_7pm">8am - 7pm</string>
+    <string name="t4pm_11pm">4pm - 11pm</string>
+    <string name="t5pm_4am">5pm - 4am</string>
+    <string name="t5pm_8am">5pm - 8am</string>
+    <string name="t7pm_4am">7pm - 4am</string>
+    <string name="t7pm_8am">7pm - 8am</string>
+    <string name="t11pm_8am">11pm - 8am</string>
+    <string name="t11pm_4pm">11pm - 4pm</string>
+
+    <string name="All_Day">All Day</string>
+
+    <!--FishLocations-->
+    <string name="River">River</string>
+    <string name="River_Clifftop">River(Clifftop)</string>
+    <string name="River_Mouth">River(Mouth)</string>
+    <string name="Sea">Sea</string>
+    <string name="Pier">Pier</string>
+
+    <!--InsectLocations-->
+    <string name="Flying">Flying</string>
+    <string name="Trees">On trees</string>
+    <string name="Ground">On ground</string>
+    <string name="Flowers">On flowers</string>
+    <string name="Trees_Shaking">Shaking trees</string>
+    <string name="UnderGround">Underground</string>
+    <string name="Water">On water</string>
+    <string name="Tree_Stumps">On tree stumps</string>
+    <string name="Rotten_Food">On rotten food</string>
+    <string name="Beach">On beach</string>
+    <string name="Trash">On trash</string>
+    <string name="Rocks">On rocks</string>
+    <string name="Rocks_Hitting">Hitting rocks</string>
+
 </resources>
