@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AnimalCrossing_Checker</string>
+    <string name="app_name">AC Checker</string>
     <string name="tab_all">All</string>
     <string name="tab_missing">Missing</string>
     <string name="tab_catched">Catched</string>

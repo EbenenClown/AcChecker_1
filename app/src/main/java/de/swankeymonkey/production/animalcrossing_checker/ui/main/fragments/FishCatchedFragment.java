@@ -1,4 +1,4 @@
-package de.swankeymonkey.production.animalcrossing_checker.ui.main;
+package de.swankeymonkey.production.animalcrossing_checker.ui.main.fragments;
 
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import java.util.List;
 
-import de.swankeymonkey.production.animalcrossing_checker.adapters.FishRecyclerViewAdapter;
+import de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters.FishRecyclerViewAdapter;
 import de.swankeymonkey.production.animalcrossing_checker.backend.models.Fish;
 import de.swankeymonkey.production.animalcrossing_checker.backend.viewmodels.FishViewModel;
 
@@ -23,7 +23,7 @@ public class FishCatchedFragment extends BaseListFragment {
     }
 
     @Override
-    FishRecyclerViewAdapter.CheckboxClicker setOnItemCheckListener() {
+    protected FishRecyclerViewAdapter.CheckboxClicker setOnItemCheckListener() {
         return new FishRecyclerViewAdapter.CheckboxClicker() {
             @Override
             public void onClicked(Fish fish) {
@@ -38,7 +38,7 @@ public class FishCatchedFragment extends BaseListFragment {
     }
 
     @Override
-    void init(View view) {
+    protected void init(View view) {
         mViewModel.getCatchedFish().observe(this, new Observer<List<Fish>>() {
             @Override
             public void onChanged(List<Fish> fish) {

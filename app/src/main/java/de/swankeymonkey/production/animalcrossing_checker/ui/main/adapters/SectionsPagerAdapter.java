@@ -1,4 +1,4 @@
-package de.swankeymonkey.production.animalcrossing_checker.ui.main;
+package de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters;
 
 import android.content.Context;
 
@@ -6,10 +6,13 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import de.swankeymonkey.production.animalcrossing_checker.R;
+import de.swankeymonkey.production.animalcrossing_checker.ui.main.fragments.FishAllFragment;
+import de.swankeymonkey.production.animalcrossing_checker.ui.main.fragments.FishCatchedFragment;
+import de.swankeymonkey.production.animalcrossing_checker.ui.main.fragments.FishMissingFragment;
+import de.swankeymonkey.production.animalcrossing_checker.ui.main.fragments.FishNowFragment;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to

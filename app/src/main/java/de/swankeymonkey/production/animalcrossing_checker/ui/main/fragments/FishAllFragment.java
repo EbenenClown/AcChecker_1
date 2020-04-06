@@ -1,9 +1,10 @@
-package de.swankeymonkey.production.animalcrossing_checker.ui.main;
+package de.swankeymonkey.production.animalcrossing_checker.ui.main.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -18,14 +19,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import de.swankeymonkey.production.animalcrossing_checker.R;
-import de.swankeymonkey.production.animalcrossing_checker.adapters.FishRecyclerViewAdapter;
+import de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters.FishRecyclerViewAdapter;
 import de.swankeymonkey.production.animalcrossing_checker.backend.models.Fish;
 import de.swankeymonkey.production.animalcrossing_checker.backend.viewmodels.FishViewModel;
 
-public class FishAllFragment extends Fragment {
+public class FishAllFragment extends BaseListFragment {
     private FishViewModel mFishViewModel;
-    private ViewHolder mViews;
-    private FishRecyclerViewAdapter mAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,12 +32,23 @@ public class FishAllFragment extends Fragment {
         mFishViewModel = new ViewModelProvider(this).get(FishViewModel.class);
     }
 
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_recyclerview, container, false);
-        mViews = new ViewHolder(view);
-        mViews.mRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
-        mAdapter = new FishRecyclerViewAdapter(getContext(), new FishRecyclerViewAdapter.CheckboxClicker() {
+    protected void init(View view) {
+        final ProgressBar progressBar = getActivity().findViewById(R.id.progessBar);
+        mFishViewModel.getAllFish().observe(getActivity(), new Observer<List<Fish>>() {
+            @Override
+            public void onChanged(List<Fish> fish) {
+                mAdapter.setData(fish);
+                progressBar.setVisibility(View.GONE);
+            }
+        });
+
+    }
+
+    @Override
+    protected FishRecyclerViewAdapter.CheckboxClicker setOnItemCheckListener() {
+        return new FishRecyclerViewAdapter.CheckboxClicker() {
             @Override
             public void onClicked(Fish fish) {
                 if(fish.isCatched()) {
@@ -48,34 +58,11 @@ public class FishAllFragment extends Fragment {
                 }
                 mFishViewModel.updateFish(fish, null);
             }
-        });
-        mViews.mRecyclerview.setAdapter(mAdapter);
-
-        mFishViewModel.getAllFish().observe(getActivity(), new Observer<List<Fish>>() {
-            @Override
-            public void onChanged(List<Fish> fish) {
-                mAdapter.setData(fish);
-            }
-        });
-
-        return view;
+        };
     }
 
     public static FishAllFragment newInstance() {
         FishAllFragment fragment = new FishAllFragment();
         return fragment;
     }
-
-
-
-    public class ViewHolder {
-        @BindView(R.id.recyclerview_main)
-        RecyclerView mRecyclerview;
-        Unbinder mUnbinder;
-
-        public ViewHolder(View view) {
-            mUnbinder = ButterKnife.bind(this, view);
-        }
-    }
-
 }

@@ -1,15 +1,12 @@
-package de.swankeymonkey.production.animalcrossing_checker.adapters;
+package de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters;
 
 import android.content.Context;
-import android.transition.Transition;
-import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -41,6 +38,16 @@ public class FishRecyclerViewAdapter extends RecyclerView.Adapter<FishRecyclerVi
     }
 
     public void setData(List<Fish> list) {
+        mFishList = list;
+        notifyDataSetChanged();
+    }
+
+    public List<Fish> getData() {
+        return mFishList;
+    }
+
+    public void updateData(List<Fish> list) {
+        mFishList.clear();
         mFishList = list;
         notifyDataSetChanged();
     }

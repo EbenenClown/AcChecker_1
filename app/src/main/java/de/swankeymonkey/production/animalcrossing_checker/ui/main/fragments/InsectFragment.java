@@ -1,4 +1,4 @@
-package de.swankeymonkey.production.animalcrossing_checker.ui.main;
+package de.swankeymonkey.production.animalcrossing_checker.ui.main.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
