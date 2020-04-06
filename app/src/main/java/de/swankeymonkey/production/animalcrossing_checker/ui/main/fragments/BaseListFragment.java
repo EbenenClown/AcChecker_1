@@ -26,6 +26,8 @@ import de.swankeymonkey.production.animalcrossing_checker.backend.models.Fish;
 import de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters.FishRecyclerViewAdapter;
 
 public abstract class BaseListFragment extends Fragment {
+    private boolean isSortedByNameDown;
+    private boolean isSortedByPriceDown;
     protected ViewHolder mViews;
     protected FishRecyclerViewAdapter mAdapter;
     protected abstract void init(View view);
@@ -78,26 +80,55 @@ public abstract class BaseListFragment extends Fragment {
     }
 
     protected List<Fish> orderByPrice(List<Fish> fishList) {
-        Collections.sort(fishList, new Comparator<Fish>() {
-            @Override
-            public int compare(Fish o1, Fish o2) {
-                return Integer.compare(o2.getPrice(), o1.getPrice());
-            }
-        });
-        return fishList;
+        isSortedByNameDown = false;
+        if(isSortedByPriceDown) {
+            Collections.sort(fishList, new Comparator<Fish>() {
+                @Override
+                public int compare(Fish o1, Fish o2) {
+                    return Integer.compare(o1.getPrice(), o2.getPrice());
+                }
+            });
+            isSortedByPriceDown = false;
+            return fishList;
+        } else {
+            Collections.sort(fishList, new Comparator<Fish>() {
+                @Override
+                public int compare(Fish o1, Fish o2) {
+                    return Integer.compare(o2.getPrice(), o1.getPrice());
+                }
+            });
+            isSortedByPriceDown = true;
+            return fishList;
+        }
     }
 
     protected List<Fish> orderByName(List<Fish> fishList) {
-        Collections.sort(fishList, new Comparator<Fish>() {
-            @Override
-            public int compare(Fish o1, Fish o2) {
-                return o1.getName().compareToIgnoreCase(o2.getName());
-            }
-        });
-        return fishList;
+        isSortedByPriceDown = false;
+        if(isSortedByNameDown) {
+            Collections.sort(fishList, new Comparator<Fish>() {
+                @Override
+                public int compare(Fish o1, Fish o2) {
+                    return o2.getName().compareToIgnoreCase(o1.getName());
+                }
+            });
+            isSortedByNameDown = false;
+            return fishList;
+        } else {
+            Collections.sort(fishList, new Comparator<Fish>() {
+                @Override
+                public int compare(Fish o1, Fish o2) {
+                    return o1.getName().compareToIgnoreCase(o2.getName());
+                }
+            });
+            isSortedByNameDown = true;
+            return fishList;
+        }
+
     }
 
     protected List<Fish> orderByDefault(List<Fish> fishList) {
+        isSortedByNameDown = false;
+        isSortedByPriceDown = false;
         Collections.sort(fishList, new Comparator<Fish>() {
             @Override
             public int compare(Fish o1, Fish o2) {

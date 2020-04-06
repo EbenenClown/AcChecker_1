@@ -21,7 +21,7 @@ import de.swankeymonkey.production.animalcrossing_checker.ui.main.fragments.Fish
 public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.tab_all, R.string.tab_catched, R.string.tab_missing, R.string.tab_now};
+    private static final int[] TAB_TITLES = new int[]{R.string.tab_all, R.string.tab_catched, R.string.tab_missing, R.string.tab_today};
     private final Context mContext;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {

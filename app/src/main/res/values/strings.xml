@@ -3,7 +3,7 @@
     <string name="tab_all">All</string>
     <string name="tab_missing">Missing</string>
     <string name="tab_catched">Catched</string>
-    <string name="tab_now">Now</string>
+    <string name="tab_today">Today</string>
     <string name="Unknown">Unknown</string>
 
     <!--FishNames-->
