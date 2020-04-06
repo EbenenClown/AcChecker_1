@@ -2,40 +2,43 @@ package de.swankeymonkey.production.animalcrossing_checker.ui.main.fragments;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ProgressBar;
 
+import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import de.swankeymonkey.production.animalcrossing_checker.R;
 import de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters.AnimalRecyclerViewAdapter;
 import de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters.FishRecyclerViewAdapter;
 import de.swankeymonkey.production.animalcrossing_checker.backend.models.Fish;
 import de.swankeymonkey.production.animalcrossing_checker.backend.viewmodels.FishViewModel;
+import de.swankeymonkey.production.animalcrossing_checker.utils.DateUtils;
 
-public class FishAllFragment extends BaseFishFragment {
+public class FishTodayFragment extends BaseFishFragment {
     private FishViewModel mViewModel;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(FishViewModel.class);
     }
 
-
     @Override
     protected void init(View view) {
-        final ProgressBar progressBar = getActivity().findViewById(R.id.progessBar);
-        mViewModel.getAllFish().observe(getActivity(), new Observer<List<Fish>>() {
+        mViewModel.getAllFish().observe(this, new Observer<List<Fish>>() {
             @Override
             public void onChanged(List<Fish> fish) {
-                mAdapter.setData(fish);
-                progressBar.setVisibility(View.GONE);
+                List<Fish> filteredList = new ArrayList<>();
+                for(Fish f : fish) {
+                    if(DateUtils.isInDate(f.getMonths())) {
+                       filteredList.add(f);
+                    }
+                }
+                mAdapter.setData(filteredList);
             }
         });
-
     }
 
     @Override
@@ -53,8 +56,10 @@ public class FishAllFragment extends BaseFishFragment {
         };
     }
 
-    public static FishAllFragment newInstance() {
-        FishAllFragment fragment = new FishAllFragment();
+    public static FishTodayFragment newInstance() {
+        Bundle args = new Bundle();
+        FishTodayFragment fragment = new FishTodayFragment();
+        fragment.setArguments(args);
         return fragment;
     }
 }

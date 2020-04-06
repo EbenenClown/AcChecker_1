@@ -157,5 +157,6 @@
     <string name="Trash">On trash</string>
     <string name="Rocks">On rocks</string>
     <string name="Rocks_Hitting">Hitting rocks</string>
+    <string name="bells_string">\" bells\"</string>
 
 </resources>
