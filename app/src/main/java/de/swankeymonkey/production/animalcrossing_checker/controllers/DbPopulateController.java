@@ -7,7 +7,9 @@ import java.util.List;
 
 import de.swankeymonkey.production.animalcrossing_checker.backend.database.DatabaseCreateHelper;
 import de.swankeymonkey.production.animalcrossing_checker.backend.models.Fish;
+import de.swankeymonkey.production.animalcrossing_checker.backend.models.Insect;
 import de.swankeymonkey.production.animalcrossing_checker.backend.repositories.FishRepository;
+import de.swankeymonkey.production.animalcrossing_checker.backend.repositories.InsectRepository;
 
 public class DbPopulateController {
     public static void populateDb(Context context) {
@@ -28,6 +30,11 @@ public class DbPopulateController {
             FishRepository repository = new FishRepository(mContext);
             for(Fish fish : allFish) {
                 repository.saveNewFish(fish, null);
+            }
+            List<Insect> allInsect = dbHelper.populateInsectDb();
+            InsectRepository insectRepository = new InsectRepository(mContext);
+            for(Insect insect : allInsect) {
+                insectRepository.saveNewInsect(insect, null);
             }
             return allFish;
         }
