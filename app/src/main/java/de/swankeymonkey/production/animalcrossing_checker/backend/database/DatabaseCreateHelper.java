@@ -147,7 +147,8 @@ public class DatabaseCreateHelper {
         createInsect(gs(R.string.wasp), 2500, TREES_SHAKING, InsectTime.ALL_DAY, MONTH_ALL);
         createInsect(gs(R.string.brown_cicada), 250, TREES, t8am_5pm, "July, August");
         createInsect(gs(R.string.robust_cicada), 300, TREES, t8am_5pm, "July, August");
-        createInsect(gs(R.string.giant_cicada), 500, TREES, t8am_5pm, "August, September");
+        createInsect(gs(R.string.giant_cicada), 500, TREES, t8am_5pm, "July, August");
+        createInsect(gs(R.string.walker_cicada), 400, TREES, t4am_8am_4pm_7pm, "August, September");
         createInsect(gs(R.string.evening_cicada), 550, TREES, t4am_8am_4pm_7pm, "July, August");
         createInsect(gs(R.string.cicada_shell), 10, TREES, InsectTime.ALL_DAY, "July, August");
         createInsect(gs(R.string.red_dragonfly), 180, FLYING, t8am_7pm, "September, October");
@@ -164,10 +165,10 @@ public class DatabaseCreateHelper {
         createInsect(gs(R.string.ladybug), 200, FLOWERS, t8am_5pm, "March, April, May, June, October");
         createInsect(gs(R.string.tiger_beetle), 1500, FLYING, InsectTime.ALL_DAY, "February, March, April, May, June, July, August, September, October");
         createInsect(gs(R.string.jewel_beetle), 2400, TREE_STUMPS, InsectTime.ALL_DAY, "April, May, June, July, August");
+        createInsect(gs(R.string.violin_beetle), 450, TREES, InsectTime.ALL_DAY, "May, June, September, October, November");
         createInsect(gs(R.string.citrus_long_horned_beetle), 350, TREE_STUMPS, InsectTime.ALL_DAY, MONTH_ALL);
         createInsect(gs(R.string.rosalia_batesi_beetle), 3000, TREE_STUMPS, InsectTime.ALL_DAY, "May, June, July, August, September");
         createInsect(gs(R.string.blue_weevil_beetle), 800, TREES, InsectTime.ALL_DAY, "August, July");
-        createInsect(gs(R.string.violin_beetle), 450, TREES, InsectTime.ALL_DAY, "May, June, September, October, November");
         createInsect(gs(R.string.dung_beetle), 3000, GROUND, InsectTime.ALL_DAY,"December, January, February");
         createInsect(gs(R.string.earth_boring_dung_beetle), 300, GROUND, InsectTime.ALL_DAY, "July, August, September");
         createInsect(gs(R.string.scarab_beetle), 10000, TREES, t11pm_8am, "July, August");

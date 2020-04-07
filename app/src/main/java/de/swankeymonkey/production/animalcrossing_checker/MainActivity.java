@@ -52,9 +52,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if(!AppSharedPreferences.isFishDbPopulated(this)) {
+        if(!AppSharedPreferences.isDbPopulated(this)) {
             DbPopulateController.populateDb(this);
-            AppSharedPreferences.setFishDbPopulated(this, true);
+            AppSharedPreferences.setDbPopulated(this, true);
         }
     }
 
