@@ -20,7 +20,10 @@ public enum InsectTime {
     t7pm_8am(12),
     t11pm_8am(13),
     t11pm_4pm(14),
-    UNKNOWN(15);
+    ALL_DAY(15),
+    t7pm_4pm(16),
+    t5pm_11pm(17),
+    UNKNOWN(18);
 
     private int id;
 
@@ -64,6 +67,13 @@ public enum InsectTime {
                     return t11pm_8am;
             case 14:
                     return t11pm_4pm;
+            case 15:
+                return ALL_DAY;
+            case 16:
+                return t7pm_4pm;
+
+            case 17:
+                return t5pm_11pm;
             default:
                     return UNKNOWN;
         }
@@ -101,6 +111,12 @@ public enum InsectTime {
                 return context.getString(R.string.t11pm_8am);
             case t11pm_4pm:
                 return context.getString(R.string.t11pm_4pm);
+            case ALL_DAY:
+                return context.getString(R.string.All_Day);
+            case t7pm_4pm:
+                return context.getString(R.string.t7pm_4pm);
+            case t5pm_11pm:
+                return context.getString(R.string.t5pm_11pm);
             default:
                 return context.getString(R.string.Unknown);
         }

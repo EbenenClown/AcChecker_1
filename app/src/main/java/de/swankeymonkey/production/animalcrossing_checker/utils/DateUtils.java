@@ -1,14 +1,17 @@
 package de.swankeymonkey.production.animalcrossing_checker.utils;
 
+import android.content.Context;
+
 import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 
+import de.swankeymonkey.production.animalcrossing_checker.R;
+
 public class DateUtils {
 
-    public static boolean isInDate(ArrayList<String> monthList) {
+    public static boolean isInDate(int currentMonth, ArrayList<String> monthList) {
         boolean isInDate = false;
-        int currentMonth = new DateTime().getMonthOfYear();
         if (monthList.get(0).equals("all")) {
             isInDate = true;
         } else {
@@ -58,5 +61,34 @@ public class DateUtils {
             }
         }
         return isInDate;
+    }
+
+    public static String getCurrentMonthInString(Context context) {
+        switch(new DateTime().getMonthOfYear()) {
+            case 1:
+                return context.getString(R.string.Jan);
+            case 2:
+                return context.getString(R.string.Feb);
+            case 3:
+                return context.getString(R.string.Mar);
+            case 4:
+                return context.getString(R.string.Apr);
+            case 5:
+                return context.getString(R.string.May);
+            case 6:
+                return context.getString(R.string.Jun);
+            case 7:
+                return context.getString(R.string.Jul);
+            case 8:
+                return context.getString(R.string.Aug);
+            case 9:
+                return context.getString(R.string.Sep);
+            case 10:
+                return context.getString(R.string.Oct);
+            case 11:
+                return context.getString(R.string.Nov);
+            default:
+                return context.getString(R.string.Dec);
+        }
     }
 }

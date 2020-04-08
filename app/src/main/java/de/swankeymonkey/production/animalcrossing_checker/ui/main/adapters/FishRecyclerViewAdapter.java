@@ -21,164 +21,28 @@ import butterknife.ButterKnife;
 import de.swankeymonkey.production.animalcrossing_checker.R;
 import de.swankeymonkey.production.animalcrossing_checker.backend.enums.FishLocation;
 import de.swankeymonkey.production.animalcrossing_checker.backend.enums.FishTime;
+import de.swankeymonkey.production.animalcrossing_checker.backend.models.Animal;
 import de.swankeymonkey.production.animalcrossing_checker.backend.models.Fish;
 
-public class FishRecyclerViewAdapter extends RecyclerView.Adapter<FishRecyclerViewAdapter.FishViewHolder> {
-    private List<Fish> mFishList;
-    private Context mContext;
-    private List<Integer> mPositionSaves;
-    private CheckboxClicker mCallback;
+public class FishRecyclerViewAdapter extends AnimalRecyclerViewAdapter<Fish> {
 
-    public FishRecyclerViewAdapter(Context context, CheckboxClicker clicker) {
-        mFishList = new ArrayList<>();
-        mContext = context;
-        mPositionSaves = new ArrayList<>();
-        mCallback = clicker;
-
+    public FishRecyclerViewAdapter(Context context, CheckboxClicker<Fish> clicker) {
+        super(context, clicker);
     }
 
-    public void setData(List<Fish> list) {
-        mFishList = list;
-        notifyDataSetChanged();
-    }
-
-    public List<Fish> getData() {
-        return mFishList;
-    }
-
-    public void updateData(List<Fish> list) {
-        mFishList.clear();
-        mFishList = list;
-        notifyDataSetChanged();
-    }
-
-    @NonNull
     @Override
-    public FishViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.fragment_fish_listitem, parent, false);
+    protected AnimalViewHolder setViewHolder(View view) {
         return new FishViewHolder(view);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull FishViewHolder holder, final int position) {
-        final boolean isExpanded = mPositionSaves.indexOf(position) != -1;
-        holder.mDetails.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
-        holder.itemView.setActivated(isExpanded);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(isExpanded) {
-                    mPositionSaves.remove((Object)position);
-                } else {
-                    mPositionSaves.add(position);
-                }
-                notifyDataSetChanged();
-            }
-        });
-        final Fish fish = mFishList.get(position);
-        holder.mIsCatched.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mCallback.onClicked(fish);
-            }
-        });
-
-        holder.bind(fish);
-    }
-
-    @Override
-    public int getItemCount() {
-        return mFishList.size();
-    }
-
-    public class FishViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.ivImage)
-        ImageView mImage;
-        @BindView(R.id.tvName)
-        TextView mName;
-        @BindView(R.id.ivLocation)
-        ImageView mLocation;
-        @BindView(R.id.cbCatched)
-        CheckBox mIsCatched;
-        @BindView(R.id.tvPrice)
-        TextView mPrice;
-        @BindView(R.id.tvTime)
-        TextView mTime;
-        @BindView(R.id.details)
-        ConstraintLayout mDetails;
-        @BindView(R.id.bJan)
-        Button mJanButton;
-        @BindView(R.id.bFeb)
-        Button mFebButton;
-        @BindView(R.id.bMarch)
-        Button mMarButton;
-        @BindView(R.id.bApr)
-        Button mAprButton;
-        @BindView(R.id.bMay)
-        Button mMayButton;
-        @BindView(R.id.bJune)
-        Button mJunButton;
-        @BindView(R.id.bJul)
-        Button mJulButton;
-        @BindView(R.id.bAug)
-        Button mAugButton;
-        @BindView(R.id.bSep)
-        Button mSepButton;
-        @BindView(R.id.bOct)
-        Button mOctButton;
-        @BindView(R.id.bNov)
-        Button mNovButton;
-        @BindView(R.id.bDec)
-        Button mDecButton;
-        @BindView(R.id.expander)
-        ImageView mExpander;
-
-
+    public class FishViewHolder extends AnimalViewHolder {
         public FishViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
         }
 
-        public void bind(Fish fish) {
-            mName.setText(fish.getName());
-            mPrice.setText(fish.getPrice() + " bells");
-            mTime.setText(FishTime.getTimeString(fish.getTime(), mContext));
-            mIsCatched.setChecked(fish.isCatched());
-            if(fish.isCatched()) {
-                itemView.setBackground(mContext.getResources().getDrawable(R.drawable.custom_listitem_background_checked));
-            } else {
-                itemView.setBackground(mContext.getResources().getDrawable(R.drawable.custom_listitem_background));
-            }
-            setFishPicture(fish.getId());
-            setMonths(fish.getMonths());
-            setLocationPicture(fish.getLocation());
-        }
-
-        private void setLocationPicture(FishLocation location) {
-            switch (location) {
-                case RIVER:
-                    mLocation.setImageResource(R.drawable.f_location_river);
-                    break;
-                case RIVER_MOUTH:
-                    mLocation.setImageResource(R.drawable.f_location_river_mouth);
-                    break;
-                case RIVER_CLIFFTOP:
-                    mLocation.setImageResource(R.drawable.f_location_waterfall);
-                    break;
-                case SEA:
-                    mLocation.setImageResource(R.drawable.f_location_sea);
-                    break;
-                case PIER:
-                    mLocation.setImageResource(R.drawable.f_location_pier);
-                    break;
-                case POND:
-                    mLocation.setImageResource(R.drawable.f_location_pond);
-                    break;
-            }
-        }
-
-        private void setFishPicture(int FishId) {
-            switch (FishId) {
+        @Override
+        protected void setImage(Animal animal) {
+            switch (animal.getId()) {
                 case 1:
                     mImage.setImageResource(R.drawable.bitterling);
                     break;
@@ -423,79 +287,33 @@ public class FishRecyclerViewAdapter extends RecyclerView.Adapter<FishRecyclerVi
             }
         }
 
-        private void setMonths(ArrayList<String> months) {
-            mJanButton.setEnabled(false);
-            mFebButton.setEnabled(false);
-            mMarButton.setEnabled(false);
-            mAprButton.setEnabled(false);
-            mMayButton.setEnabled(false);
-            mJunButton.setEnabled(false);
-            mJulButton.setEnabled(false);
-            mAugButton.setEnabled(false);
-            mSepButton.setEnabled(false);
-            mOctButton.setEnabled(false);
-            mNovButton.setEnabled(false);
-            mDecButton.setEnabled(false);
-            if(!months.get(0).equals("all")){
-                for(String month : months) {
-                    switch (month) {
-                        case "January":
-                            mJanButton.setEnabled(true);
-                            break;
-                        case "February":
-                            mFebButton.setEnabled(true);
-                            break;
-                        case "March":
-                            mMarButton.setEnabled(true);
-                            break;
-                        case "April":
-                            mAprButton.setEnabled(true);
-                            break;
-                        case "May":
-                            mMayButton.setEnabled(true);
-                            break;
-                        case "June":
-                            mJunButton.setEnabled(true);
-                            break;
-                        case "July":
-                            mJulButton.setEnabled(true);
-                            break;
-                        case "August":
-                            mAugButton.setEnabled(true);
-                            break;
-                        case "September":
-                            mSepButton.setEnabled(true);
-                            break;
-                        case "October":
-                            mOctButton.setEnabled(true);
-                            break;
-                        case "November":
-                            mNovButton.setEnabled(true);
-                            break;
-                        case "December":
-                            mDecButton.setEnabled(true);
-                            break;
-
-                    }
-                }
-            } else {
-                mJanButton.setEnabled(true);
-                mFebButton.setEnabled(true);
-                mMarButton.setEnabled(true);
-                mAprButton.setEnabled(true);
-                mMayButton.setEnabled(true);
-                mJunButton.setEnabled(true);
-                mJulButton.setEnabled(true);
-                mAugButton.setEnabled(true);
-                mSepButton.setEnabled(true);
-                mOctButton.setEnabled(true);
-                mNovButton.setEnabled(true);
-                mDecButton.setEnabled(true);
+        @Override
+        protected void setLocation(Animal animal) {
+            switch (((Fish)animal).getLocation()) {
+                case RIVER:
+                    mLocation.setImageResource(R.drawable.f_location_river);
+                    break;
+                case RIVER_MOUTH:
+                    mLocation.setImageResource(R.drawable.f_location_river_mouth);
+                    break;
+                case RIVER_CLIFFTOP:
+                    mLocation.setImageResource(R.drawable.f_location_waterfall);
+                    break;
+                case SEA:
+                    mLocation.setImageResource(R.drawable.f_location_sea);
+                    break;
+                case PIER:
+                    mLocation.setImageResource(R.drawable.f_location_pier);
+                    break;
+                case POND:
+                    mLocation.setImageResource(R.drawable.f_location_pond);
+                    break;
             }
         }
-    }
 
-    public interface CheckboxClicker {
-        void onClicked(Fish fish);
+        @Override
+        protected void setTime(Animal animal) {
+            mTime.setText(FishTime.getTimeString(((Fish)animal).getTime(), mContext));
+        }
     }
 }

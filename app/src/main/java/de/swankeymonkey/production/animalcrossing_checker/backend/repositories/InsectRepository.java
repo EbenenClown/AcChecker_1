@@ -40,6 +40,14 @@ public class InsectRepository {
         return mDb.insectDAO().getMissingInsects();
     }
 
+    public LiveData<List<Insect>> getCatchedInsects() {
+        return mDb.insectDAO().getCatchedInsects();
+    }
+    public void nukeTable() {
+        new TableNukerTask(mDb).execute(new Insect());
+    }
+
+
     public LiveData<Insect> getInsectById(int id) {
         return mDb.insectDAO().getInsectWithId(id);
     }
@@ -77,6 +85,18 @@ public class InsectRepository {
         protected Insect doInBackGroundCustom(Insect data) {
             db.insectDAO().deleteInsect(data);
             return data;
+        }
+    }
+
+    private static class TableNukerTask extends GenericDbTask<Insect, Void> {
+        TableNukerTask(AppDatabase appDatabase) {
+            super(appDatabase, null);
+        }
+
+        @Override
+        protected Void doInBackGroundCustom(Insect data) {
+            db.insectDAO().nukeTable();
+            return null;
         }
     }
 }

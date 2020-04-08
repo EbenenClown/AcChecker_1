@@ -1,42 +1,34 @@
 package de.swankeymonkey.production.animalcrossing_checker.ui.main.fragments;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import de.swankeymonkey.production.animalcrossing_checker.R;
+import de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters.AnimalRecyclerViewAdapter;
 import de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters.FishRecyclerViewAdapter;
 import de.swankeymonkey.production.animalcrossing_checker.backend.models.Fish;
 import de.swankeymonkey.production.animalcrossing_checker.backend.viewmodels.FishViewModel;
 
-public class FishAllFragment extends BaseListFragment {
-    private FishViewModel mFishViewModel;
+public class FishAllFragment extends BaseFishFragment {
+    private FishViewModel mViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mFishViewModel = new ViewModelProvider(this).get(FishViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(FishViewModel.class);
     }
 
 
     @Override
     protected void init(View view) {
         final ProgressBar progressBar = getActivity().findViewById(R.id.progessBar);
-        mFishViewModel.getAllFish().observe(getActivity(), new Observer<List<Fish>>() {
+        mViewModel.getAllFish().observe(getActivity(), new Observer<List<Fish>>() {
             @Override
             public void onChanged(List<Fish> fish) {
                 mAdapter.setData(fish);
@@ -47,16 +39,16 @@ public class FishAllFragment extends BaseListFragment {
     }
 
     @Override
-    protected FishRecyclerViewAdapter.CheckboxClicker setOnItemCheckListener() {
-        return new FishRecyclerViewAdapter.CheckboxClicker() {
+    protected FishRecyclerViewAdapter.CheckboxClicker<Fish> setOnItemCheckListener() {
+        return new AnimalRecyclerViewAdapter.CheckboxClicker<Fish>() {
             @Override
-            public void onClicked(Fish fish) {
-                if(fish.isCatched()) {
-                    fish.setCatched(false);
+            public void onClicked(Fish data) {
+                if(data.isCatched()) {
+                    data.setCatched(false);
                 } else {
-                    fish.setCatched(true);
+                    data.setCatched(true);
                 }
-                mFishViewModel.updateFish(fish, null);
+                mViewModel.updateFish(data, null);
             }
         };
     }

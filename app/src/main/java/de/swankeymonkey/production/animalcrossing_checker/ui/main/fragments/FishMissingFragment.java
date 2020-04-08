@@ -9,11 +9,12 @@ import androidx.lifecycle.ViewModelProvider;
 
 import java.util.List;
 
+import de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters.AnimalRecyclerViewAdapter;
 import de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters.FishRecyclerViewAdapter;
 import de.swankeymonkey.production.animalcrossing_checker.backend.models.Fish;
 import de.swankeymonkey.production.animalcrossing_checker.backend.viewmodels.FishViewModel;
 
-public class FishMissingFragment extends BaseListFragment {
+public class FishMissingFragment extends BaseFishFragment {
     private FishViewModel mViewModel;
 
     @Override
@@ -23,16 +24,16 @@ public class FishMissingFragment extends BaseListFragment {
     }
 
     @Override
-    protected FishRecyclerViewAdapter.CheckboxClicker setOnItemCheckListener() {
-        return new FishRecyclerViewAdapter.CheckboxClicker() {
+    protected FishRecyclerViewAdapter.CheckboxClicker<Fish> setOnItemCheckListener() {
+        return new AnimalRecyclerViewAdapter.CheckboxClicker<Fish>() {
             @Override
-            public void onClicked(Fish fish) {
-                if(fish.isCatched()) {
-                    fish.setCatched(false);
+            public void onClicked(Fish data) {
+                if(data.isCatched()) {
+                    data.setCatched(false);
                 } else {
-                    fish.setCatched(true);
+                    data.setCatched(true);
                 }
-                mViewModel.updateFish(fish, null);
+                mViewModel.updateFish(data, null);
             }
         };
     }

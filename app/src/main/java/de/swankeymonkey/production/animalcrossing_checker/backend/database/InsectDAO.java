@@ -29,6 +29,12 @@ public interface InsectDAO {
     @Query("SELECT * FROM insect WHERE :id = id")
     LiveData<Insect> getInsectWithId(int id);
 
-    @Query("SELECT * FROM insect WHERE isCatched = 1")
+    @Query("SELECT * FROM insect WHERE isCatched = 0")
     LiveData<List<Insect>> getMissingInsects();
+
+    @Query("SELECT * FROM insect WHERE isCatched = 1")
+    LiveData<List<Insect>> getCatchedInsects();
+
+    @Query("DELETE FROM Insect")
+    void nukeTable();
 }

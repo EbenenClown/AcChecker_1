@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<item
+    android:id="@+id/nav_fish"
+    android:title="Fish"
+    android:icon="@drawable/ic_fish"
+    app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/nav_insect"
+        android:title="Insect"
+        android:icon="@drawable/ic_bug"
+        app:showAsAction="ifRoom"/>
+</menu>

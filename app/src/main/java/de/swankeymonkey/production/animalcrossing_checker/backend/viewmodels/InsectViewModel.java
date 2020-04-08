@@ -32,6 +32,11 @@ public class InsectViewModel extends AndroidViewModel {
         return mInsectList;
     }
 
+    public LiveData<List<Insect>> getCatchedInsects() {
+        mInsectList = mRepository.getCatchedInsects();
+        return mInsectList;
+    }
+
     public LiveData<Insect> getInsectById(int id) {
         return mRepository.getInsectById(id);
     }
@@ -43,7 +48,12 @@ public class InsectViewModel extends AndroidViewModel {
     public void updateInsect(Insect Insect, GenericDbTask.DbCallback<Insect> callback) {
         mRepository.updateInsect(Insect, callback);
     }
+
     public void deleteInsect(Insect Insect, GenericDbTask.DbCallback<Insect> callback) {
         mRepository.deleteInsect(Insect, callback);
+    }
+
+    public void nukeTable() {
+        mRepository.nukeTable();
     }
 }
