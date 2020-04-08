@@ -7,12 +7,16 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import org.joda.time.DateTime;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import de.swankeymonkey.production.animalcrossing_checker.backend.models.Insect;
 import de.swankeymonkey.production.animalcrossing_checker.backend.viewmodels.InsectViewModel;
 import de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters.AnimalRecyclerViewAdapter;
+import de.swankeymonkey.production.animalcrossing_checker.utils.AppSharedPreferences;
+import de.swankeymonkey.production.animalcrossing_checker.utils.Constants;
 import de.swankeymonkey.production.animalcrossing_checker.utils.DateUtils;
 
 public class InsectTodayFragment extends BaseInsectFragment {
@@ -30,8 +34,9 @@ public class InsectTodayFragment extends BaseInsectFragment {
             @Override
             public void onChanged(List<Insect> insects) {
                 List<Insect> filteredList = new ArrayList<>();
+                int currentMonth = AppSharedPreferences.getAppMonth(getContext()) == Constants.NO_MONTH_CHOSEN ? new DateTime().getDayOfMonth() : AppSharedPreferences.getAppMonth(getContext()) + 1;
                 for(Insect f : insects) {
-                    if(DateUtils.isInDate(f.getMonths())) {
+                    if(DateUtils.isInDate(currentMonth, f.getMonths())) {
                         filteredList.add(f);
                     }
                 }

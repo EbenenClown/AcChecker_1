@@ -273,7 +273,28 @@ public class InsectRecyclerViewAdapter extends AnimalRecyclerViewAdapter<Insect>
 
         @Override
         protected void setLocation(Animal animal) {
-
+            switch (((Insect)animal).getLocation()) {
+                case TREES:
+                    mLocation.setImageResource(R.drawable.i_location_tree);
+                    break;
+                case WATER:
+                    mLocation.setImageResource(R.drawable.f_location_pond);
+                    break;
+                case GROUND:
+                    mLocation.setImageResource(R.drawable.i_location_ground);
+                    break;
+                case FLOWERS:
+                    mLocation.setImageResource(R.drawable.i_location_flowers);
+                    break;
+                case TREE_STUMPS:
+                    mLocation.setImageResource(R.drawable.i_location_tree_stump);
+                    break;
+                case FLYING:
+                    mLocation.setImageResource(R.drawable.i_location_flying);
+                    break;
+                default:
+                    mLocation.setVisibility(View.GONE);
+            }
         }
 
         @Override

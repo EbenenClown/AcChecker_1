@@ -7,6 +7,8 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import org.joda.time.DateTime;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,8 @@ import de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters.Anima
 import de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters.FishRecyclerViewAdapter;
 import de.swankeymonkey.production.animalcrossing_checker.backend.models.Fish;
 import de.swankeymonkey.production.animalcrossing_checker.backend.viewmodels.FishViewModel;
+import de.swankeymonkey.production.animalcrossing_checker.utils.AppSharedPreferences;
+import de.swankeymonkey.production.animalcrossing_checker.utils.Constants;
 import de.swankeymonkey.production.animalcrossing_checker.utils.DateUtils;
 
 public class FishTodayFragment extends BaseFishFragment {
@@ -31,8 +35,9 @@ public class FishTodayFragment extends BaseFishFragment {
             @Override
             public void onChanged(List<Fish> fish) {
                 List<Fish> filteredList = new ArrayList<>();
+                int currentMonth = AppSharedPreferences.getAppMonth(getContext()) == Constants.NO_MONTH_CHOSEN ? new DateTime().getDayOfMonth() : AppSharedPreferences.getAppMonth(getContext());
                 for(Fish f : fish) {
-                    if(DateUtils.isInDate(f.getMonths())) {
+                    if(DateUtils.isInDate(currentMonth, f.getMonths())) {
                        filteredList.add(f);
                     }
                 }

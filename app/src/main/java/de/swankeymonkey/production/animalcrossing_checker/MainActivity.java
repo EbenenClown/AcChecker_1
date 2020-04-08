@@ -1,7 +1,9 @@
 package de.swankeymonkey.production.animalcrossing_checker;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -56,6 +58,41 @@ public class MainActivity extends AppCompatActivity {
             DbPopulateController.populateDb(this);
             AppSharedPreferences.setDbPopulated(this, true);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        final SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        mViews.mViewPager.setAdapter(sectionsPagerAdapter);
+        mViews.mBottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if(item.getItemId() == R.id.nav_fish) {
+                    sectionsPagerAdapter.setMode(FISH_MODE);
+                    sectionsPagerAdapter.notifyDataSetChanged();
+                } else {
+                    sectionsPagerAdapter.setMode(INSECT_MODE);
+                    sectionsPagerAdapter.notifyDataSetChanged();
+                }
+                return false;
+            }
+        });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.menuSettings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_settings, menu);
+        return true;
     }
 
     public class ViewHolder {

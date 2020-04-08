@@ -31,7 +31,7 @@ public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
     private int mode;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
-        super(fm);
+        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         mContext = context;
         mode = 1;
     }

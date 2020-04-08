@@ -20,6 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.swankeymonkey.production.animalcrossing_checker.R;
 import de.swankeymonkey.production.animalcrossing_checker.backend.models.Animal;
+import de.swankeymonkey.production.animalcrossing_checker.utils.AppSharedPreferences;
 
 public abstract class AnimalRecyclerViewAdapter<T> extends RecyclerView.Adapter<AnimalRecyclerViewAdapter.AnimalViewHolder> {
     protected List<T> mData;
@@ -55,19 +56,24 @@ public abstract class AnimalRecyclerViewAdapter<T> extends RecyclerView.Adapter<
     @Override
     public void onBindViewHolder(@NonNull AnimalRecyclerViewAdapter.AnimalViewHolder holder,final int position) {
         final boolean isExpanded = mPositionSaves.indexOf(position) != -1;
-        holder.mDetails.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
-        holder.itemView.setActivated(isExpanded);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(isExpanded) {
-                    mPositionSaves.remove((Integer)position);
-                } else {
-                    mPositionSaves.add(position);
+        if(AppSharedPreferences.isAlwaysExpanded(mContext)) {
+            holder.mDetails.setVisibility(View.VISIBLE);
+            holder.mExpander.setVisibility(View.GONE);
+        } else {
+            holder.itemView.setActivated(isExpanded);
+            holder.mDetails.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(isExpanded) {
+                        mPositionSaves.remove((Integer)position);
+                    } else {
+                        mPositionSaves.add(position);
+                    }
+                    notifyDataSetChanged();
                 }
-                notifyDataSetChanged();
-            }
-        });
+            });
+        }
         final T data = mData.get(position);
         holder.mIsCatched.setOnClickListener(new View.OnClickListener() {
             @Override
