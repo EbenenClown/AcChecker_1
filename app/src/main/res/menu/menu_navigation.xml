@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 <item
     android:id="@+id/nav_fish"
-    android:title="Fish"
+    android:title="@string/fish_plural"
     android:icon="@drawable/ic_fish"
     app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/nav_insect"
-        android:title="Insect"
+        android:title="@string/insects"
         android:icon="@drawable/ic_bug"
         app:showAsAction="ifRoom"/>
 </menu>

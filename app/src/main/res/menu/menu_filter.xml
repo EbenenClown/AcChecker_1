@@ -4,15 +4,15 @@
     <group android:id="@+id/menuOrderByPopup">
         <item
             android:id="@+id/menuOrderByPrice"
-            android:title="Order By Price"/>
+            android:title="@string/order_by_price"/>
 
         <item
             android:id="@+id/menuOrderByName"
-            android:title="Order By Name"/>
+            android:title="@string/order_by_name"/>
 
         <item
             android:id="@+id/menuDefaultOrder"
-            android:title="Default Order"/>
+            android:title="@string/default_order"/>
     </group>
 
 

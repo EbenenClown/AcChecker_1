@@ -15,6 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int FISH_MODE = 1;
     private static final int INSECT_MODE = 2;
 
+    private SectionsPagerAdapter mAdapter;
     private ViewHolder mViews;
 
     @Override
@@ -38,29 +40,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mViews = new ViewHolder(this);
-        mViews.mProgressBar.setVisibility(View.VISIBLE);
-        final SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
-        mViews.mViewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout tabs = findViewById(R.id.tabs);
-        tabs.setupWithViewPager(mViews.mViewPager);
-        setSupportActionBar(mViews.mToolbar);
-        mViews.mBottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if(item.getItemId() == R.id.nav_fish) {
-                    sectionsPagerAdapter.setMode(FISH_MODE);
-                    sectionsPagerAdapter.notifyDataSetChanged();
-                } else {
-                    sectionsPagerAdapter.setMode(INSECT_MODE);
-                    sectionsPagerAdapter.notifyDataSetChanged();
-                }
-                return false;
-            }
-        });
 
         if(AppSharedPreferences.isFirstStart(this) || AppSharedPreferences.getAppHemisphere(this) == Constants.NO_HEMISPHERE_CHOSEN) {
             WelcomeDialog dialog = new WelcomeDialog();
             dialog.show(getSupportFragmentManager(), "Dialogtag");
+        } else {
+            init();
         }
 
         if(!AppSharedPreferences.isDbPopulated(this)) {
@@ -72,21 +57,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        final SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
-        mViews.mViewPager.setAdapter(sectionsPagerAdapter);
-        mViews.mBottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if(item.getItemId() == R.id.nav_fish) {
-                    sectionsPagerAdapter.setMode(FISH_MODE);
-                    sectionsPagerAdapter.notifyDataSetChanged();
-                } else {
-                    sectionsPagerAdapter.setMode(INSECT_MODE);
-                    sectionsPagerAdapter.notifyDataSetChanged();
+        if(!AppSharedPreferences.isFirstStart(this)) {
+            mAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+            mViews.mViewPager.setAdapter(mAdapter);
+            mViews.mBottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    if(item.getItemId() == R.id.nav_fish) {
+                        mAdapter.setMode(FISH_MODE);
+                        mAdapter.notifyDataSetChanged();
+                    } else {
+                        mAdapter.setMode(INSECT_MODE);
+                        mAdapter.notifyDataSetChanged();
+                    }
+                    return false;
                 }
-                return false;
-            }
-        });
+            });
+        }
     }
 
     @Override
@@ -103,6 +90,30 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_settings, menu);
         return true;
     }
+
+    public void init() {
+        mAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        mViews.mViewPager.setAdapter(mAdapter);
+        mViews.mViewPager.setOffscreenPageLimit(4);
+        TabLayout tabs = findViewById(R.id.tabs);
+        tabs.setupWithViewPager(mViews.mViewPager);
+        setSupportActionBar(mViews.mToolbar);
+        mViews.mBottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                mViews.mProgressBar.setVisibility(View.VISIBLE);
+                if(item.getItemId() == R.id.nav_fish) {
+                    mAdapter.setMode(FISH_MODE);
+                    mAdapter.notifyDataSetChanged();
+                } else {
+                    mAdapter.setMode(INSECT_MODE);
+                    mAdapter.notifyDataSetChanged();
+                }
+                return false;
+            }
+        });
+    }
+
 
     public class ViewHolder {
         @BindView(R.id.view_pager)

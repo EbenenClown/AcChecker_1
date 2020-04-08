@@ -1,7 +1,9 @@
 package de.swankeymonkey.production.animalcrossing_checker;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,6 +31,9 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         mViews = new ViewHolder(this);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(getString(R.string.settings));
 
         ArrayAdapter<CharSequence> adapterHemisphere = ArrayAdapter.createFromResource(this, R.array.hemisphere, android.R.layout.simple_spinner_item);
         adapterHemisphere.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -69,6 +74,12 @@ public class SettingsActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        finish();
+        return true;
     }
 
     public class ViewHolder {

@@ -111,7 +111,7 @@
                 android:clickable="false"
                 android:background="@drawable/month_custom_button"
                 android:fontFamily="@font/fink_heavy"
-                android:text="Jan." />
+                android:text="@string/janS" />
 
             <Button
                 android:id="@+id/bFeb"
@@ -125,7 +125,7 @@
                 android:clickable="false"
                 android:background="@drawable/month_custom_button"
                 android:fontFamily="@font/fink_heavy"
-                android:text="Feb." />
+                android:text="@string/febS" />
 
             <Button
                 android:id="@+id/bMarch"
@@ -139,7 +139,7 @@
                 android:clickable="false"
                 android:background="@drawable/month_custom_button"
                 android:fontFamily="@font/fink_heavy"
-                android:text="Mar." />
+                android:text="@string/marS" />
 
             <Button
                 android:id="@+id/bApr"
@@ -153,7 +153,7 @@
                 android:clickable="false"
                 android:background="@drawable/month_custom_button"
                 android:fontFamily="@font/fink_heavy"
-                android:text="Apr." />
+                android:text="@string/aprS" />
 
             <Button
                 android:id="@+id/bMay"
@@ -167,7 +167,7 @@
                 android:clickable="false"
                 android:background="@drawable/month_custom_button"
                 android:fontFamily="@font/fink_heavy"
-                android:text="May" />
+                android:text="@string/mayS" />
 
             <Button
                 android:id="@+id/bJune"
@@ -181,7 +181,7 @@
                 android:clickable="false"
                 android:background="@drawable/month_custom_button"
                 android:fontFamily="@font/fink_heavy"
-                android:text="Jun." />
+                android:text="@string/junS" />
 
         </LinearLayout>
 
@@ -211,7 +211,7 @@
                 android:clickable="false"
                 android:background="@drawable/month_custom_button"
                 android:fontFamily="@font/fink_heavy"
-                android:text="Jul." />
+                android:text="@string/julS" />
 
             <Button
                 android:id="@+id/bAug"
@@ -225,7 +225,7 @@
                 android:clickable="false"
                 android:background="@drawable/month_custom_button"
                 android:fontFamily="@font/fink_heavy"
-                android:text="Aug." />
+                android:text="@string/augS" />
 
             <Button
                 android:id="@+id/bSep"
@@ -239,7 +239,7 @@
                 android:clickable="false"
                 android:background="@drawable/month_custom_button"
                 android:fontFamily="@font/fink_heavy"
-                android:text="Sep." />
+                android:text="@string/sepS" />
 
             <Button
                 android:id="@+id/bOct"
@@ -253,7 +253,7 @@
                 android:clickable="false"
                 android:background="@drawable/month_custom_button"
                 android:fontFamily="@font/fink_heavy"
-                android:text="Oct." />
+                android:text="@string/octS" />
 
             <Button
                 android:id="@+id/bNov"
@@ -267,7 +267,7 @@
                 android:clickable="false"
                 android:background="@drawable/month_custom_button"
                 android:fontFamily="@font/fink_heavy"
-                android:text="Nov." />
+                android:text="@string/novS" />
 
             <Button
                 android:id="@+id/bDec"
@@ -281,7 +281,7 @@
                 android:clickable="false"
                 android:background="@drawable/month_custom_button"
                 android:fontFamily="@font/fink_heavy"
-                android:text="Dec." />
+                android:text="@string/decS" />
 
         </LinearLayout>
         

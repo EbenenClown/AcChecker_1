@@ -34,9 +34,9 @@ public class InsectTodayFragment extends BaseInsectFragment {
             @Override
             public void onChanged(List<Insect> insects) {
                 List<Insect> filteredList = new ArrayList<>();
-                int currentMonth = AppSharedPreferences.getAppMonth(getContext()) == Constants.NO_MONTH_CHOSEN ? new DateTime().getDayOfMonth() : AppSharedPreferences.getAppMonth(getContext()) + 1;
+                int currentMonth = AppSharedPreferences.getAppMonth(getContext()) == Constants.NO_MONTH_CHOSEN ? new DateTime().getMonthOfYear() : AppSharedPreferences.getAppMonth(getContext()) + 1;
                 for(Insect f : insects) {
-                    if(DateUtils.isInDate(currentMonth, f.getMonths())) {
+                    if(DateUtils.isInDate(getContext(), currentMonth, f.getMonths())) {
                         filteredList.add(f);
                     }
                 }
