@@ -169,46 +169,89 @@ public abstract class AnimalRecyclerViewAdapter<T> extends RecyclerView.Adapter<
             mOctButton.setEnabled(false);
             mNovButton.setEnabled(false);
             mDecButton.setEnabled(false);
-            if(!months.get(0).equals("all")){
-                for(String month : months) {
-                    switch (month) {
-                        case "January":
-                            mJanButton.setEnabled(true);
-                            break;
-                        case "February":
-                            mFebButton.setEnabled(true);
-                            break;
-                        case "March":
-                            mMarButton.setEnabled(true);
-                            break;
-                        case "April":
-                            mAprButton.setEnabled(true);
-                            break;
-                        case "May":
-                            mMayButton.setEnabled(true);
-                            break;
-                        case "June":
-                            mJunButton.setEnabled(true);
-                            break;
-                        case "July":
-                            mJulButton.setEnabled(true);
-                            break;
-                        case "August":
-                            mAugButton.setEnabled(true);
-                            break;
-                        case "September":
-                            mSepButton.setEnabled(true);
-                            break;
-                        case "October":
-                            mOctButton.setEnabled(true);
-                            break;
-                        case "November":
-                            mNovButton.setEnabled(true);
-                            break;
-                        case "December":
-                            mDecButton.setEnabled(true);
-                            break;
+            if (!months.get(0).equals("all")) {
+                if (AppSharedPreferences.getAppHemisphere(mContext) == 0) {
+                    for (String month : months) {
+                        switch (month) {
+                            case "January":
+                                mJanButton.setEnabled(true);
+                                break;
+                            case "February":
+                                mFebButton.setEnabled(true);
+                                break;
+                            case "March":
+                                mMarButton.setEnabled(true);
+                                break;
+                            case "April":
+                                mAprButton.setEnabled(true);
+                                break;
+                            case "May":
+                                mMayButton.setEnabled(true);
+                                break;
+                            case "June":
+                                mJunButton.setEnabled(true);
+                                break;
+                            case "July":
+                                mJulButton.setEnabled(true);
+                                break;
+                            case "August":
+                                mAugButton.setEnabled(true);
+                                break;
+                            case "September":
+                                mSepButton.setEnabled(true);
+                                break;
+                            case "October":
+                                mOctButton.setEnabled(true);
+                                break;
+                            case "November":
+                                mNovButton.setEnabled(true);
+                                break;
+                            case "December":
+                                mDecButton.setEnabled(true);
+                                break;
+                        }
+                    }
+                } else {
+                    for (String month : months) {
+                        switch (month) {
+                            case "January":
+                                mJulButton.setEnabled(true);
+                                break;
+                            case "February":
+                                mAugButton.setEnabled(true);
+                                break;
+                            case "March":
+                                mSepButton.setEnabled(true);
+                                break;
+                            case "April":
+                                mOctButton.setEnabled(true);
+                                break;
+                            case "May":
+                                mNovButton.setEnabled(true);
+                                break;
+                            case "June":
+                                mDecButton.setEnabled(true);
+                                break;
+                            case "July":
+                                mJanButton.setEnabled(true);
+                                break;
+                            case "August":
+                                mFebButton.setEnabled(true);
+                                break;
+                            case "September":
+                                mMarButton.setEnabled(true);
+                                break;
+                            case "October":
+                                mAprButton.setEnabled(true);
+                                break;
+                            case "November":
+                                mMayButton.setEnabled(true);
+                                break;
+                            case "December":
+                                mJunButton.setEnabled(true);
+                                break;
 
+                        }
                     }
                 }
             } else {

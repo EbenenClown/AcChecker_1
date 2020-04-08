@@ -1,8 +1,10 @@
 package de.swankeymonkey.production.animalcrossing_checker;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,7 +23,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.swankeymonkey.production.animalcrossing_checker.controllers.DbPopulateController;
 import de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters.SectionsPagerAdapter;
+import de.swankeymonkey.production.animalcrossing_checker.ui.main.dialogs.WelcomeDialog;
 import de.swankeymonkey.production.animalcrossing_checker.utils.AppSharedPreferences;
+import de.swankeymonkey.production.animalcrossing_checker.utils.Constants;
 
 public class MainActivity extends AppCompatActivity {
     private static final int FISH_MODE = 1;
@@ -53,6 +57,11 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        if(AppSharedPreferences.isFirstStart(this) || AppSharedPreferences.getAppHemisphere(this) == Constants.NO_HEMISPHERE_CHOSEN) {
+            WelcomeDialog dialog = new WelcomeDialog();
+            dialog.show(getSupportFragmentManager(), "Dialogtag");
+        }
 
         if(!AppSharedPreferences.isDbPopulated(this)) {
             DbPopulateController.populateDb(this);

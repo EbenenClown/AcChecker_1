@@ -9,6 +9,7 @@ public class AppSharedPreferences {
     private static final String APP_MONTH = "appMonthSp";
     private static final String IS_ALWAYS_EXPANDED = "isAlwaysExpandedSP";
     private static final String APP_HEMISPHERE = "appHemisphereSP";
+    private static final String FIRST_START = "firstStartSP";
 
     public static void setDbPopulated(Context context, boolean value) {
         SharedPreferences.Editor editor = getPreferences(context).edit();
@@ -46,9 +47,18 @@ public class AppSharedPreferences {
         editor.apply();
     }
 
-    //TODO change to -1 when welcome screen is there
     public static int getAppHemisphere(Context context) {
-        return getPreferences(context).getInt(APP_HEMISPHERE, 1);
+        return getPreferences(context).getInt(APP_HEMISPHERE, Constants.NO_HEMISPHERE_CHOSEN);
+    }
+
+    public static void setIsNotFirstTime(Context context) {
+        SharedPreferences.Editor editor = getPreferences(context).edit();
+        editor.putBoolean(FIRST_START, false);
+        editor.apply();
+    }
+
+    public static boolean isFirstStart(Context context) {
+        return getPreferences(context).getBoolean(FIRST_START, true);
     }
 
     private static SharedPreferences getPreferences(Context context) {
