@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#B86E00</color>
+    <color name="colorPrimary">#A66403</color>
     <color name="colorPrimaryDark">#704200</color>
-    <color name="colorPrimaryLight">#D3973D</color>
+    <color name="colorPrimaryLight">#BF7F1F</color>
     <color name="colorAccent">#FFAA2E</color>
     <color name="whiteTransparent">#D0FFFFFF</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="monthActiveGreen">#A2B829</color>
+    <color name="backgroundGreen">#00855a</color>
 </resources>

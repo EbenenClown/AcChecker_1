@@ -191,7 +191,7 @@ public class DatabaseCreateHelper {
         createInsect(gs(R.string.ant), 80, ROTTEN_FOOD, InsectTime.ALL_DAY, MONTH_ALL);
         createInsect(gs(R.string.hermit_crab), 1000, BEACH, t7pm_8am, MONTH_ALL);
         createInsect(gs(R.string.wharf_roach), 200, BEACH, InsectTime.ALL_DAY, MONTH_ALL);
-        createInsect(gs(R.string.fly), 60, ROTTEN_FOOD, InsectTime.ALL_DAY, MONTH_ALL);
+        createInsect(gs(R.string.fly), 60, TRASH, InsectTime.ALL_DAY, MONTH_ALL);
         createInsect(gs(R.string.mosquito), 130, FLYING, t5pm_4am, "June, July, August, September");
         createInsect(gs(R.string.flea), 70, InsectLocation.UNKNOWN, InsectTime.ALL_DAY, "April, May, June, July, August, September, October, November");
         createInsect(gs(R.string.snail), 250, ROCKS, InsectTime.ALL_DAY, MONTH_ALL);

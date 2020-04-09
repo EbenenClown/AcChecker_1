@@ -57,11 +57,11 @@
     
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/details"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/expander">
-        
+
         <TextView
             android:id="@+id/tvPrice"
             android:layout_width="wrap_content"
@@ -81,6 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
             android:fontFamily="@font/fink_heavy"
+            android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvPrice"
@@ -298,5 +299,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_more_horiz_black_24dp" />
+
+    <TextView
+        android:id="@+id/tvLocationText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        tools:text="Baum (Schütteln)"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/details"
+        app:layout_constraintEnd_toStartOf="@+id/cbCatched"
+        app:layout_constraintStart_toStartOf="@+id/ivLocation"
+        app:layout_constraintTop_toBottomOf="@+id/ivLocation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

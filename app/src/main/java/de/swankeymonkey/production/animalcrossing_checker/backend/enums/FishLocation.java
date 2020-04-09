@@ -51,6 +51,8 @@ public enum FishLocation {
                 return context.getString(R.string.Sea);
             case PIER:
                 return context.getString(R.string.Pier);
+            case POND:
+                return context.getString(R.string.Pond);
             default:
                 return context.getString(R.string.Unknown);
         }

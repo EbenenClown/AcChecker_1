@@ -219,21 +219,22 @@
     <string name="River_Mouth">River(Mouth)</string>
     <string name="Sea">Sea</string>
     <string name="Pier">Pier</string>
+    <string name="Pond">Pond</string>
 
     <!--InsectLocations-->
     <string name="Flying">Flying</string>
-    <string name="Trees">On trees</string>
-    <string name="Ground">On ground</string>
-    <string name="Flowers">On flowers</string>
-    <string name="Trees_Shaking">Shaking trees</string>
+    <string name="Trees">Trees</string>
+    <string name="Ground">Ground</string>
+    <string name="Flowers">Flowers</string>
+    <string name="Trees_Shaking">Trees(shaking)</string>
     <string name="UnderGround">Underground</string>
-    <string name="Water">On water</string>
-    <string name="Tree_Stumps">On tree stumps</string>
-    <string name="Rotten_Food">On rotten food</string>
-    <string name="Beach">On beach</string>
-    <string name="Trash">On trash</string>
-    <string name="Rocks">On rocks</string>
-    <string name="Rocks_Hitting">Hitting rocks</string>
+    <string name="Water">Water</string>
+    <string name="Tree_Stumps">Tree stumps</string>
+    <string name="Rotten_Food">Rotten food</string>
+    <string name="Beach">Beach</string>
+    <string name="Trash">Trash</string>
+    <string name="Rocks">Rocks</string>
+    <string name="Rocks_Hitting">Rocks(hitting)</string>
 
     <!--More-->
     <string name="bells_string">bells</string>

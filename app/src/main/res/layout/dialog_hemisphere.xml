@@ -34,6 +34,8 @@
         android:background="@drawable/custom_image_month_active"
         android:fontFamily="@font/fink_heavy"
         android:text="@string/northern_hemisphere"
+        android:textAllCaps="false"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvWelcome" />
@@ -49,6 +51,8 @@
         android:background="@drawable/custom_image_month_active"
         android:fontFamily="@font/fink_heavy"
         android:text="@string/southern_hemisphere"
+        android:textAllCaps="false"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

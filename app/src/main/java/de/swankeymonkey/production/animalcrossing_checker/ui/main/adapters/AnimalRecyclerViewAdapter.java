@@ -59,9 +59,11 @@ public abstract class AnimalRecyclerViewAdapter<T> extends RecyclerView.Adapter<
         if(AppSharedPreferences.isAlwaysExpanded(mContext)) {
             holder.mDetails.setVisibility(View.VISIBLE);
             holder.mExpander.setVisibility(View.GONE);
+            holder.mLocationText.setVisibility(View.VISIBLE);
         } else {
             holder.itemView.setActivated(isExpanded);
             holder.mDetails.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+            holder.mLocationText.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -131,6 +133,8 @@ public abstract class AnimalRecyclerViewAdapter<T> extends RecyclerView.Adapter<
         Button mDecButton;
         @BindView(R.id.expander)
         ImageView mExpander;
+        @BindView(R.id.tvLocationText)
+        TextView mLocationText;
 
         protected abstract void setImage(Animal animal);
         protected abstract void setLocation(Animal animal);

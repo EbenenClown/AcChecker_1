@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import de.swankeymonkey.production.animalcrossing_checker.R;
+import de.swankeymonkey.production.animalcrossing_checker.backend.enums.FishLocation;
 import de.swankeymonkey.production.animalcrossing_checker.backend.enums.InsectLocation;
 import de.swankeymonkey.production.animalcrossing_checker.backend.enums.InsectTime;
 import de.swankeymonkey.production.animalcrossing_checker.backend.models.Animal;
@@ -273,6 +274,7 @@ public class InsectRecyclerViewAdapter extends AnimalRecyclerViewAdapter<Insect>
 
         @Override
         protected void setLocation(Animal animal) {
+            mLocationText.setText(InsectLocation.getString(((Insect)animal).getLocation(), mContext));
             switch (((Insect)animal).getLocation()) {
                 case TREES:
                     mLocation.setImageResource(R.drawable.i_location_tree);
@@ -292,8 +294,27 @@ public class InsectRecyclerViewAdapter extends AnimalRecyclerViewAdapter<Insect>
                 case FLYING:
                     mLocation.setImageResource(R.drawable.i_location_flying);
                     break;
-                default:
-                    mLocation.setVisibility(View.GONE);
+                case BEACH:
+                    mLocation.setImageResource(R.drawable.f_location_sea);
+                    break;
+                case ROCKS:
+                    mLocation.setImageResource(R.drawable.i_location_rock);
+                    break;
+                case TRASH:
+                    mLocation.setImageResource(R.drawable.i_location_trash);
+                    break;
+                case ROCKS_HITTING:
+                    mLocation.setImageResource(R.drawable.i_location_rock);
+                    break;
+                case ROTTEN_FOOD:
+                    mLocation.setImageResource(R.drawable.i_lcoation_rotten_food);
+                    break;
+                case UNDERGROUND:
+                    mLocation.setImageResource(R.drawable.i_location_underground);
+                    break;
+                case TREES_SHAKING:
+                    mLocation.setImageResource(R.drawable.i_location_tree);
+                    break;
             }
         }
 
