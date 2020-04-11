@@ -115,7 +115,7 @@ public class DatabaseCreateHelper {
             createFish(gs(R.string.football_fish), 2500, SEA, t4pm_9am, "November, December, January, February, March");
             createFish(gs(R.string.oarfish), 9000, SEA, ALL_DAY, "December, January, February, March, April, May");
             createFish(gs(R.string.Barreleye), 15000, SEA, t9pm_4am, MONTH_ALL);
-            createFish(gs(R.string.coelacanth), 15000, SEA, ALL_DAY, MONTH_ALL);
+            createFish(gs(R.string.coelacanth), 15000, SEA_RAINING, ALL_DAY, MONTH_ALL);
             return mAllFish;
     }
 
@@ -193,8 +193,8 @@ public class DatabaseCreateHelper {
         createInsect(gs(R.string.wharf_roach), 200, BEACH, InsectTime.ALL_DAY, MONTH_ALL);
         createInsect(gs(R.string.fly), 60, TRASH, InsectTime.ALL_DAY, MONTH_ALL);
         createInsect(gs(R.string.mosquito), 130, FLYING, t5pm_4am, "June, July, August, September");
-        createInsect(gs(R.string.flea), 70, InsectLocation.UNKNOWN, InsectTime.ALL_DAY, "April, May, June, July, August, September, October, November");
-        createInsect(gs(R.string.snail), 250, ROCKS, InsectTime.ALL_DAY, MONTH_ALL);
+        createInsect(gs(R.string.flea), 70, VILLAGERS, InsectTime.ALL_DAY, "April, May, June, July, August, September, October, November");
+        createInsect(gs(R.string.snail), 250, ROCKS_RAINING, InsectTime.ALL_DAY, MONTH_ALL);
         createInsect(gs(R.string.pil_bug), 250, ROCKS_HITTING, t11pm_4pm, "September, October, November, December, January, February, March, April, May, June");
         createInsect(gs(R.string.centipede), 300, ROCKS_HITTING, t5pm_11pm,  "September, October, November, December, January, February, March, April, May, June");
         createInsect(gs(R.string.spider), 400, TREES_SHAKING, t7pm_8am, MONTH_ALL);

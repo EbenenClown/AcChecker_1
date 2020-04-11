@@ -315,6 +315,12 @@ public class InsectRecyclerViewAdapter extends AnimalRecyclerViewAdapter<Insect>
                 case TREES_SHAKING:
                     mLocation.setImageResource(R.drawable.i_location_tree);
                     break;
+                case ROCKS_RAINING:
+                    mLocation.setImageResource(R.drawable.i_location_rock);
+                    break;
+                case VILLAGERS:
+                    mLocation.setImageResource(R.drawable.i_location_villager);
+                    break;
             }
         }
 

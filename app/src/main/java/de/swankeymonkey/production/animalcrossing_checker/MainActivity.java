@@ -28,6 +28,7 @@ import de.swankeymonkey.production.animalcrossing_checker.ui.main.dialogs.Welcom
 import de.swankeymonkey.production.animalcrossing_checker.utils.AppSharedPreferences;
 import de.swankeymonkey.production.animalcrossing_checker.utils.Constants;
 
+
 public class MainActivity extends AppCompatActivity {
     private static final int FISH_MODE = 1;
     private static final int INSECT_MODE = 2;
@@ -44,6 +45,11 @@ public class MainActivity extends AppCompatActivity {
         if(AppSharedPreferences.isFirstStart(this) || AppSharedPreferences.getAppHemisphere(this) == Constants.NO_HEMISPHERE_CHOSEN) {
             WelcomeDialog dialog = new WelcomeDialog();
             dialog.show(getSupportFragmentManager(), "Dialogtag");
+            mAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+            mViews.mViewPager.setOffscreenPageLimit(4);
+            TabLayout tabs = findViewById(R.id.tabs);
+            tabs.setupWithViewPager(mViews.mViewPager);
+            setSupportActionBar(mViews.mToolbar);
         } else {
             init();
         }
@@ -55,32 +61,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        if(!AppSharedPreferences.isFirstStart(this)) {
-            mAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
-            mViews.mViewPager.setAdapter(mAdapter);
-            mViews.mBottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    if(item.getItemId() == R.id.nav_fish) {
-                        mAdapter.setMode(FISH_MODE);
-                        mAdapter.notifyDataSetChanged();
-                    } else {
-                        mAdapter.setMode(INSECT_MODE);
-                        mAdapter.notifyDataSetChanged();
-                    }
-                    return false;
-                }
-            });
-        }
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.menuSettings) {
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

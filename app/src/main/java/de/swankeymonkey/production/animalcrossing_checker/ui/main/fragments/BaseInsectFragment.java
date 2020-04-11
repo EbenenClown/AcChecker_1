@@ -27,8 +27,9 @@ import de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters.Anima
 import de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters.InsectRecyclerViewAdapter;
 
 public abstract class BaseInsectFragment extends Fragment {
-    private boolean isSortedByNameDown;
-    private boolean isSortedByPriceDown;
+    private boolean isSortedByNameDown = false;
+    private boolean isSortedByPriceDown = false;
+    private Menu mMenu;
     protected BaseInsectFragment.ViewHolder mViews;
     protected InsectRecyclerViewAdapter mAdapter;
     protected abstract void init(View view);
@@ -44,25 +45,45 @@ public abstract class BaseInsectFragment extends Fragment {
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_filter, menu);
+        mMenu = menu;
 
     }
 
     @Override
-    public void onPrepareOptionsMenu(@NonNull Menu menu) {
-        super.onPrepareOptionsMenu(menu);
+    public void onDestroy() {
+        super.onDestroy();
+        mMenu = null;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menuOrderByName:
+                if(isSortedByNameDown) {
+                    item.setIcon(R.drawable.ic_arrow_downward_white_24dp);
+                    mMenu.findItem(R.id.menuOrderByPrice).setIcon(null);
+                } else {
+                    item.setIcon(R.drawable.ic_arrow_upward_black_24dp);
+                    mMenu.findItem(R.id.menuOrderByPrice).setIcon(null);
+                }
                 mAdapter.setData(orderByName(mAdapter.getData()));
                 break;
             case R.id.menuOrderByPrice:
+                if(isSortedByPriceDown) {
+                    item.setIcon(R.drawable.ic_arrow_downward_white_24dp);
+                    mMenu.findItem(R.id.menuOrderByName).setIcon(null);
+                } else {
+                    item.setIcon(R.drawable.ic_arrow_upward_black_24dp);
+                    mMenu.findItem(R.id.menuOrderByName).setIcon(null);
+                }
                 mAdapter.setData(orderByPrice(mAdapter.getData()));
+                mMenu.findItem(R.id.menuDefaultOrder).setVisible(true);
                 break;
             case R.id.menuDefaultOrder:
                 mAdapter.setData(orderByDefault(mAdapter.getData()));
+                mMenu.findItem(R.id.menuOrderByName).setIcon(null);
+                mMenu.findItem(R.id.menuOrderByPrice).setIcon(null);
+                mMenu.findItem(R.id.menuDefaultOrder).setVisible(false);
                 break;
         }
         return super.onOptionsItemSelected(item);

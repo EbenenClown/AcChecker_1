@@ -1,5 +1,6 @@
 package de.swankeymonkey.production.animalcrossing_checker.ui.main.fragments;
 
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -28,6 +29,7 @@ import de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters.FishR
 public abstract class BaseFishFragment extends Fragment {
     private boolean isSortedByNameDown;
     private boolean isSortedByPriceDown;
+    private Menu mMenu;
     protected ViewHolder mViews;
     protected FishRecyclerViewAdapter mAdapter;
     protected abstract void init(View view);
@@ -43,6 +45,7 @@ public abstract class BaseFishFragment extends Fragment {
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_filter, menu);
+        mMenu = menu;
 
     }
 
@@ -55,13 +58,31 @@ public abstract class BaseFishFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menuOrderByName:
+                if(isSortedByNameDown) {
+                    item.setIcon(R.drawable.ic_arrow_downward_white_24dp);
+                    mMenu.findItem(R.id.menuOrderByPrice).setIcon(null);
+                } else {
+                    item.setIcon(R.drawable.ic_arrow_upward_black_24dp);
+                    mMenu.findItem(R.id.menuOrderByPrice).setIcon(null);
+                }
                 mAdapter.setData(orderByName(mAdapter.getData()));
                 break;
             case R.id.menuOrderByPrice:
+                if(isSortedByPriceDown) {
+                    item.setIcon(R.drawable.ic_arrow_downward_white_24dp);
+                    mMenu.findItem(R.id.menuOrderByName).setIcon(null);
+                } else {
+                    item.setIcon(R.drawable.ic_arrow_upward_black_24dp);
+                    mMenu.findItem(R.id.menuOrderByName).setIcon(null);
+                }
                 mAdapter.setData(orderByPrice(mAdapter.getData()));
+                mMenu.findItem(R.id.menuDefaultOrder).setVisible(true);
                 break;
             case R.id.menuDefaultOrder:
                 mAdapter.setData(orderByDefault(mAdapter.getData()));
+                mMenu.findItem(R.id.menuOrderByName).setIcon(null);
+                mMenu.findItem(R.id.menuOrderByPrice).setIcon(null);
+                mMenu.findItem(R.id.menuDefaultOrder).setVisible(false);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -77,6 +98,12 @@ public abstract class BaseFishFragment extends Fragment {
         mViews.mRecyclerview.setAdapter(mAdapter);
         init(view);
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mMenu = null;
     }
 
     protected List<Fish> orderByPrice(List<Fish> fishList) {

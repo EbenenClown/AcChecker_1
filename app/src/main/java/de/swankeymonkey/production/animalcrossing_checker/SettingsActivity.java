@@ -20,8 +20,10 @@ import org.joda.time.DateTime;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import de.swankeymonkey.production.animalcrossing_checker.backend.models.Insect;
 import de.swankeymonkey.production.animalcrossing_checker.utils.AppSharedPreferences;
 import de.swankeymonkey.production.animalcrossing_checker.utils.Constants;
+import de.swankeymonkey.production.animalcrossing_checker.utils.DateUtils;
 
 public class SettingsActivity extends AppCompatActivity {
     private ViewHolder mViews;
@@ -66,7 +68,11 @@ public class SettingsActivity extends AppCompatActivity {
         mViews.mMonthsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                AppSharedPreferences.setAppMonth(SettingsActivity.this, position);
+                if(position + 1 == new DateTime().getMonthOfYear()) {
+                    AppSharedPreferences.setAppMonth(SettingsActivity.this, Constants.NO_MONTH_CHOSEN);
+                } else {
+                    AppSharedPreferences.setAppMonth(SettingsActivity.this, position);
+                }
             }
 
             @Override
@@ -78,8 +84,18 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        finish();
+        backToMainActivity();
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        backToMainActivity();
+    }
+
+    private void backToMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     public class ViewHolder {

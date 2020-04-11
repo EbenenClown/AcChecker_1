@@ -220,6 +220,7 @@
     <string name="Sea">Sea</string>
     <string name="Pier">Pier</string>
     <string name="Pond">Pond</string>
+    <string name="Sea_Raining">Sea(Raining)</string>
 
     <!--InsectLocations-->
     <string name="Flying">Flying</string>
@@ -235,6 +236,8 @@
     <string name="Trash">Trash</string>
     <string name="Rocks">Rocks</string>
     <string name="Rocks_Hitting">Rocks(hitting)</string>
+    <string name="Villagers">On Villagers</string>
+    <string name="Rocks_Raining">Rocks(Raining)</string>
 
     <!--More-->
     <string name="bells_string">bells</string>
@@ -257,9 +260,9 @@
     <string name="octS">Oct.</string>
     <string name="novS">Nov.</string>
     <string name="decS">Dec.</string>
-    <string name="order_by_price">Order By Price</string>
-    <string name="order_by_name">Order By Name</string>
-    <string name="default_order">Default Order</string>
+    <string name="order_by_price">By Price</string>
+    <string name="order_by_name">By Name</string>
+    <string name="default_order">Default</string>
     <string name="fish_plural">Fish</string>
     <string name="insects">Insects</string>
     <string name="settings">Settings</string>

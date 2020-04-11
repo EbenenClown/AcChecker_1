@@ -208,6 +208,7 @@
     <string name="Sea">Meer</string>
     <string name="Pier">Steg</string>
     <string name="Pond">Teich</string>
+    <string name="Sea_Raining">Meer(Bei Regen)</string>
     <string name="Flying">Fliegend</string>
     <string name="Trees">Bäume</string>
     <string name="Ground">Boden</string>
@@ -221,12 +222,14 @@
     <string name="Trash">Müll</string>
     <string name="Rocks">Steine</string>
     <string name="Rocks_Hitting">Steine(schlagen)</string>
+    <string name="Villagers">Auf Bewohner</string>
+    <string name="Rocks_Raining">Steine(Regen)</string>
     <string name="bells_string">Sternis</string>
     <string name="settings_hemisphere_title">Ändere deine Hemisphäre:</string>
     <string name="settings_always_expand">Items immer aufgeklappt:</string>
     <string name="settings_month_title">Monat (Ändert die Tiere für heute):</string>
     <string name="settings_impreesum_agbs">Impressum und AGB\'s</string>
-    <string name="welcome_text">Wilkommen zum Animal Crossing Checker! Wähle zuerst deine Hemisphäre aus (Kann später in den Einstellungen geändert werden):</string>
+    <string name="welcome_text">Willkommen zum Animal Crossing Checker! Wähle zuerst deine Hemisphäre aus (Kann später in den Einstellungen geändert werden):</string>
     <string name="northern_hemisphere">Nördliche Hemisphäre</string>
     <string name="southern_hemisphere">Südliche Hemisphäre</string>
     <string name="janS">Jan.</string>
@@ -241,9 +244,9 @@
     <string name="octS">Okt.</string>
     <string name="novS">Nov.</string>
     <string name="decS">Dez.</string>
-    <string name="order_by_price">Ordne nach Preis</string>
-    <string name="order_by_name">Ordne nach Name</string>
-    <string name="default_order">Standard Ordnung</string>
+    <string name="order_by_price">nach Preis</string>
+    <string name="order_by_name">nach Name</string>
+    <string name="default_order">Zurücksetzen</string>
     <string name="fish_plural">Fische</string>
     <string name="insects">Insekten</string>
     <string name="settings">Einstellungen</string>

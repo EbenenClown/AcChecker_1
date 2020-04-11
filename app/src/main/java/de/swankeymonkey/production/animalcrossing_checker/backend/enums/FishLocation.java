@@ -10,7 +10,8 @@ public enum FishLocation {
     RIVER_MOUTH(2),
     SEA(3),
     PIER(4),
-    POND(5);
+    SEA_RAINING(5),
+    POND(6);
 
     private int id;
 
@@ -34,6 +35,8 @@ public enum FishLocation {
                 return SEA;
             case 4:
                 return PIER;
+            case 5:
+                return SEA_RAINING;
             default:
                 return POND;
         }
@@ -53,6 +56,8 @@ public enum FishLocation {
                 return context.getString(R.string.Pier);
             case POND:
                 return context.getString(R.string.Pond);
+            case SEA_RAINING:
+                return context.getString(R.string.Sea_Raining);
             default:
                 return context.getString(R.string.Unknown);
         }
