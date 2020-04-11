@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:text="Change your hemisphere:"
+        android:text="@string/settings_hemisphere_title"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:text="Set Items always expanded:"
+        android:text="@string/settings_always_expand"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHemisphere" />
@@ -45,12 +45,13 @@
 
     <TextView
         android:id="@+id/tvMonth"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:text="Month (Changes today's Critters):"
+        android:text="@string/settings_month_title"
         android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/tvExpand"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvExpand" />
 
@@ -60,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="64dp"
-        android:text="Impressum and AGB's"
+        android:text="@string/settings_impreesum_agbs"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,6 +72,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
+        android:fontFamily="serif"
+        app:layout_constraintBottom_toBottomOf="@+id/tvMonth"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tvMonth"
         tools:text="January" />

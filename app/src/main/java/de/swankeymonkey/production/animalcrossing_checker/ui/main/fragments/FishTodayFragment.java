@@ -1,6 +1,7 @@
 package de.swankeymonkey.production.animalcrossing_checker.ui.main.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -35,9 +36,9 @@ public class FishTodayFragment extends BaseFishFragment {
             @Override
             public void onChanged(List<Fish> fish) {
                 List<Fish> filteredList = new ArrayList<>();
-                int currentMonth = AppSharedPreferences.getAppMonth(getContext()) == Constants.NO_MONTH_CHOSEN ? new DateTime().getDayOfMonth() : AppSharedPreferences.getAppMonth(getContext());
+                int currentMonth = AppSharedPreferences.getAppMonth(getContext()) == Constants.NO_MONTH_CHOSEN ? new DateTime().getMonthOfYear() : AppSharedPreferences.getAppMonth(getContext()) + 1;
                 for(Fish f : fish) {
-                    if(DateUtils.isInDate(currentMonth, f.getMonths())) {
+                    if(DateUtils.isInDate(getContext(), currentMonth, f.getMonths())) {
                        filteredList.add(f);
                     }
                 }

@@ -219,22 +219,53 @@
     <string name="River_Mouth">River(Mouth)</string>
     <string name="Sea">Sea</string>
     <string name="Pier">Pier</string>
+    <string name="Pond">Pond</string>
+    <string name="Sea_Raining">Sea(Raining)</string>
 
     <!--InsectLocations-->
     <string name="Flying">Flying</string>
-    <string name="Trees">On trees</string>
-    <string name="Ground">On ground</string>
-    <string name="Flowers">On flowers</string>
-    <string name="Trees_Shaking">Shaking trees</string>
+    <string name="Trees">Trees</string>
+    <string name="Ground">Ground</string>
+    <string name="Flowers">Flowers</string>
+    <string name="Trees_Shaking">Trees(shaking)</string>
     <string name="UnderGround">Underground</string>
-    <string name="Water">On water</string>
-    <string name="Tree_Stumps">On tree stumps</string>
-    <string name="Rotten_Food">On rotten food</string>
-    <string name="Beach">On beach</string>
-    <string name="Trash">On trash</string>
-    <string name="Rocks">On rocks</string>
-    <string name="Rocks_Hitting">Hitting rocks</string>
+    <string name="Water">Water</string>
+    <string name="Tree_Stumps">Tree stumps</string>
+    <string name="Rotten_Food">Rotten food</string>
+    <string name="Beach">Beach</string>
+    <string name="Trash">Trash</string>
+    <string name="Rocks">Rocks</string>
+    <string name="Rocks_Hitting">Rocks(hitting)</string>
+    <string name="Villagers">On Villagers</string>
+    <string name="Rocks_Raining">Rocks(Raining)</string>
+
+    <!--More-->
     <string name="bells_string">bells</string>
+    <string name="settings_hemisphere_title">Change your hemisphere:</string>
+    <string name="settings_always_expand">Set Items always expanded:</string>
+    <string name="settings_month_title">Month (Changes today\'s Critters):</string>
+    <string name="settings_impreesum_agbs">Impressum and AGB\'s</string>
+    <string name="welcome_text">Welcome to Animal Crossing Checker! First choose your hemisphere (you can always change it later in the settings)</string>
+    <string name="northern_hemisphere">Northern Hemisphere</string>
+    <string name="southern_hemisphere">Southern Hemisphere</string>
+    <string name="janS">Jan.</string>
+    <string name="febS">Feb.</string>
+    <string name="marS">Mar.</string>
+    <string name="aprS">Apr.</string>
+    <string name="mayS">May</string>
+    <string name="junS">Jun.</string>
+    <string name="julS">Jul.</string>
+    <string name="augS">Aug.</string>
+    <string name="sepS">Sep.</string>
+    <string name="octS">Oct.</string>
+    <string name="novS">Nov.</string>
+    <string name="decS">Dec.</string>
+    <string name="order_by_price">By Price</string>
+    <string name="order_by_name">By Name</string>
+    <string name="default_order">Default</string>
+    <string name="fish_plural">Fish</string>
+    <string name="insects">Insects</string>
+    <string name="settings">Settings</string>
 
     <!--SpinnerArrays-->
     <string-array name="hemisphere">

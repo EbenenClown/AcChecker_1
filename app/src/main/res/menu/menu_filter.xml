@@ -1,19 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <group android:id="@+id/menuOrderByPopup">
-        <item
-            android:id="@+id/menuOrderByPrice"
-            android:title="Order By Price"/>
+    <item android:id="@+id/menuOrderByPopup"
+        android:title="filter"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_filter_list_black_24dp">
+        <menu>
+            <item
+                android:id="@+id/menuOrderByPrice"
+                android:title="@string/order_by_price"
+                app:showAsAction="ifRoom"/>
 
-        <item
-            android:id="@+id/menuOrderByName"
-            android:title="Order By Name"/>
+            <item
+                android:id="@+id/menuOrderByName"
+                android:title="@string/order_by_name"
+                app:showAsAction="ifRoom"/>
 
-        <item
-            android:id="@+id/menuDefaultOrder"
-            android:title="Default Order"/>
-    </group>
+            <item
+                android:id="@+id/menuDefaultOrder"
+                android:title="@string/default_order"
+                android:visible="false"
+                app:showAsAction="ifRoom"/>
+        </menu>
+
+    </item>
 
 
 </menu>

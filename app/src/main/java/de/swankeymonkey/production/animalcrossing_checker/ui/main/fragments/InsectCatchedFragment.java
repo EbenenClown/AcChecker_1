@@ -33,6 +33,7 @@ public class InsectCatchedFragment extends BaseInsectFragment {
 
     @Override
     protected void init(View view) {
+        getActivity().findViewById(R.id.progessBar).setVisibility(View.GONE);
         mViewModel.getCatchedInsects().observe(this, new Observer<List<Insect>>() {
             @Override
             public void onChanged(List<Insect> insects) {

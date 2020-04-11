@@ -18,7 +18,9 @@ public enum InsectLocation {
     TRASH(10),
     ROCKS(11),
     ROCKS_HITTING(12),
-    UNKNOWN(13);
+    VILLAGERS(13),
+    ROCKS_RAINING(14),
+    UNKNOWN(15);
 
     private int id;
 
@@ -58,6 +60,10 @@ public enum InsectLocation {
                     return ROCKS;
             case 12:
                     return ROCKS_HITTING;
+            case 13:
+                return VILLAGERS;
+            case 14:
+                return ROCKS_RAINING;
             default:
                     return UNKNOWN;
         }
@@ -91,6 +97,10 @@ public enum InsectLocation {
                 return context.getString(R.string.Rocks);
             case ROCKS_HITTING:
                 return context.getString(R.string.Rocks_Hitting);
+            case VILLAGERS:
+                return context.getString(R.string.Villagers);
+            case ROCKS_RAINING:
+                return context.getString(R.string.Rocks_Raining);
             default:
                 return context.getString(R.string.Unknown);
         }

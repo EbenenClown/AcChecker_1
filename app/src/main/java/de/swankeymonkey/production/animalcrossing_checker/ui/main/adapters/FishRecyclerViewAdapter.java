@@ -289,6 +289,7 @@ public class FishRecyclerViewAdapter extends AnimalRecyclerViewAdapter<Fish> {
 
         @Override
         protected void setLocation(Animal animal) {
+            mLocationText.setText(FishLocation.getString(((Fish)animal).getLocation(), mContext));
             switch (((Fish)animal).getLocation()) {
                 case RIVER:
                     mLocation.setImageResource(R.drawable.f_location_river);

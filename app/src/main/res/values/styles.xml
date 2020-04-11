@@ -7,6 +7,13 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:actionOverflowButtonStyle">@style/Widget.ActionButton.Overflow</item>
+        <item name="android:textViewStyle">@style/FinkHeavyTextViews</item>
+    </style>
+
+    <style name="SettingTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -20,6 +27,14 @@
 
     <style name="Widget.ActionButton.Overflow" parent="@android:style/Widget.Holo.ActionButton.Overflow">
         <item name="android:src">@drawable/ic_filter_list_black_24dp</item>
+    </style>
+
+    <style name="FinkHeavyTextViews" parent="android:Widget.TextView">
+        <item name="fontFamily">@font/fink_heavy</item>
+    </style>
+
+    <style name="tab_text" parent="android:TextAppearance.Material.Widget.TabWidget">
+        <item name="fontFamily">@font/fink_heavy</item>
     </style>
 
 </resources>

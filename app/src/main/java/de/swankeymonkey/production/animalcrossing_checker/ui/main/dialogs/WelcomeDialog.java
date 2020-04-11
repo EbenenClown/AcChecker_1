@@ -2,6 +2,8 @@ package de.swankeymonkey.production.animalcrossing_checker.ui.main.dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import androidx.fragment.app.DialogFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import de.swankeymonkey.production.animalcrossing_checker.MainActivity;
 import de.swankeymonkey.production.animalcrossing_checker.R;
 import de.swankeymonkey.production.animalcrossing_checker.utils.AppSharedPreferences;
 
@@ -32,6 +35,8 @@ public class WelcomeDialog extends DialogFragment {
             public void onClick(View v) {
                 AppSharedPreferences.setAppHemisphere(getContext(), 0);
                 AppSharedPreferences.setIsNotFirstTime(getContext());
+                MainActivity activity = (MainActivity)getActivity();
+                activity.init();
                 dismiss();
             }
         });
@@ -41,9 +46,13 @@ public class WelcomeDialog extends DialogFragment {
             public void onClick(View v) {
                 AppSharedPreferences.setAppHemisphere(getContext(), 1);
                 AppSharedPreferences.setIsNotFirstTime(getContext());
+                MainActivity activity = (MainActivity)getActivity();
+                activity.init();
                 dismiss();
             }
         });
+
+        mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         return mDialog;
     }
