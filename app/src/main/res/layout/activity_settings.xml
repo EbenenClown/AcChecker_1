@@ -66,16 +66,4 @@
         app:layout_constraintTop_toTopOf="@+id/tvMonth"
         tools:text="January" />
 
-    <TextView
-        android:id="@+id/tvImpressum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="64dp"
-        android:text="@string/settings_impreesum_agbs"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMonth" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

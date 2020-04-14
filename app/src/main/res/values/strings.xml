@@ -240,7 +240,7 @@
     <string name="Rocks_Raining">Rocks (Raining)</string>
 
     <!--More-->
-    <string name="bells_string">%1$i bells</string>
+    <string name="bells_string">%1$s bells</string>
     <string name="settings_hemisphere_title">Change your hemisphere:</string>
     <string name="settings_always_expand">Set Items always expanded:</string>
     <string name="settings_month_title">Month (Changes today\'s Critters):</string>

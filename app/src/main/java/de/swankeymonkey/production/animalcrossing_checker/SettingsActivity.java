@@ -96,8 +96,6 @@ public class SettingsActivity extends AppCompatActivity {
         Spinner mMonthsSpinner;
         @BindView(R.id.swExpand)
         Switch mExpander;
-        @BindView(R.id.tvImpressum)
-        TextView mImpressum;
 
         Unbinder mUnbinder;
 

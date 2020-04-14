@@ -140,7 +140,7 @@ public abstract class AnimalRecyclerViewAdapter<T> extends RecyclerView.Adapter<
 
         void bind(Animal animal) {
             mName.setText(animal.getName());
-            mPrice.setText(mContext.getString(R.string.bells_string, animal.getPrice()));
+            mPrice.setText(mContext.getString(R.string.bells_string, String.valueOf(animal.getPrice())));
             mIsCatched.setChecked(animal.isCatched());
             if(animal.isCatched()) {
                 itemView.setBackground(mContext.getResources().getDrawable(R.drawable.custom_listitem_background_checked));
