@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import butterknife.BindView;
@@ -92,7 +91,7 @@ public abstract class BaseInsectFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_recyclerview, container, false);
+        View view = inflater.inflate(R.layout.fragment_fish, container, false);
         mViews = new BaseInsectFragment.ViewHolder(view);
         mAdapter = new InsectRecyclerViewAdapter(getContext(), initCheckboxListener());
         mViews.mRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -104,21 +103,11 @@ public abstract class BaseInsectFragment extends Fragment {
     protected List<Insect> orderByPrice(List<Insect> fishList) {
         isSortedByNameDown = false;
         if(isSortedByPriceDown) {
-            Collections.sort(fishList, new Comparator<Insect>() {
-                @Override
-                public int compare(Insect o1, Insect o2) {
-                    return Integer.compare(o1.getPrice(), o2.getPrice());
-                }
-            });
+            Collections.sort(fishList, (o1, o2) -> Integer.compare(o1.getPrice(), o2.getPrice()));
             isSortedByPriceDown = false;
             return fishList;
         } else {
-            Collections.sort(fishList, new Comparator<Insect>() {
-                @Override
-                public int compare(Insect o1, Insect o2) {
-                    return Integer.compare(o2.getPrice(), o1.getPrice());
-                }
-            });
+            Collections.sort(fishList, (o1, o2) -> Integer.compare(o2.getPrice(), o1.getPrice()));
             isSortedByPriceDown = true;
             return fishList;
         }
@@ -127,21 +116,11 @@ public abstract class BaseInsectFragment extends Fragment {
     protected List<Insect> orderByName(List<Insect> fishList) {
         isSortedByPriceDown = false;
         if(isSortedByNameDown) {
-            Collections.sort(fishList, new Comparator<Insect>() {
-                @Override
-                public int compare(Insect o1, Insect o2) {
-                    return o2.getName().compareToIgnoreCase(o1.getName());
-                }
-            });
+            Collections.sort(fishList, (o1, o2) -> o2.getName().compareToIgnoreCase(o1.getName()));
             isSortedByNameDown = false;
             return fishList;
         } else {
-            Collections.sort(fishList, new Comparator<Insect>() {
-                @Override
-                public int compare(Insect o1, Insect o2) {
-                    return o1.getName().compareToIgnoreCase(o2.getName());
-                }
-            });
+            Collections.sort(fishList, (o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
             isSortedByNameDown = true;
             return fishList;
         }
@@ -151,12 +130,7 @@ public abstract class BaseInsectFragment extends Fragment {
     protected List<Insect> orderByDefault(List<Insect> fishList) {
         isSortedByNameDown = false;
         isSortedByPriceDown = false;
-        Collections.sort(fishList, new Comparator<Insect>() {
-            @Override
-            public int compare(Insect o1, Insect o2) {
-                return Integer.compare(o1.getId(), o2.getId());
-            }
-        });
+        Collections.sort(fishList, (o1, o2) -> Integer.compare(o1.getId(), o2.getId()));
         return fishList;
     }
 

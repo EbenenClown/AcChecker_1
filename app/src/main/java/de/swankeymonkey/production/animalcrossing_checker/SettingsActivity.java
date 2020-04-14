@@ -54,12 +54,7 @@ public class SettingsActivity extends AppCompatActivity {
         });
 
         mViews.mExpander.setChecked(AppSharedPreferences.isAlwaysExpanded(this));
-        mViews.mExpander.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                AppSharedPreferences.setIsAlwaysExpanded(SettingsActivity.this, isChecked);
-            }
-        });
+        mViews.mExpander.setOnCheckedChangeListener((buttonView, isChecked) -> AppSharedPreferences.setIsAlwaysExpanded(SettingsActivity.this, isChecked));
 
         ArrayAdapter<CharSequence> adapterMonths = ArrayAdapter.createFromResource(this, R.array.months, android.R.layout.simple_spinner_item);
         adapterMonths.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

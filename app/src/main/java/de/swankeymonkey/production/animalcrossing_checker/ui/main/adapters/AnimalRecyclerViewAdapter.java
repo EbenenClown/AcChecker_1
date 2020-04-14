@@ -49,7 +49,7 @@ public abstract class AnimalRecyclerViewAdapter<T> extends RecyclerView.Adapter<
     @NonNull
     @Override
     public AnimalViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.fragment_fish_listitem, parent, false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.listitem_animal, parent, false);
         return setViewHolder(view);
     }
 
@@ -64,25 +64,17 @@ public abstract class AnimalRecyclerViewAdapter<T> extends RecyclerView.Adapter<
             holder.itemView.setActivated(isExpanded);
             holder.mDetails.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
             holder.mLocationText.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(isExpanded) {
-                        mPositionSaves.remove((Integer)position);
-                    } else {
-                        mPositionSaves.add(position);
-                    }
-                    notifyDataSetChanged();
+            holder.itemView.setOnClickListener(v -> {
+                if(isExpanded) {
+                    mPositionSaves.remove((Integer)position);
+                } else {
+                    mPositionSaves.add(position);
                 }
+                notifyDataSetChanged();
             });
         }
         final T data = mData.get(position);
-        holder.mIsCatched.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mListener.onClicked(data);
-            }
-        });
+        holder.mIsCatched.setOnClickListener(v -> mListener.onClicked(data));
 
         holder.bind((Animal) data);
     }

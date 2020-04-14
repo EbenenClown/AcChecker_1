@@ -24,31 +24,22 @@ public class InsectMissingFragment extends BaseInsectFragment {
 
     @Override
     protected void init(View view) {
-        mViewModel.getMissingInsects().observe(this, new Observer<List<Insect>>() {
-            @Override
-            public void onChanged(List<Insect> insects) {
-                mAdapter.setData(insects);
-            }
-        });
+        mViewModel.getMissingInsects().observe(this, insects -> mAdapter.setData(insects));
     }
 
     @Override
     protected AnimalRecyclerViewAdapter.CheckboxClicker<Insect> initCheckboxListener() {
-        return new AnimalRecyclerViewAdapter.CheckboxClicker<Insect>() {
-            @Override
-            public void onClicked(Insect animal) {
-                if(animal.isCatched()) {
-                    animal.setCatched(false);
-                } else {
-                    animal.setCatched(true);
-                }
-                mViewModel.updateInsect(animal, null);
+        return animal -> {
+            if(animal.isCatched()) {
+                animal.setCatched(false);
+            } else {
+                animal.setCatched(true);
             }
+            mViewModel.updateInsect(animal, null);
         };
     }
 
     public static InsectMissingFragment newInstance() {
-        InsectMissingFragment fragment = new InsectMissingFragment();
-        return fragment;
+        return new InsectMissingFragment();
     }
 }

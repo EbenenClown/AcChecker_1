@@ -27,29 +27,23 @@ public class WelcomeDialog extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_hemisphere, null);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_welcome, null);
         mViews = new ViewHolder(view);
         mDialog = new AlertDialog.Builder(getContext()).setView(view).create();
-        mViews.mNHemisphere.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AppSharedPreferences.setAppHemisphere(getContext(), 0);
-                AppSharedPreferences.setIsNotFirstTime(getContext());
-                MainActivity activity = (MainActivity)getActivity();
-                activity.init();
-                dismiss();
-            }
+        mViews.mNHemisphere.setOnClickListener(v -> {
+            AppSharedPreferences.setAppHemisphere(getContext(), 0);
+            AppSharedPreferences.setIsNotFirstTime(getContext());
+            MainActivity activity = (MainActivity)getActivity();
+            activity.init();
+            dismiss();
         });
 
-        mViews.mSHemisphere.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AppSharedPreferences.setAppHemisphere(getContext(), 1);
-                AppSharedPreferences.setIsNotFirstTime(getContext());
-                MainActivity activity = (MainActivity)getActivity();
-                activity.init();
-                dismiss();
-            }
+        mViews.mSHemisphere.setOnClickListener(v -> {
+            AppSharedPreferences.setAppHemisphere(getContext(), 1);
+            AppSharedPreferences.setIsNotFirstTime(getContext());
+            MainActivity activity = (MainActivity)getActivity();
+            activity.init();
+            dismiss();
         });
 
         mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));

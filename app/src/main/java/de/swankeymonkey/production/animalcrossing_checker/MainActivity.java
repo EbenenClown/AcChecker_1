@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(AppSharedPreferences.isFirstStart(this) || AppSharedPreferences.getAppHemisphere(this) == Constants.NO_HEMISPHERE_CHOSEN) {
             WelcomeDialog dialog = new WelcomeDialog();
-            dialog.show(getSupportFragmentManager(), "Dialogtag");
+            dialog.show(getSupportFragmentManager(), Constants.WELCOME_DIALOG);
             mAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
             mViews.mViewPager.setOffscreenPageLimit(4);
             TabLayout tabs = findViewById(R.id.tabs);
@@ -83,19 +83,16 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(mViews.mViewPager);
         setSupportActionBar(mViews.mToolbar);
-        mViews.mBottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                mViews.mProgressBar.setVisibility(View.VISIBLE);
-                if(item.getItemId() == R.id.nav_fish) {
-                    mAdapter.setMode(FISH_MODE);
-                    mAdapter.notifyDataSetChanged();
-                } else {
-                    mAdapter.setMode(INSECT_MODE);
-                    mAdapter.notifyDataSetChanged();
-                }
-                return false;
+        mViews.mBottomNavigation.setOnNavigationItemSelectedListener(item -> {
+            mViews.mProgressBar.setVisibility(View.VISIBLE);
+            if(item.getItemId() == R.id.nav_fish) {
+                mAdapter.setMode(FISH_MODE);
+                mAdapter.notifyDataSetChanged();
+            } else {
+                mAdapter.setMode(INSECT_MODE);
+                mAdapter.notifyDataSetChanged();
             }
+            return false;
         });
     }
 

@@ -25,33 +25,22 @@ public class FishCatchedFragment extends BaseFishFragment {
 
     @Override
     protected FishRecyclerViewAdapter.CheckboxClicker<Fish> setOnItemCheckListener() {
-        return new AnimalRecyclerViewAdapter.CheckboxClicker<Fish>() {
-            @Override
-            public void onClicked(Fish data) {
-                if(data.isCatched()) {
-                    data.setCatched(false);
-                } else {
-                    data.setCatched(true);
-                }
-                mViewModel.updateFish(data, null);
+        return data -> {
+            if(data.isCatched()) {
+                data.setCatched(false);
+            } else {
+                data.setCatched(true);
             }
+            mViewModel.updateFish(data, null);
         };
     }
 
     @Override
     protected void init(View view) {
-        mViewModel.getCatchedFish().observe(this, new Observer<List<Fish>>() {
-            @Override
-            public void onChanged(List<Fish> fish) {
-                mAdapter.setData(fish);
-            }
-        });
+        mViewModel.getCatchedFish().observe(this, fish -> mAdapter.setData(fish));
     }
 
     public static FishCatchedFragment newInstance() {
-        Bundle args = new Bundle();
-        FishCatchedFragment fragment = new FishCatchedFragment();
-        fragment.setArguments(args);
-        return fragment;
+        return new FishCatchedFragment();
     }
 }

@@ -7,4 +7,5 @@ public class Constants {
     public static final int NO_HEMISPHERE_CHOSEN = -1;
     public static final int NORTHERN_HEMISPHERE = 0;
     public static final int SOUTHERN_HEMISPHERE = 1;
+    public static final String WELCOME_DIALOG = "Dialogtag";
 }
