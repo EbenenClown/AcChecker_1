@@ -17,6 +17,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Spinner
+        android:id="@+id/spHemisphere"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/spMonths"
+        app:layout_constraintStart_toStartOf="@+id/spMonths"
+        app:layout_constraintTop_toTopOf="@+id/tvHemisphere" />
+
     <TextView
         android:id="@+id/tvExpand"
         android:layout_width="wrap_content"
@@ -35,14 +43,6 @@
         app:layout_constraintEnd_toEndOf="@+id/spMonths"
         app:layout_constraintTop_toTopOf="@+id/tvExpand" />
 
-    <Spinner
-        android:id="@+id/spHemisphere"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/spMonths"
-        app:layout_constraintStart_toStartOf="@+id/spMonths"
-        app:layout_constraintTop_toTopOf="@+id/tvHemisphere" />
-
     <TextView
         android:id="@+id/tvMonth"
         android:layout_width="0dp"
@@ -54,18 +54,6 @@
         app:layout_constraintEnd_toEndOf="@+id/tvExpand"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvExpand" />
-
-    <TextView
-        android:id="@+id/tvImpressum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="64dp"
-        android:text="@string/settings_impreesum_agbs"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMonth" />
 
     <Spinner
         android:id="@+id/spMonths"

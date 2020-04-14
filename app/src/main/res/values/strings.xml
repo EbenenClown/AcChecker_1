@@ -240,7 +240,7 @@
     <string name="Rocks_Raining">Rocks (Raining)</string>
 
     <!--More-->
-    <string name="bells_string">bells</string>
+    <string name="bells_string">%1$s bells</string>
     <string name="settings_hemisphere_title">Change your hemisphere:</string>
     <string name="settings_always_expand">Set Items always expanded:</string>
     <string name="settings_month_title">Month (Changes today\'s Critters):</string>
@@ -266,6 +266,10 @@
     <string name="fish_plural">Fish</string>
     <string name="insects">Insects</string>
     <string name="settings">Settings</string>
+    <string name="filter">filter</string>
+    <string name="animal_picture_description">Animal Picture</string>
+    <string name="location_description">Location</string>
+    <string name="expander_description">Expander</string>
 
     <!--SpinnerArrays-->
     <string-array name="hemisphere">

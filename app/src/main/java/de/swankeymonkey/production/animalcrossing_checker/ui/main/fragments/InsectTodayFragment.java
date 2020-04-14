@@ -30,33 +30,27 @@ public class InsectTodayFragment extends BaseInsectFragment {
 
     @Override
     protected void init(View view) {
-        mViewModel.getAllInsects().observe(this, new Observer<List<Insect>>() {
-            @Override
-            public void onChanged(List<Insect> insects) {
-                List<Insect> filteredList = new ArrayList<>();
-                int currentMonth = AppSharedPreferences.getAppMonth(getContext()) == Constants.NO_MONTH_CHOSEN ? new DateTime().getMonthOfYear() : AppSharedPreferences.getAppMonth(getContext()) + 1;
-                for(Insect f : insects) {
-                    if(DateUtils.isInDate(getContext(), currentMonth, f.getMonths())) {
-                        filteredList.add(f);
-                    }
+        mViewModel.getAllInsects().observe(this, insects -> {
+            List<Insect> filteredList = new ArrayList<>();
+            int currentMonth = AppSharedPreferences.getAppMonth(getContext()) == Constants.NO_MONTH_CHOSEN ? new DateTime().getMonthOfYear() : AppSharedPreferences.getAppMonth(getContext()) + 1;
+            for(Insect f : insects) {
+                if(DateUtils.isInDate(getContext(), currentMonth, f.getMonths())) {
+                    filteredList.add(f);
                 }
-                mAdapter.setData(filteredList);
             }
+            mAdapter.setData(filteredList);
         });
     }
 
     @Override
     protected AnimalRecyclerViewAdapter.CheckboxClicker<Insect> initCheckboxListener() {
-        return new AnimalRecyclerViewAdapter.CheckboxClicker<Insect>() {
-            @Override
-            public void onClicked(Insect animal) {
-                if(animal.isCatched()) {
-                    animal.setCatched(false);
-                } else {
-                    animal.setCatched(true);
-                }
-                mViewModel.updateInsect(animal, null);
+        return animal -> {
+            if(animal.isCatched()) {
+                animal.setCatched(false);
+            } else {
+                animal.setCatched(true);
             }
+            mViewModel.updateInsect(animal, null);
         };
     }
 

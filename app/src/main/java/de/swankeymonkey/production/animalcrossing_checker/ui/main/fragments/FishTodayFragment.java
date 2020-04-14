@@ -32,40 +32,31 @@ public class FishTodayFragment extends BaseFishFragment {
 
     @Override
     protected void init(View view) {
-        mViewModel.getAllFish().observe(this, new Observer<List<Fish>>() {
-            @Override
-            public void onChanged(List<Fish> fish) {
-                List<Fish> filteredList = new ArrayList<>();
-                int currentMonth = AppSharedPreferences.getAppMonth(getContext()) == Constants.NO_MONTH_CHOSEN ? new DateTime().getMonthOfYear() : AppSharedPreferences.getAppMonth(getContext()) + 1;
-                for(Fish f : fish) {
-                    if(DateUtils.isInDate(getContext(), currentMonth, f.getMonths())) {
-                       filteredList.add(f);
-                    }
+        mViewModel.getAllFish().observe(this, fish -> {
+            List<Fish> filteredList = new ArrayList<>();
+            int currentMonth = AppSharedPreferences.getAppMonth(getContext()) == Constants.NO_MONTH_CHOSEN ? new DateTime().getMonthOfYear() : AppSharedPreferences.getAppMonth(getContext()) + 1;
+            for(Fish f : fish) {
+                if(DateUtils.isInDate(getContext(), currentMonth, f.getMonths())) {
+                   filteredList.add(f);
                 }
-                mAdapter.setData(filteredList);
             }
+            mAdapter.setData(filteredList);
         });
     }
 
     @Override
     protected FishRecyclerViewAdapter.CheckboxClicker<Fish> setOnItemCheckListener() {
-        return new AnimalRecyclerViewAdapter.CheckboxClicker<Fish>() {
-            @Override
-            public void onClicked(Fish data) {
-                if(data.isCatched()) {
-                    data.setCatched(false);
-                } else {
-                    data.setCatched(true);
-                }
-                mViewModel.updateFish(data, null);
+        return data -> {
+            if(data.isCatched()) {
+                data.setCatched(false);
+            } else {
+                data.setCatched(true);
             }
+            mViewModel.updateFish(data, null);
         };
     }
 
     public static FishTodayFragment newInstance() {
-        Bundle args = new Bundle();
-        FishTodayFragment fragment = new FishTodayFragment();
-        fragment.setArguments(args);
-        return fragment;
+        return new FishTodayFragment();
     }
 }

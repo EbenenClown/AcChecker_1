@@ -28,33 +28,26 @@ public class FishAllFragment extends BaseFishFragment {
     @Override
     protected void init(View view) {
         final ProgressBar progressBar = getActivity().findViewById(R.id.progessBar);
-        mViewModel.getAllFish().observe(getActivity(), new Observer<List<Fish>>() {
-            @Override
-            public void onChanged(List<Fish> fish) {
-                mAdapter.setData(fish);
-                progressBar.setVisibility(View.GONE);
-            }
+        mViewModel.getAllFish().observe(getActivity(), fish -> {
+            mAdapter.setData(fish);
+            progressBar.setVisibility(View.GONE);
         });
 
     }
 
     @Override
     protected FishRecyclerViewAdapter.CheckboxClicker<Fish> setOnItemCheckListener() {
-        return new AnimalRecyclerViewAdapter.CheckboxClicker<Fish>() {
-            @Override
-            public void onClicked(Fish data) {
-                if(data.isCatched()) {
-                    data.setCatched(false);
-                } else {
-                    data.setCatched(true);
-                }
-                mViewModel.updateFish(data, null);
+        return data -> {
+            if(data.isCatched()) {
+                data.setCatched(false);
+            } else {
+                data.setCatched(true);
             }
+            mViewModel.updateFish(data, null);
         };
     }
 
     public static FishAllFragment newInstance() {
-        FishAllFragment fragment = new FishAllFragment();
-        return fragment;
+        return new FishAllFragment();
     }
 }

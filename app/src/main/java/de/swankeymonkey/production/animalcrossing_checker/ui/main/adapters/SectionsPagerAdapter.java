@@ -19,10 +19,6 @@ import de.swankeymonkey.production.animalcrossing_checker.ui.main.fragments.Inse
 import de.swankeymonkey.production.animalcrossing_checker.ui.main.fragments.InsectMissingFragment;
 import de.swankeymonkey.production.animalcrossing_checker.ui.main.fragments.InsectTodayFragment;
 
-/**
- * A [FragmentPagerAdapter] that returns a fragment corresponding to
- * one of the sections/tabs/pages.
- */
 public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
     @StringRes
@@ -80,7 +76,6 @@ public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        // Show 2 total pages.
-        return 4;
+        return TAB_TITLES.length;
     }
 }

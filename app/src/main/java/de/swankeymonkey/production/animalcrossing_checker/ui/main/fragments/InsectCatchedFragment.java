@@ -34,26 +34,18 @@ public class InsectCatchedFragment extends BaseInsectFragment {
     @Override
     protected void init(View view) {
         getActivity().findViewById(R.id.progessBar).setVisibility(View.GONE);
-        mViewModel.getCatchedInsects().observe(this, new Observer<List<Insect>>() {
-            @Override
-            public void onChanged(List<Insect> insects) {
-                mAdapter.setData(insects);
-            }
-        });
+        mViewModel.getCatchedInsects().observe(this, insects -> mAdapter.setData(insects));
     }
 
     @Override
     protected AnimalRecyclerViewAdapter.CheckboxClicker<Insect> initCheckboxListener() {
-        return new AnimalRecyclerViewAdapter.CheckboxClicker<Insect>() {
-            @Override
-            public void onClicked(Insect animal) {
-                if(animal.isCatched()) {
-                    animal.setCatched(false);
-                } else {
-                    animal.setCatched(true);
-                }
-                mViewModel.updateInsect(animal, null);
+        return animal -> {
+            if(animal.isCatched()) {
+                animal.setCatched(false);
+            } else {
+                animal.setCatched(true);
             }
+            mViewModel.updateInsect(animal, null);
         };
     }
 

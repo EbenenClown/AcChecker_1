@@ -203,7 +203,7 @@ public class DatabaseCreateHelper {
         return mAllInsect;
     }
 
-    private Fish createFish(String name, int price, FishLocation location, FishTime time, String month) {
+    private void createFish(String name, int price, FishLocation location, FishTime time, String month) {
         Fish xyza = new Fish();
         xyza.setName(name);
         xyza.setLocation(location);
@@ -211,10 +211,9 @@ public class DatabaseCreateHelper {
         xyza.setTime(time);
         xyza.setMonths(transformArray(month));
         mAllFish.add(xyza);
-        return xyza;
     }
 
-    private Insect createInsect(String name, int price, InsectLocation location, InsectTime time, String month) {
+    private void createInsect(String name, int price, InsectLocation location, InsectTime time, String month) {
         Insect xyza = new Insect();
         xyza.setName(name);
         xyza.setLocation(location);
@@ -222,7 +221,6 @@ public class DatabaseCreateHelper {
         xyza.setTime(time);
         xyza.setMonths(transformArray(month));
         mAllInsect.add(xyza);
-        return xyza;
     }
 
     private String gs(int id) {
