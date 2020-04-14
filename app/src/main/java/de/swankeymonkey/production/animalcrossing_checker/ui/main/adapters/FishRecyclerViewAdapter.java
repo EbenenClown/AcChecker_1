@@ -303,6 +303,9 @@ public class FishRecyclerViewAdapter extends AnimalRecyclerViewAdapter<Fish> {
                 case SEA:
                     mLocation.setImageResource(R.drawable.f_location_sea);
                     break;
+                case SEA_RAINING:
+                    mLocation.setImageResource(R.drawable.f_location_sea);
+                    break;
                 case PIER:
                     mLocation.setImageResource(R.drawable.f_location_pier);
                     break;

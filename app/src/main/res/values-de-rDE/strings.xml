@@ -208,12 +208,12 @@
     <string name="Sea">Meer</string>
     <string name="Pier">Steg</string>
     <string name="Pond">Teich</string>
-    <string name="Sea_Raining">Meer(Bei Regen)</string>
+    <string name="Sea_Raining">Meer (Regen)</string>
     <string name="Flying">Fliegend</string>
     <string name="Trees">Bäume</string>
     <string name="Ground">Boden</string>
     <string name="Flowers">Blumen</string>
-    <string name="Trees_Shaking">Bäume(schütteln)</string>
+    <string name="Trees_Shaking">Bäume (Schütteln)</string>
     <string name="UnderGround">Untergrund</string>
     <string name="Water">Wasser</string>
     <string name="Tree_Stumps">Baumstämme</string>
@@ -221,9 +221,9 @@
     <string name="Beach">Strand</string>
     <string name="Trash">Müll</string>
     <string name="Rocks">Steine</string>
-    <string name="Rocks_Hitting">Steine(schlagen)</string>
+    <string name="Rocks_Hitting">Steine (Schlagen)</string>
     <string name="Villagers">Auf Bewohner</string>
-    <string name="Rocks_Raining">Steine(Regen)</string>
+    <string name="Rocks_Raining">Steine (Regen)</string>
     <string name="bells_string">Sternis</string>
     <string name="settings_hemisphere_title">Ändere deine Hemisphäre:</string>
     <string name="settings_always_expand">Items immer aufgeklappt:</string>

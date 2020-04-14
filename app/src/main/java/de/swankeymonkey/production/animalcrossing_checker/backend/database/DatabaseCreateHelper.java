@@ -159,7 +159,7 @@ public class DatabaseCreateHelper {
         createInsect(gs(R.string.mole_cricket), 500, UNDERGROUND, InsectTime.ALL_DAY, "November, December, January, February, March, April, May");
         createInsect(gs(R.string.pondskater), 130, WATER, t8am_7pm, "May, June, July, August, September");
         createInsect(gs(R.string.diving_beetle), 800, WATER, t8am_7pm, "May, June, July, August, September");
-        createInsect(gs(R.string.giant_water_bug), 200, WATER, t7pm_8am, "April, May, June, July, August, September");
+        createInsect(gs(R.string.giant_water_bug), 2000, WATER, t7pm_8am, "April, May, June, July, August, September");
         createInsect(gs(R.string.stinkbug), 120, FLOWERS, InsectTime.ALL_DAY, "March, April, May, June, July, August, September, October");
         createInsect(gs(R.string.man_faced_stink_bug), 1000, FLOWERS, t7pm_8am, "March, April, May, June, July, August, September, October");
         createInsect(gs(R.string.ladybug), 200, FLOWERS, t8am_5pm, "March, April, May, June, October");
