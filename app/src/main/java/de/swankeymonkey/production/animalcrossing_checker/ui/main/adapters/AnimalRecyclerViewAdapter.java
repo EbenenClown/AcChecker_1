@@ -21,12 +21,13 @@ import butterknife.ButterKnife;
 import de.swankeymonkey.production.animalcrossing_checker.R;
 import de.swankeymonkey.production.animalcrossing_checker.backend.models.Animal;
 import de.swankeymonkey.production.animalcrossing_checker.utils.AppSharedPreferences;
+import static de.swankeymonkey.production.animalcrossing_checker.utils.Constants.*;
 
 public abstract class AnimalRecyclerViewAdapter<T> extends RecyclerView.Adapter<AnimalRecyclerViewAdapter.AnimalViewHolder> {
     protected List<T> mData;
     protected Context mContext;
     protected CheckboxClicker<T> mListener;
-    protected  abstract AnimalViewHolder setViewHolder(View view);
+    protected abstract AnimalViewHolder setViewHolder(View view);
 
     private List<Integer> mPositionSaves;
 
@@ -139,7 +140,7 @@ public abstract class AnimalRecyclerViewAdapter<T> extends RecyclerView.Adapter<
 
         void bind(Animal animal) {
             mName.setText(animal.getName());
-            mPrice.setText(animal.getPrice() + " " + mContext.getString(R.string.bells_string));
+            mPrice.setText(mContext.getString(R.string.bells_string, animal.getPrice()));
             mIsCatched.setChecked(animal.isCatched());
             if(animal.isCatched()) {
                 itemView.setBackground(mContext.getResources().getDrawable(R.drawable.custom_listitem_background_checked));
@@ -165,44 +166,44 @@ public abstract class AnimalRecyclerViewAdapter<T> extends RecyclerView.Adapter<
             mOctButton.setEnabled(false);
             mNovButton.setEnabled(false);
             mDecButton.setEnabled(false);
-            if (!months.get(0).equals("all")) {
+            if (!months.get(0).equals(ALL_DATE)) {
                 if (AppSharedPreferences.getAppHemisphere(mContext) == 0) {
                     for (String month : months) {
                         switch (month) {
-                            case "January":
+                            case JANUARY:
                                 mJanButton.setEnabled(true);
                                 break;
-                            case "February":
+                            case FEBRUARY:
                                 mFebButton.setEnabled(true);
                                 break;
-                            case "March":
+                            case MARCH:
                                 mMarButton.setEnabled(true);
                                 break;
-                            case "April":
+                            case APRIL:
                                 mAprButton.setEnabled(true);
                                 break;
-                            case "May":
+                            case MAY:
                                 mMayButton.setEnabled(true);
                                 break;
-                            case "June":
+                            case JUNE:
                                 mJunButton.setEnabled(true);
                                 break;
-                            case "July":
+                            case JULY:
                                 mJulButton.setEnabled(true);
                                 break;
-                            case "August":
+                            case AUGUST:
                                 mAugButton.setEnabled(true);
                                 break;
-                            case "September":
+                            case SEPTEMBER:
                                 mSepButton.setEnabled(true);
                                 break;
-                            case "October":
+                            case OCTOBER:
                                 mOctButton.setEnabled(true);
                                 break;
-                            case "November":
+                            case NOVEMBER:
                                 mNovButton.setEnabled(true);
                                 break;
-                            case "December":
+                            case DECEMBER:
                                 mDecButton.setEnabled(true);
                                 break;
                         }
@@ -210,40 +211,40 @@ public abstract class AnimalRecyclerViewAdapter<T> extends RecyclerView.Adapter<
                 } else {
                     for (String month : months) {
                         switch (month) {
-                            case "January":
+                            case JANUARY:
                                 mJulButton.setEnabled(true);
                                 break;
-                            case "February":
+                            case FEBRUARY:
                                 mAugButton.setEnabled(true);
                                 break;
-                            case "March":
+                            case MARCH:
                                 mSepButton.setEnabled(true);
                                 break;
-                            case "April":
+                            case APRIL:
                                 mOctButton.setEnabled(true);
                                 break;
-                            case "May":
+                            case MAY:
                                 mNovButton.setEnabled(true);
                                 break;
-                            case "June":
+                            case JUNE:
                                 mDecButton.setEnabled(true);
                                 break;
-                            case "July":
+                            case JULY:
                                 mJanButton.setEnabled(true);
                                 break;
-                            case "August":
+                            case AUGUST:
                                 mFebButton.setEnabled(true);
                                 break;
-                            case "September":
+                            case SEPTEMBER:
                                 mMarButton.setEnabled(true);
                                 break;
-                            case "October":
+                            case OCTOBER:
                                 mAprButton.setEnabled(true);
                                 break;
-                            case "November":
+                            case NOVEMBER:
                                 mMayButton.setEnabled(true);
                                 break;
-                            case "December":
+                            case DECEMBER:
                                 mJunButton.setEnabled(true);
                                 break;
 

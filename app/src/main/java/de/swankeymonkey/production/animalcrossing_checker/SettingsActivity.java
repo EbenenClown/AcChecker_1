@@ -7,7 +7,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -20,28 +19,25 @@ import org.joda.time.DateTime;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import de.swankeymonkey.production.animalcrossing_checker.backend.models.Insect;
 import de.swankeymonkey.production.animalcrossing_checker.utils.AppSharedPreferences;
 import de.swankeymonkey.production.animalcrossing_checker.utils.Constants;
-import de.swankeymonkey.production.animalcrossing_checker.utils.DateUtils;
 
 public class SettingsActivity extends AppCompatActivity {
-    private ViewHolder mViews;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        mViews = new ViewHolder(this);
+        ViewHolder views = new ViewHolder(this);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getString(R.string.settings));
 
         ArrayAdapter<CharSequence> adapterHemisphere = ArrayAdapter.createFromResource(this, R.array.hemisphere, android.R.layout.simple_spinner_item);
         adapterHemisphere.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mViews.mHemisphereSpinner.setAdapter(adapterHemisphere);
-        mViews.mHemisphereSpinner.setSelection(AppSharedPreferences.getAppHemisphere(this));
-        mViews.mHemisphereSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        views.mHemisphereSpinner.setAdapter(adapterHemisphere);
+        views.mHemisphereSpinner.setSelection(AppSharedPreferences.getAppHemisphere(this));
+        views.mHemisphereSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 AppSharedPreferences.setAppHemisphere(SettingsActivity.this, position);
@@ -53,14 +49,14 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        mViews.mExpander.setChecked(AppSharedPreferences.isAlwaysExpanded(this));
-        mViews.mExpander.setOnCheckedChangeListener((buttonView, isChecked) -> AppSharedPreferences.setIsAlwaysExpanded(SettingsActivity.this, isChecked));
+        views.mExpander.setChecked(AppSharedPreferences.isAlwaysExpanded(this));
+        views.mExpander.setOnCheckedChangeListener((buttonView, isChecked) -> AppSharedPreferences.setIsAlwaysExpanded(SettingsActivity.this, isChecked));
 
         ArrayAdapter<CharSequence> adapterMonths = ArrayAdapter.createFromResource(this, R.array.months, android.R.layout.simple_spinner_item);
         adapterMonths.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mViews.mMonthsSpinner.setAdapter(adapterMonths);
-        mViews.mMonthsSpinner.setSelection(AppSharedPreferences.getAppMonth(this) != Constants.NO_MONTH_CHOSEN ? AppSharedPreferences.getAppMonth(this) : new DateTime().getMonthOfYear() - 1);
-        mViews.mMonthsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        views.mMonthsSpinner.setAdapter(adapterMonths);
+        views.mMonthsSpinner.setSelection(AppSharedPreferences.getAppMonth(this) != Constants.NO_MONTH_CHOSEN ? AppSharedPreferences.getAppMonth(this) : new DateTime().getMonthOfYear() - 1);
+        views.mMonthsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position + 1 == new DateTime().getMonthOfYear()) {

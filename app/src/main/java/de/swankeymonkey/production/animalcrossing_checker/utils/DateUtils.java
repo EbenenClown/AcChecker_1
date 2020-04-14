@@ -8,11 +8,13 @@ import java.util.ArrayList;
 
 import de.swankeymonkey.production.animalcrossing_checker.R;
 
+import static de.swankeymonkey.production.animalcrossing_checker.utils.Constants.*;
+
 public class DateUtils {
 
     public static boolean isInDate(Context context, int currentMonth, ArrayList<String> monthList) {
         boolean isInDate = false;
-        if (monthList.get(0).equals("all")) {
+        if (monthList.get(0).equals(ALL_DATE)) {
             isInDate = true;
         } else {
             if(AppSharedPreferences.getAppHemisphere(context) == Constants.NORTHERN_HEMISPHERE) {
@@ -21,40 +23,40 @@ public class DateUtils {
                         break;
                     }
                     switch (month) {
-                        case "January":
+                        case JANUARY:
                             isInDate = currentMonth == 1;
                             break;
-                        case "February":
+                        case FEBRUARY:
                             isInDate = currentMonth == 2;
                             break;
-                        case "March":
+                        case MARCH:
                             isInDate = currentMonth == 3;
                             break;
-                        case "April":
+                        case APRIL:
                             isInDate = currentMonth == 4;
                             break;
-                        case "May":
+                        case MAY:
                             isInDate = currentMonth == 5;
                             break;
-                        case "June":
+                        case JUNE:
                             isInDate = currentMonth == 6;
                             break;
-                        case "July":
+                        case JULY:
                             isInDate = currentMonth == 7;
                             break;
-                        case "August":
+                        case AUGUST:
                             isInDate = currentMonth == 8;
                             break;
-                        case "September":
+                        case SEPTEMBER:
                             isInDate = currentMonth == 9;
                             break;
-                        case "October":
+                        case OCTOBER:
                             isInDate = currentMonth == 10;
                             break;
-                        case "November":
+                        case NOVEMBER:
                             isInDate = currentMonth == 11;
                             break;
-                        case "December":
+                        case DECEMBER:
                             isInDate = currentMonth == 12;
                             break;
 
@@ -66,40 +68,40 @@ public class DateUtils {
                         break;
                     }
                     switch (month) {
-                        case "January":
+                        case JANUARY:
                             isInDate = currentMonth == 7;
                             break;
-                        case "February":
+                        case FEBRUARY:
                             isInDate = currentMonth == 8;
                             break;
-                        case "March":
+                        case MARCH:
                             isInDate = currentMonth == 9;
                             break;
-                        case "April":
+                        case APRIL:
                             isInDate = currentMonth == 10;
                             break;
-                        case "May":
+                        case MAY:
                             isInDate = currentMonth == 11;
                             break;
-                        case "June":
+                        case JUNE:
                             isInDate = currentMonth == 12;
                             break;
-                        case "July":
+                        case JULY:
                             isInDate = currentMonth == 1;
                             break;
-                        case "August":
+                        case AUGUST:
                             isInDate = currentMonth == 2;
                             break;
-                        case "September":
+                        case SEPTEMBER:
                             isInDate = currentMonth == 3;
                             break;
-                        case "October":
+                        case OCTOBER:
                             isInDate = currentMonth == 4;
                             break;
-                        case "November":
+                        case NOVEMBER:
                             isInDate = currentMonth == 5;
                             break;
-                        case "December":
+                        case DECEMBER:
                             isInDate = currentMonth == 6;
                             break;
                     }

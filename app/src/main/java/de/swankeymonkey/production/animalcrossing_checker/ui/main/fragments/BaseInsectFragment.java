@@ -91,7 +91,7 @@ public abstract class BaseInsectFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_fish, container, false);
+        View view = inflater.inflate(R.layout.fragment_list, container, false);
         mViews = new BaseInsectFragment.ViewHolder(view);
         mAdapter = new InsectRecyclerViewAdapter(getContext(), initCheckboxListener());
         mViews.mRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));

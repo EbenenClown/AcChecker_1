@@ -20,6 +20,7 @@
         android:adjustViewBounds="true"
         android:cropToPadding="true"
         android:scaleType="fitXY"
+        android:contentDescription="@string/animal_picture_description"
         app:layout_constraintBottom_toTopOf="@id/details"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -51,6 +52,7 @@
         android:id="@+id/ivLocation"
         android:layout_width="32dp"
         android:layout_height="32dp"
+        android:contentDescription="@string/location_description"
         app:layout_constraintBottom_toBottomOf="@+id/ivImage"
         app:layout_constraintEnd_toStartOf="@+id/cbCatched"
         app:layout_constraintTop_toTopOf="@+id/ivImage" />
@@ -310,6 +312,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/expander_description"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_more_horiz_black_24dp" />
 

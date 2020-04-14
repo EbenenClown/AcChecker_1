@@ -15,26 +15,26 @@ import de.swankeymonkey.production.animalcrossing_checker.backend.models.Fish;
 @Dao
 public interface FishDAO {
     @Insert()
-    public void saveNewFish(Fish fish);
+    void saveNewFish(Fish fish);
 
     @Delete()
-    public void deleteFish(Fish fish);
+    void deleteFish(Fish fish);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    public void updateFish(Fish fish);
+    void updateFish(Fish fish);
 
     @Query("SELECT * FROM Fish")
-    public LiveData<List<Fish>> getAllFish();
+    LiveData<List<Fish>> getAllFish();
 
     @Query("SELECT * FROM Fish WHERE :id = id")
-    public LiveData<Fish> getFishWithId(int id);
+    LiveData<Fish> getFishWithId(int id);
 
     @Query("SELECT * FROM Fish WHERE isCatched = 0")
-    public LiveData<List<Fish>> getMissingFish();
+    LiveData<List<Fish>> getMissingFish();
 
     @Query("SELECT * FROM Fish WHERE isCatched = 1")
-    public LiveData<List<Fish>> getCatchedFish();
+    LiveData<List<Fish>> getCatchedFish();
 
     @Query("DELETE FROM FISH")
-    public void nukeTable();
+    void nukeTable();
 }

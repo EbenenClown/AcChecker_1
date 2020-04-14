@@ -21,16 +21,15 @@ import de.swankeymonkey.production.animalcrossing_checker.R;
 import de.swankeymonkey.production.animalcrossing_checker.utils.AppSharedPreferences;
 
 public class WelcomeDialog extends DialogFragment {
-    private ViewHolder mViews;
     private AlertDialog mDialog;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_welcome, null);
-        mViews = new ViewHolder(view);
+        ViewHolder views = new ViewHolder(view);
         mDialog = new AlertDialog.Builder(getContext()).setView(view).create();
-        mViews.mNHemisphere.setOnClickListener(v -> {
+        views.mNHemisphere.setOnClickListener(v -> {
             AppSharedPreferences.setAppHemisphere(getContext(), 0);
             AppSharedPreferences.setIsNotFirstTime(getContext());
             MainActivity activity = (MainActivity)getActivity();
@@ -38,7 +37,7 @@ public class WelcomeDialog extends DialogFragment {
             dismiss();
         });
 
-        mViews.mSHemisphere.setOnClickListener(v -> {
+        views.mSHemisphere.setOnClickListener(v -> {
             AppSharedPreferences.setAppHemisphere(getContext(), 1);
             AppSharedPreferences.setIsNotFirstTime(getContext());
             MainActivity activity = (MainActivity)getActivity();

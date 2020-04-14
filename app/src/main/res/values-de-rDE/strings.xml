@@ -224,7 +224,7 @@
     <string name="Rocks_Hitting">Steine (Schlagen)</string>
     <string name="Villagers">Auf Bewohner</string>
     <string name="Rocks_Raining">Steine (Regen)</string>
-    <string name="bells_string">Sternis</string>
+    <string name="bells_string">1%$i Sternis</string>
     <string name="settings_hemisphere_title">Ändere deine Hemisphäre:</string>
     <string name="settings_always_expand">Items immer aufgeklappt:</string>
     <string name="settings_month_title">Monat (Ändert die Tiere für heute):</string>
@@ -250,6 +250,10 @@
     <string name="fish_plural">Fische</string>
     <string name="insects">Insekten</string>
     <string name="settings">Einstellungen</string>
+    <string name="filter">filter</string>
+    <string name="animal_picture_description">Tier Foto</string>
+    <string name="location_description">Ort</string>
+    <string name="expander_description">Öffner</string>
 
     <string-array name="hemisphere">
         <item>Norden</item>

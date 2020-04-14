@@ -89,7 +89,7 @@ public abstract class BaseFishFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_fish, container, false);
+        View view = inflater.inflate(R.layout.fragment_list, container, false);
         mViews = new ViewHolder(view);
         mAdapter = new FishRecyclerViewAdapter(getContext(), setOnItemCheckListener());
         mViews.mRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
