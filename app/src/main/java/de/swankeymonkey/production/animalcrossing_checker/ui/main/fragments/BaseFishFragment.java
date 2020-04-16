@@ -1,12 +1,18 @@
 package de.swankeymonkey.production.animalcrossing_checker.ui.main.fragments;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import de.swankeymonkey.production.animalcrossing_checker.R;
+import de.swankeymonkey.production.animalcrossing_checker.SettingsActivity;
 import de.swankeymonkey.production.animalcrossing_checker.backend.models.Fish;
 import de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters.FishRecyclerViewAdapter;
 
@@ -32,6 +39,7 @@ public abstract class BaseFishFragment extends Fragment {
     protected FishRecyclerViewAdapter mAdapter;
     protected abstract void init(View view);
     protected abstract FishRecyclerViewAdapter.CheckboxClicker<Fish> setOnItemCheckListener();
+    protected abstract TextWatcher addTextListener();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,11 +56,6 @@ public abstract class BaseFishFragment extends Fragment {
     }
 
     @Override
-    public void onPrepareOptionsMenu(@NonNull Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-    }
-
-    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menuOrderByName:
@@ -65,6 +68,7 @@ public abstract class BaseFishFragment extends Fragment {
                 }
                 mAdapter.setData(orderByName(mAdapter.getData()));
                 break;
+
             case R.id.menuOrderByPrice:
                 if(isSortedByPriceDown) {
                     item.setIcon(R.drawable.ic_arrow_downward_white_24dp);
@@ -76,11 +80,32 @@ public abstract class BaseFishFragment extends Fragment {
                 mAdapter.setData(orderByPrice(mAdapter.getData()));
                 mMenu.findItem(R.id.menuDefaultOrder).setVisible(true);
                 break;
+
             case R.id.menuDefaultOrder:
                 mAdapter.setData(orderByDefault(mAdapter.getData()));
                 mMenu.findItem(R.id.menuOrderByName).setIcon(null);
                 mMenu.findItem(R.id.menuOrderByPrice).setIcon(null);
                 mMenu.findItem(R.id.menuDefaultOrder).setVisible(false);
+                break;
+
+            case R.id.menuSettings:
+                Intent intent = new Intent(getActivity(), SettingsActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+                break;
+
+            case R.id.menuSearch:
+                if(mViews.mSearchBar.getVisibility() == View.GONE) {
+                    mViews.mSearchBar.setVisibility(View.VISIBLE);
+                    mViews.mSearchBar.requestFocus();
+                    InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    inputMethodManager.showSoftInput(mViews.mSearchBar, InputMethodManager.SHOW_IMPLICIT);
+                } else {
+                    InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+                    mViews.mSearchBar.setVisibility(View.GONE);
+                    mViews.mSearchBar.clearFocus();
+                }
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -94,6 +119,16 @@ public abstract class BaseFishFragment extends Fragment {
         mAdapter = new FishRecyclerViewAdapter(getContext(), setOnItemCheckListener());
         mViews.mRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         mViews.mRecyclerview.setAdapter(mAdapter);
+        mViews.mSearchBar.addTextChangedListener(addTextListener());
+        mViews.mSearchBar.setOnKeyListener((v, keyCode, event) -> {
+            if(event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+                mViews.mSearchBar.clearFocus();
+                return true;
+            }
+            return false;
+        });
         init(view);
         return view;
     }
@@ -141,6 +176,8 @@ public abstract class BaseFishFragment extends Fragment {
     public static class ViewHolder {
         @BindView(R.id.recyclerview_main)
         RecyclerView mRecyclerview;
+        @BindView(R.id.searchBar)
+        EditText mSearchBar;
         Unbinder mUnbinder;
 
         public ViewHolder(View view) {

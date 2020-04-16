@@ -52,6 +52,10 @@ public class FishRepository {
         return mDb.fishDAO().getFishWithId(id);
     }
 
+    public LiveData<List<Fish>> getFishBySearchedString(String input) {
+        return mDb.fishDAO().searchFishAfterString(input);
+    }
+
     private static class SaverTask extends GenericDbTask<Fish, Fish> {
         SaverTask(AppDatabase db,@Nullable DbCallback<Fish> callback) {
             super(db, callback);

@@ -1,6 +1,8 @@
 package de.swankeymonkey.production.animalcrossing_checker.ui.main.fragments;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -44,6 +46,27 @@ public class FishAllFragment extends BaseFishFragment {
                 data.setCatched(true);
             }
             mViewModel.updateFish(data, null);
+        };
+    }
+
+    @Override
+    protected TextWatcher addTextListener() {
+        return new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String sb = "%" + s + '%';
+                mViewModel.searchFishAfterString(sb).observe(FishAllFragment.this, fishList -> mAdapter.setData(fishList));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
         };
     }
 

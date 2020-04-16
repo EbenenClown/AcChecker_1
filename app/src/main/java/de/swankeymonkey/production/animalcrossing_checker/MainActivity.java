@@ -2,12 +2,17 @@ package de.swankeymonkey.production.animalcrossing_checker;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 
 
@@ -60,22 +65,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.menuSettings) {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_settings, menu);
-        return true;
-    }
-
     public void init() {
         mAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         mViews.mViewPager.setAdapter(mAdapter);
@@ -95,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
     }
+
 
 
     public class ViewHolder {

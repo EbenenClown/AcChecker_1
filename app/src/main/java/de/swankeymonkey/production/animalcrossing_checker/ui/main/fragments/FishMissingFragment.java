@@ -1,6 +1,8 @@
 package de.swankeymonkey.production.animalcrossing_checker.ui.main.fragments;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -38,6 +40,26 @@ public class FishMissingFragment extends BaseFishFragment {
     @Override
     protected void init(View view) {
         mViewModel.getMissingFish().observe(this, fish -> mAdapter.setData(fish));
+    }
+
+    @Override
+    protected TextWatcher addTextListener() {
+        return new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mViewModel.searchFishAfterString(s.toString()).observe(FishMissingFragment.this, fishList -> mAdapter.setData(fishList));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        };
     }
 
     public static FishMissingFragment newInstance() {

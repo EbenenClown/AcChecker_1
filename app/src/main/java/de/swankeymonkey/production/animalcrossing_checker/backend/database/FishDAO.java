@@ -35,6 +35,9 @@ public interface FishDAO {
     @Query("SELECT * FROM Fish WHERE isCatched = 1")
     LiveData<List<Fish>> getCatchedFish();
 
+    @Query("SELECT * FROM Fish WHERE name LIKE :search ")
+    LiveData<List<Fish>> searchFishAfterString(String search);
+
     @Query("DELETE FROM FISH")
     void nukeTable();
 }

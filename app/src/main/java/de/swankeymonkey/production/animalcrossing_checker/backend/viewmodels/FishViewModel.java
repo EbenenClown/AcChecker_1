@@ -41,6 +41,10 @@ public class FishViewModel extends AndroidViewModel {
         return mRepository.getFishById(id);
     }
 
+    public LiveData<List<Fish>> searchFishAfterString(String input) {
+        return mRepository.getFishBySearchedString(input);
+    }
+
     public void saveNewFish(Fish fish, GenericDbTask.DbCallback<Fish> callback) {
         mRepository.saveNewFish(fish, callback);
     }
