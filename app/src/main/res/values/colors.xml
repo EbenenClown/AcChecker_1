@@ -5,6 +5,7 @@
     <color name="colorPrimaryLight">#BF7F1F</color>
     <color name="colorAccent">#FFAA2E</color>
     <color name="whiteTransparent">#D0FFFFFF</color>
+    <color name="darkTransparent">#6D000000</color>
     <color name="darkerGrey">#D0AEAEAE</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>

@@ -21,6 +21,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import de.swankeymonkey.production.animalcrossing_checker.MainActivity;
 import de.swankeymonkey.production.animalcrossing_checker.R;
 import de.swankeymonkey.production.animalcrossing_checker.SettingsActivity;
 import de.swankeymonkey.production.animalcrossing_checker.backend.models.Insect;
@@ -28,39 +29,38 @@ import de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters.Anima
 import de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters.InsectRecyclerViewAdapter;
 
 public abstract class BaseInsectFragment extends Fragment {
-    private static final int NOT_SELECTED = -1;
+    private static final int NOT_SELECTED = 0;
     private static final int DOWN_SELECTED = 1;
     private static final int UP_SELECTED = 2;
-
-    private static final String SELECTED_MENU = "selectedMenuBug";
-    private static final String SORTED_PRICE = "isSortedPriceBug";
-    private static final String SORTED_NAME = "isSortedNameBug";
 
     private Menu mMenu;
     protected BaseInsectFragment.ViewHolder mViews;
     protected InsectRecyclerViewAdapter mAdapter;
     protected abstract void init(View view);
     protected abstract AnimalRecyclerViewAdapter.CheckboxClicker<Insect> initCheckboxListener();
+    abstract String[] generateIds();
     private int selected = NOT_SELECTED;
     private int sortNameMode = NOT_SELECTED;
     private int sortPriceMode = NOT_SELECTED;
+    private String[] savedInstanceId;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        savedInstanceId = generateIds();
         if(savedInstanceState != null) {
-            selected = savedInstanceState.getInt(SELECTED_MENU);
-            sortNameMode = savedInstanceState.getInt(SORTED_NAME);
-            sortPriceMode = savedInstanceState.getInt(SORTED_PRICE);
+            selected = savedInstanceState.getInt(savedInstanceId[0]);
+            sortNameMode = savedInstanceState.getInt(savedInstanceId[1]);
+            sortPriceMode = savedInstanceState.getInt(savedInstanceId[2]);
         }
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putInt(SELECTED_MENU, selected);
-        outState.putInt(SORTED_NAME, sortNameMode);
-        outState.putInt(SORTED_PRICE, sortPriceMode);
+        outState.putInt(savedInstanceId[0], selected);
+        outState.putInt(savedInstanceId[1], sortNameMode);
+        outState.putInt(savedInstanceId[2], sortPriceMode);
         super.onSaveInstanceState(outState);
     }
 
@@ -81,7 +81,7 @@ public abstract class BaseInsectFragment extends Fragment {
                 break;
 
             case R.id.menuOrderByPrice:
-                if(sortPriceMode == 1) {
+                if(sortPriceMode == DOWN_SELECTED) {
                     mMenu.findItem(R.id.menuOrderByPrice).setIcon(R.drawable.ic_arrow_downward_white_24dp);
                 } else {
                     mMenu.findItem(R.id.menuOrderByPrice).setIcon(R.drawable.ic_arrow_upward_black_24dp);
@@ -104,28 +104,33 @@ public abstract class BaseInsectFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.menuOrderByName:
                 selected = R.id.menuOrderByName;
-                if(sortNameMode == NOT_SELECTED || sortNameMode == UP_SELECTED) {
-                    item.setIcon(R.drawable.ic_arrow_downward_white_24dp);
-                    mMenu.findItem(R.id.menuOrderByPrice).setIcon(null);
-                    sortNameMode = DOWN_SELECTED;
-                } else {
+                if(sortNameMode == NOT_SELECTED || sortNameMode == DOWN_SELECTED) {
                     item.setIcon(R.drawable.ic_arrow_upward_black_24dp);
                     mMenu.findItem(R.id.menuOrderByPrice).setIcon(null);
                     sortNameMode = UP_SELECTED;
+                    sortPriceMode = NOT_SELECTED;
+                } else {
+                    item.setIcon(R.drawable.ic_arrow_downward_white_24dp);
+                    mMenu.findItem(R.id.menuOrderByPrice).setIcon(null);
+                    sortNameMode = DOWN_SELECTED;
+                    sortPriceMode = NOT_SELECTED;
                 }
                 mAdapter.setData(orderByName(mAdapter.getData()));
                 mMenu.findItem(R.id.menuDefaultOrder).setVisible(true);
                 break;
+
             case R.id.menuOrderByPrice:
                 selected = R.id.menuOrderByPrice;
-                if(sortPriceMode == NOT_SELECTED || sortPriceMode == UP_SELECTED) {
-                    item.setIcon(R.drawable.ic_arrow_downward_white_24dp);
-                    mMenu.findItem(R.id.menuOrderByName).setIcon(null);
-                    sortPriceMode = DOWN_SELECTED;
-                } else {
+                if(sortPriceMode == NOT_SELECTED || sortPriceMode == DOWN_SELECTED) {
                     item.setIcon(R.drawable.ic_arrow_upward_black_24dp);
                     mMenu.findItem(R.id.menuOrderByName).setIcon(null);
                     sortPriceMode = UP_SELECTED;
+                    sortNameMode = NOT_SELECTED;
+                } else {
+                    item.setIcon(R.drawable.ic_arrow_downward_white_24dp);
+                    mMenu.findItem(R.id.menuOrderByName).setIcon(null);
+                    sortPriceMode = DOWN_SELECTED;
+                    sortNameMode = NOT_SELECTED;
                 }
                 mAdapter.setData(orderByPrice(mAdapter.getData()));
                 mMenu.findItem(R.id.menuDefaultOrder).setVisible(true);
@@ -155,7 +160,7 @@ public abstract class BaseInsectFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
         mViews = new BaseInsectFragment.ViewHolder(view);
-        mAdapter = new InsectRecyclerViewAdapter(getContext(), initCheckboxListener());
+        mAdapter = new InsectRecyclerViewAdapter(getContext(),(MainActivity) getActivity(), initCheckboxListener());
         mViews.mRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         mViews.mRecyclerview.setAdapter(mAdapter);
         init(view);
@@ -187,6 +192,14 @@ public abstract class BaseInsectFragment extends Fragment {
         Collections.sort(fishList, (o1, o2) -> Integer.compare(o1.getId(), o2.getId()));
         return fishList;
     }
+    protected void applyFilter() {
+        if(sortPriceMode > 0) {
+            mAdapter.setData(orderByPrice(mAdapter.getData()));
+        } else if(sortNameMode > 0) {
+            mAdapter.setData(orderByName(mAdapter.getData()));
+        }
+    }
+
 
     public static class ViewHolder {
         @BindView(R.id.recyclerview_main)

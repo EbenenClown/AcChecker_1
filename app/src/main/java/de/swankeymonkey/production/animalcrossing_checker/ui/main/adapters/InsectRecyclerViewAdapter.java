@@ -3,6 +3,7 @@ package de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters;
 import android.content.Context;
 import android.view.View;
 
+import de.swankeymonkey.production.animalcrossing_checker.MainActivity;
 import de.swankeymonkey.production.animalcrossing_checker.R;
 import de.swankeymonkey.production.animalcrossing_checker.backend.enums.FishLocation;
 import de.swankeymonkey.production.animalcrossing_checker.backend.enums.InsectLocation;
@@ -12,8 +13,8 @@ import de.swankeymonkey.production.animalcrossing_checker.backend.models.Insect;
 
 public class InsectRecyclerViewAdapter extends AnimalRecyclerViewAdapter<Insect> {
 
-    public InsectRecyclerViewAdapter(Context context, CheckboxClicker<Insect> listener) {
-        super(context, listener);
+    public InsectRecyclerViewAdapter(Context context, MainActivity main, CheckboxClicker<Insect> listener) {
+        super(context,main, listener);
     }
 
     @Override

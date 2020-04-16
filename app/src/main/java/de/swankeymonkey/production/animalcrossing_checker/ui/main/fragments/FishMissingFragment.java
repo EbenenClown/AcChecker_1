@@ -9,12 +9,17 @@ import androidx.lifecycle.ViewModelProvider;
 
 import java.util.List;
 
+import de.swankeymonkey.production.animalcrossing_checker.MainActivity;
 import de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters.AnimalRecyclerViewAdapter;
 import de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters.FishRecyclerViewAdapter;
 import de.swankeymonkey.production.animalcrossing_checker.backend.models.Fish;
 import de.swankeymonkey.production.animalcrossing_checker.backend.viewmodels.FishViewModel;
 
 public class FishMissingFragment extends BaseFishFragment {
+    private static final String SELECTED_MENU = "selectedMenuFish" + FishMissingFragment.class.getSimpleName();
+    private static final String SORTED_PRICE = "isSortedPriceFish" + FishMissingFragment.class.getSimpleName();
+    private static final String SORTED_NAME = "isSortedNameFish" + FishMissingFragment.class.getSimpleName();
+    
     private FishViewModel mViewModel;
 
     @Override
@@ -38,6 +43,13 @@ public class FishMissingFragment extends BaseFishFragment {
     @Override
     protected void init(View view) {
         mViewModel.getMissingFish().observe(this, fish -> mAdapter.setData(fish));
+        applyFilter();
+    }
+
+    @Override
+    protected String[] generateIds() {
+        String[] ids = {SELECTED_MENU, SORTED_NAME, SORTED_PRICE};
+        return ids;
     }
 
     public static FishMissingFragment newInstance() {

@@ -13,6 +13,7 @@ import org.joda.time.DateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.swankeymonkey.production.animalcrossing_checker.MainActivity;
 import de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters.AnimalRecyclerViewAdapter;
 import de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters.FishRecyclerViewAdapter;
 import de.swankeymonkey.production.animalcrossing_checker.backend.models.Fish;
@@ -22,6 +23,10 @@ import de.swankeymonkey.production.animalcrossing_checker.utils.Constants;
 import de.swankeymonkey.production.animalcrossing_checker.utils.DateUtils;
 
 public class FishTodayFragment extends BaseFishFragment {
+    private static final String SELECTED_MENU = "selectedMenuFish" + FishTodayFragment.class.getSimpleName();
+    private static final String SORTED_PRICE = "isSortedPriceFish" + FishTodayFragment.class.getSimpleName();
+    private static final String SORTED_NAME = "isSortedNameFish" + FishTodayFragment.class.getSimpleName();
+    
     private FishViewModel mViewModel;
 
     @Override
@@ -41,6 +46,7 @@ public class FishTodayFragment extends BaseFishFragment {
                 }
             }
             mAdapter.setData(filteredList);
+            applyFilter();
         });
     }
 
@@ -54,6 +60,12 @@ public class FishTodayFragment extends BaseFishFragment {
             }
             mViewModel.updateFish(data, null);
         };
+    }
+
+    @Override
+    protected String[] generateIds() {
+        String[] ids = {SELECTED_MENU, SORTED_NAME, SORTED_PRICE};
+        return ids;
     }
 
     public static FishTodayFragment newInstance() {

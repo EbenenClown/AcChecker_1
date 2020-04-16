@@ -1,5 +1,6 @@
 package de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.swankeymonkey.production.animalcrossing_checker.MainActivity;
 import de.swankeymonkey.production.animalcrossing_checker.R;
 import de.swankeymonkey.production.animalcrossing_checker.backend.models.Animal;
 import de.swankeymonkey.production.animalcrossing_checker.utils.AppSharedPreferences;
@@ -27,15 +29,17 @@ public abstract class AnimalRecyclerViewAdapter<T> extends RecyclerView.Adapter<
     protected List<T> mData;
     protected Context mContext;
     protected CheckboxClicker<T> mListener;
+    private MainActivity mParentActivity;
     protected abstract AnimalViewHolder setViewHolder(View view);
 
     private List<Integer> mPositionSaves;
 
-    AnimalRecyclerViewAdapter(Context context, CheckboxClicker<T> listener) {
+    AnimalRecyclerViewAdapter(Context context, MainActivity parentActivity, CheckboxClicker<T> listener) {
         mContext = context;
         mListener = listener;
         mData = new ArrayList<>();
         mPositionSaves = new ArrayList<>();
+        mParentActivity = parentActivity;
     }
 
     public void setData(List<T> data) {
@@ -56,6 +60,7 @@ public abstract class AnimalRecyclerViewAdapter<T> extends RecyclerView.Adapter<
 
     @Override
     public void onBindViewHolder(@NonNull AnimalRecyclerViewAdapter.AnimalViewHolder holder,final int position) {
+        mParentActivity.showProgressbar(true);
         final boolean isExpanded = mPositionSaves.indexOf(position) != -1;
         if(AppSharedPreferences.isAlwaysExpanded(mContext)) {
             holder.mDetails.setVisibility(View.VISIBLE);
@@ -151,6 +156,7 @@ public abstract class AnimalRecyclerViewAdapter<T> extends RecyclerView.Adapter<
             setImage(animal);
             setLocation(animal);
             setTime(animal);
+            mParentActivity.showProgressbar(false);
         }
 
         private void setMonths(ArrayList<String> months) {

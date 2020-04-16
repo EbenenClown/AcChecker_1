@@ -18,6 +18,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.swankeymonkey.production.animalcrossing_checker.MainActivity;
 import de.swankeymonkey.production.animalcrossing_checker.R;
 import de.swankeymonkey.production.animalcrossing_checker.backend.enums.FishLocation;
 import de.swankeymonkey.production.animalcrossing_checker.backend.enums.FishTime;
@@ -26,8 +27,8 @@ import de.swankeymonkey.production.animalcrossing_checker.backend.models.Fish;
 
 public class FishRecyclerViewAdapter extends AnimalRecyclerViewAdapter<Fish> {
 
-    public FishRecyclerViewAdapter(Context context, CheckboxClicker<Fish> clicker) {
-        super(context, clicker);
+    public FishRecyclerViewAdapter(Context context, MainActivity mainActivity, CheckboxClicker<Fish> clicker) {
+        super(context,mainActivity, clicker);
     }
 
     @Override

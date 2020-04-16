@@ -23,6 +23,10 @@ import de.swankeymonkey.production.animalcrossing_checker.backend.viewmodels.Ins
 import de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters.AnimalRecyclerViewAdapter;
 
 public class InsectCatchedFragment extends BaseInsectFragment {
+    private static final String SELECTED_MENU = "selectedMenuFish" + InsectCatchedFragment.class.getSimpleName();
+    private static final String SORTED_PRICE = "isSortedPriceFish" + InsectCatchedFragment.class.getSimpleName();
+    private static final String SORTED_NAME = "isSortedNameFish" + InsectCatchedFragment.class.getSimpleName();
+    
     private InsectViewModel mViewModel;
 
     @Override
@@ -35,6 +39,7 @@ public class InsectCatchedFragment extends BaseInsectFragment {
     protected void init(View view) {
         getActivity().findViewById(R.id.progessBar).setVisibility(View.GONE);
         mViewModel.getCatchedInsects().observe(this, insects -> mAdapter.setData(insects));
+        applyFilter();
     }
 
     @Override
@@ -47,6 +52,12 @@ public class InsectCatchedFragment extends BaseInsectFragment {
             }
             mViewModel.updateInsect(animal, null);
         };
+    }
+
+    @Override
+    protected String[] generateIds() {
+        String[] ids = {SELECTED_MENU, SORTED_NAME, SORTED_PRICE};
+        return ids;
     }
 
     public static InsectCatchedFragment newInstance() {

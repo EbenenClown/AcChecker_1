@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 
@@ -41,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mViews = new ViewHolder(this);
-
         if(AppSharedPreferences.isFirstStart(this) || AppSharedPreferences.getAppHemisphere(this) == Constants.NO_HEMISPHERE_CHOSEN) {
             WelcomeDialog dialog = new WelcomeDialog();
             dialog.show(getSupportFragmentManager(), Constants.WELCOME_DIALOG);
@@ -64,11 +64,11 @@ public class MainActivity extends AppCompatActivity {
     public void init() {
         mAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         mViews.mViewPager.setAdapter(mAdapter);
+        mViews.mViewPager.setOffscreenPageLimit(4);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(mViews.mViewPager);
         setSupportActionBar(mViews.mToolbar);
         mViews.mBottomNavigation.setOnNavigationItemSelectedListener(item -> {
-            mViews.mProgressBar.setVisibility(View.VISIBLE);
             if(item.getItemId() == R.id.nav_fish) {
                 mAdapter.setMode(FISH_MODE);
                 mAdapter.notifyDataSetChanged();
@@ -78,6 +78,10 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
+    }
+
+    public void showProgressbar(boolean value) {
+        mViews.mProgressBar.setVisibility(value ? View.VISIBLE : View.GONE);
     }
 
 

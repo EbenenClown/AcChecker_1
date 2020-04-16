@@ -20,6 +20,9 @@ import de.swankeymonkey.production.animalcrossing_checker.utils.Constants;
 import de.swankeymonkey.production.animalcrossing_checker.utils.DateUtils;
 
 public class InsectTodayFragment extends BaseInsectFragment {
+    private static final String SELECTED_MENU = "selectedMenuFish" + InsectTodayFragment.class.getSimpleName();
+    private static final String SORTED_PRICE = "isSortedPriceFish" + InsectTodayFragment.class.getSimpleName();
+    private static final String SORTED_NAME = "isSortedNameFish" + InsectTodayFragment.class.getSimpleName();
     private InsectViewModel mViewModel;
 
     @Override
@@ -39,6 +42,7 @@ public class InsectTodayFragment extends BaseInsectFragment {
                 }
             }
             mAdapter.setData(filteredList);
+            applyFilter();
         });
     }
 
@@ -53,6 +57,13 @@ public class InsectTodayFragment extends BaseInsectFragment {
             mViewModel.updateInsect(animal, null);
         };
     }
+
+    @Override
+    protected String[] generateIds() {
+        String[] ids = {SELECTED_MENU, SORTED_NAME, SORTED_PRICE};
+        return ids;
+    }
+
 
     public static InsectTodayFragment newInstance() {
        return new InsectTodayFragment();
