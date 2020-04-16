@@ -60,26 +60,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.menuSettings) {
-            Intent intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_settings, menu);
-        return true;
-    }
 
     public void init() {
         mAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         mViews.mViewPager.setAdapter(mAdapter);
-        mViews.mViewPager.setOffscreenPageLimit(4);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(mViews.mViewPager);
         setSupportActionBar(mViews.mToolbar);

@@ -1,5 +1,6 @@
 package de.swankeymonkey.production.animalcrossing_checker.ui.main.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,20 +22,27 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import de.swankeymonkey.production.animalcrossing_checker.R;
+import de.swankeymonkey.production.animalcrossing_checker.SettingsActivity;
 import de.swankeymonkey.production.animalcrossing_checker.backend.models.Fish;
 import de.swankeymonkey.production.animalcrossing_checker.ui.main.adapters.FishRecyclerViewAdapter;
 
 public abstract class BaseFishFragment extends Fragment {
-    private static final String SELECTED_MENU = "selectedMenu";
+    private static final int NOT_SELECTED = -1;
+    private static final int DOWN_SELECTED = 1;
+    private static final int UP_SELECTED = 2;
 
-    private boolean isSortedByNameDown;
-    private boolean isSortedByPriceDown;
+    private static final String SELECTED_MENU = "selectedMenuFish";
+    private static final String SORTED_PRICE = "isSortedPriceFish";
+    private static final String SORTED_NAME = "isSortedNameFish";
+
     private Menu mMenu;
     protected ViewHolder mViews;
     protected FishRecyclerViewAdapter mAdapter;
     protected abstract void init(View view);
     protected abstract FishRecyclerViewAdapter.CheckboxClicker<Fish> setOnItemCheckListener();
-    private int selected = -1;
+    private int selected = NOT_SELECTED;
+    private int sortNameMode = NOT_SELECTED;
+    private int sortPriceMode = NOT_SELECTED;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,12 +50,16 @@ public abstract class BaseFishFragment extends Fragment {
         setHasOptionsMenu(true);
         if(savedInstanceState != null) {
             selected = savedInstanceState.getInt(SELECTED_MENU);
+            sortNameMode = savedInstanceState.getInt(SORTED_NAME);
+            sortPriceMode = savedInstanceState.getInt(SORTED_PRICE);
         }
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putInt(SELECTED_MENU, selected);
+        outState.putInt(SORTED_NAME, sortNameMode);
+        outState.putInt(SORTED_PRICE, sortPriceMode);
         super.onSaveInstanceState(outState);
     }
 
@@ -58,29 +70,26 @@ public abstract class BaseFishFragment extends Fragment {
         mMenu = menu;
         switch(selected) {
             case R.id.menuOrderByName:
-                if(isSortedByNameDown) {
+                if(sortNameMode == DOWN_SELECTED) {
                     mMenu.findItem(R.id.menuOrderByName).setIcon(R.drawable.ic_arrow_downward_white_24dp);
                 } else {
                     mMenu.findItem(R.id.menuOrderByName).setIcon(R.drawable.ic_arrow_upward_black_24dp);
                 }
                 mMenu.findItem(R.id.menuDefaultOrder).setVisible(true);
+                mAdapter.setData(orderByName(mAdapter.getData()));
                 break;
 
             case R.id.menuOrderByPrice:
-                if(isSortedByPriceDown) {
+                if(sortPriceMode == 1) {
                     mMenu.findItem(R.id.menuOrderByPrice).setIcon(R.drawable.ic_arrow_downward_white_24dp);
                 } else {
                     mMenu.findItem(R.id.menuOrderByPrice).setIcon(R.drawable.ic_arrow_upward_black_24dp);
                 }
                 mMenu.findItem(R.id.menuDefaultOrder).setVisible(true);
+                mAdapter.setData(orderByPrice(mAdapter.getData()));
                 break;
         }
 
-    }
-
-    @Override
-    public void onPrepareOptionsMenu(@NonNull Menu menu) {
-        super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -88,33 +97,48 @@ public abstract class BaseFishFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.menuOrderByName:
                 selected = R.id.menuOrderByName;
-                if(isSortedByNameDown) {
+                if(sortNameMode == NOT_SELECTED || sortNameMode == UP_SELECTED) {
                     item.setIcon(R.drawable.ic_arrow_downward_white_24dp);
                     mMenu.findItem(R.id.menuOrderByPrice).setIcon(null);
+                    sortNameMode = DOWN_SELECTED;
                 } else {
                     item.setIcon(R.drawable.ic_arrow_upward_black_24dp);
                     mMenu.findItem(R.id.menuOrderByPrice).setIcon(null);
+                    sortNameMode = UP_SELECTED;
                 }
                 mAdapter.setData(orderByName(mAdapter.getData()));
+                mMenu.findItem(R.id.menuDefaultOrder).setVisible(true);
                 break;
+
             case R.id.menuOrderByPrice:
                 selected = R.id.menuOrderByPrice;
-                if(isSortedByPriceDown) {
+                if(sortPriceMode == NOT_SELECTED || sortPriceMode == UP_SELECTED) {
                     item.setIcon(R.drawable.ic_arrow_downward_white_24dp);
                     mMenu.findItem(R.id.menuOrderByName).setIcon(null);
+                    sortPriceMode = DOWN_SELECTED;
                 } else {
                     item.setIcon(R.drawable.ic_arrow_upward_black_24dp);
                     mMenu.findItem(R.id.menuOrderByName).setIcon(null);
+                    sortPriceMode = UP_SELECTED;
                 }
                 mAdapter.setData(orderByPrice(mAdapter.getData()));
                 mMenu.findItem(R.id.menuDefaultOrder).setVisible(true);
                 break;
 
             case R.id.menuDefaultOrder:
+                selected = NOT_SELECTED;
+                sortPriceMode = NOT_SELECTED;
+                sortNameMode = NOT_SELECTED;
                 mAdapter.setData(orderByDefault(mAdapter.getData()));
                 mMenu.findItem(R.id.menuOrderByName).setIcon(null);
                 mMenu.findItem(R.id.menuOrderByPrice).setIcon(null);
                 mMenu.findItem(R.id.menuDefaultOrder).setVisible(false);
+                break;
+
+            case R.id.menuSettings:
+                Intent intent = new Intent(getActivity(), SettingsActivity.class);
+                startActivity(intent);
+                getActivity().finish();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -139,35 +163,27 @@ public abstract class BaseFishFragment extends Fragment {
     }
 
     protected List<Fish> orderByPrice(List<Fish> fishList) {
-        isSortedByNameDown = false;
-        if(isSortedByPriceDown) {
+        if(sortPriceMode == DOWN_SELECTED) {
             Collections.sort(fishList, (o1, o2) -> Integer.compare(o1.getPrice(), o2.getPrice()));
-            isSortedByPriceDown = false;
             return fishList;
         } else {
             Collections.sort(fishList, (o1, o2) -> Integer.compare(o2.getPrice(), o1.getPrice()));
-            isSortedByPriceDown = true;
             return fishList;
         }
     }
 
     protected List<Fish> orderByName(List<Fish> fishList) {
-        isSortedByPriceDown = false;
-        if(isSortedByNameDown) {
+        if(sortNameMode == DOWN_SELECTED) {
             Collections.sort(fishList, (o1, o2) -> o2.getName().compareToIgnoreCase(o1.getName()));
-            isSortedByNameDown = false;
             return fishList;
         } else {
             Collections.sort(fishList, (o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
-            isSortedByNameDown = true;
             return fishList;
         }
 
     }
 
     protected List<Fish> orderByDefault(List<Fish> fishList) {
-        isSortedByNameDown = false;
-        isSortedByPriceDown = false;
         Collections.sort(fishList, (o1, o2) -> Integer.compare(o1.getId(), o2.getId()));
         return fishList;
     }
