@@ -32,7 +32,7 @@ public abstract class BaseFishFragment extends Fragment {
     private static final int DOWN_SELECTED = 1;
     private static final int UP_SELECTED = 2;
 
-
+    //
     private Menu mMenu;
     protected ViewHolder mViews;
     protected FishRecyclerViewAdapter mAdapter;
