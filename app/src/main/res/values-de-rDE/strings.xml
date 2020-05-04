@@ -180,7 +180,7 @@
     <string name="Dec">Dezember</string>
     <string name="t4am_9pm">4 - 21 Uhr</string>
     <string name="t9am_4pm">9 - 16 Uhr</string>
-    <string name="t9am_4pm_9pm_4am">todo</string>
+    <string name="t9am_4pm_9pm_4am">9 - 16 Uhr &amp; 19 - 4 Uhr</string>
     <string name="t4pm_9am">16 - 9 Uhr</string>
     <string name="t6pm_4am">18 - 4 Uhr</string>
     <string name="t9pm_4am">21 - 4 Uhr</string>

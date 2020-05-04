@@ -87,6 +87,7 @@ public class SettingsActivity extends AppCompatActivity {
     private void backToMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public class ViewHolder {

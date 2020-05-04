@@ -84,6 +84,11 @@ public class MainActivity extends AppCompatActivity {
         mViews.mProgressBar.setVisibility(value ? View.VISIBLE : View.GONE);
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+        System.exit(0);
+    }
 
     public class ViewHolder {
         @BindView(R.id.view_pager)
